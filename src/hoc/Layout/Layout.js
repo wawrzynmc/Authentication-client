@@ -1,8 +1,6 @@
 import React, {useState} from 'react'
 
-// import navigation
 import MainNavigation from '../../shared/components/Navigation/MainNavigation/MainNavigation'
-// import side drawer
 import SideDrawer from '../../shared/components/Navigation/SideDrawer/SideDrawer'
 
 import classes from './Layout.module.css'
@@ -32,7 +30,7 @@ const Layout = (props) => {
                     sideDrawerIsVisible = {sideDrawerIsVisible}
                     closeSideDrawer = {closeSideDrawerHandler}
                 >
-                    Navigation Items
+
                 </SideDrawer>
                 <main>{props.children}</main>
             </div>

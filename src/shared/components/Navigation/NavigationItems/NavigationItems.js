@@ -11,7 +11,7 @@ const NavigationItems = (props) => {
 
     return(
         <ul className={classes.NavigationItems}>
-            <NavigationItem link="/" exact>Link1</NavigationItem>
+            <NavigationItem link="/auth" exact>Main Page</NavigationItem>
             <NavigationItem link="/" exact>Link2</NavigationItem>
             <NavigationItem link="/" exact>Link3</NavigationItem>
             <NavigationItem link="/" exact>Link4</NavigationItem>
