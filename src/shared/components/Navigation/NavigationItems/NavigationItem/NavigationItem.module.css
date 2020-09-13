@@ -14,7 +14,7 @@
     font-size: 1.6em;
 }
 
-.NavigationItem::after {
+.NavigationItem a::after {
     display: block;
     width: 0;
     height: 2px;
@@ -24,21 +24,9 @@
     transition: width .3s;
 }
 
-.NavigationItem:hover::after {
+.NavigationItem a:hover::after {
     width: 100%;
     transition: width .3s;
-}
-
-/* .NavigationItem :not(.active):hover::after { */
-
-.NavigationItem a:hover,
-.NavigationItem a:active, 
-.NavigationItem .active {
-    color: #f01390 ;
-}
-
-.NavigationItem .active:hover::after {
-    content: none;
 }
 
 .NavigationItem .active::after{
@@ -48,10 +36,14 @@
 
     content: '';
     background-color: #fff;
-    transition: width .3s;
 }
 
-/* Ten shit działa, ale jak dołoże hover to sie jebie */
-.NavigationItem :hover:not(.active) {
-    color: black;
+.NavigationItem a:hover,
+.NavigationItem a:active, 
+.NavigationItem a.active {
+    color: #f01390 ;
+}
+
+.NavigationItem a:hover:not(.active) {
+    color: black
 }
