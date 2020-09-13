@@ -14,10 +14,12 @@ const Layout = (props) => {
     
     const sideDrawerToggleHandler = () => {
 		setSideDrawerIsVisible(prevState => {
-            console.log(!prevState)
+            console.log('Inside drawer toggle', !prevState)
             return !prevState
         });
-	};
+    };
+    
+    console.log('Rendering layout')
 
     return(
         <React.Fragment>
@@ -25,10 +27,12 @@ const Layout = (props) => {
                 <MainNavigation
                     drawerToggleClick = {sideDrawerToggleHandler}
                     sideDrawerIsVisible = {sideDrawerIsVisible}
+                    navigationItemsDesktopView = {true}
                     />
                 <SideDrawer
-                    sideDrawerIsVisible = {sideDrawerIsVisible}
                     closeSideDrawer = {closeSideDrawerHandler}
+                    sideDrawerIsVisible = {sideDrawerIsVisible}
+                    navigationItemsDesktopView = {false}
                 >
 
                 </SideDrawer>

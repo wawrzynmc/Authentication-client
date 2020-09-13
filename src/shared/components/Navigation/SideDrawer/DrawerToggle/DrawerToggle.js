@@ -10,6 +10,8 @@ const DrawerToggle = (props) => {
 		attachedClasses.push(classes.Toggle);
 	}
 
+	console.log('Render Drawer Toggle')
+
 	return (
 		<div className={attachedClasses.join(" ")} onClick={props.onClick}>
 			<div className={classes.DrawerToggleLine}></div>

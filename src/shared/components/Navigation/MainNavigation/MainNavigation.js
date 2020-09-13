@@ -6,15 +6,16 @@ import Logo from '../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
 
 import classes from './MainNavigation.module.css';
+import NavigationItem from '../NavigationItems/NavigationItem/NavigationItem';
 
 const MainNavigation = (props) => {
+	console.log('Rendering Main Navigation')
+
 	return (
 		<MainHeader>
 			<Logo />
 			<h1 className={classes.Title}>full authentication</h1>
-			{/* <nav className={classes.HeaderNavigation}>
-                    <NavigationItems/>
-                </nav> */}
+			<NavigationItems desktopView={props.navigationItemsDesktopView}/>
 			<DrawerToggle
 				onClick={props.drawerToggleClick}
 				transform={props.sideDrawerIsVisible}
