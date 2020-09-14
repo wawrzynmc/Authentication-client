@@ -1,3 +1,7 @@
+:root {
+    --headerBgcColor: #7313f0
+}
+
 .MainHeader {
 	position: fixed;
 	top: 0;
@@ -11,7 +15,9 @@
 	width: 100%;
 	height: 84px;
 
-	background-color:#7313f0;
+	border-bottom: 2px solid #d0b4dc;
+
+	background-color: var(--headerBgcColor)
 }
 
 /* szerokosc wieksza niz 768 */
@@ -20,3 +26,5 @@
 		
 	}
 }
+
+/* #7313f0; */

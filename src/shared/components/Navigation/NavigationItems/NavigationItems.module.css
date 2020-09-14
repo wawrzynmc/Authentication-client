@@ -30,8 +30,7 @@
         height: 2px;
         width: 0;
         background-color:  #f01390 ;
-        bottom: 28px;
-        left: 0;
+        left: -10px;
         transition: 0.5s;
         border-radius: 5px;
     }
@@ -58,12 +57,12 @@
 
 @keyframes xd {
     0% {
-        bottom: 28px;
+        bottom: 27px;
         opacity: 1;
     }
 
     10% {
-        bottom: 28px;
+        bottom: 27px;
         opacity: 0;
     }
 
@@ -73,8 +72,8 @@
     }
 
     100% {
-        left: 0;
-        bottom: 28px;
+        left: -10px;
+        bottom: 27px;
         opacity: 0;
         width: 0;
     }

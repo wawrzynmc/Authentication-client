@@ -19,7 +19,7 @@ const NavigationItems = (props) => {
 	}
 
 	const navigationItemMouseOverHandler = (event) => {
-		marker.current.style.bottom = `28px`;
+		marker.current.style.bottom = `27px`;
 		marker.current.style.left = `${event.target.offsetLeft}px`;
 		marker.current.style.width = `${event.target.offsetWidth}px`;
 		marker.current.style.animation = '';

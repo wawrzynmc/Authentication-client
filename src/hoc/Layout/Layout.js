@@ -36,7 +36,7 @@ const Layout = (props) => {
                 >
 
                 </SideDrawer>
-                <main>{props.children}</main>
+                <main className={classes.main}>{props.children}</main>
             </div>
         </React.Fragment>
     )

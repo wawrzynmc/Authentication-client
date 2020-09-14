@@ -17,11 +17,11 @@ const Auth = (props) => {
 
     return(
         <div>
-            <h1>LOGIN PAGE</h1>
+            {/* <h1>LOGIN PAGE</h1>
             <hr/>
             <form onSubmit={authSubmitHandler}>
                 <button>LOGIN</button>
-            </form>
+            </form> */}
         </div>
     )
 };
