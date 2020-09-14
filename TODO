@@ -1,8 +1,13 @@
 
 Todo:
-  ☐ @high If user will be redirect to '/auth' from some '/url/' then after success login i want to redirect him there
-  ☐ @high Use ESLint
-  ☐ Implement the same animation as in desktop nav in mobile nav
+  Overall: 
+    ☐ @high If user will be redirect to '/auth' from some '/url/' then after success login i want to redirect him there
+    ☐ @high Use ESLint
+ 
+  Navigation:
+    ☐ @low check main navigatio animation (first time works fine, but next don't)
+    ☐ @low Implement the same animation as in desktop nav in mobile nav
+  
 
   
 
