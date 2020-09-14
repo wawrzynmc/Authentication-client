@@ -9,7 +9,7 @@ const Auth = (props) => {
     const authSubmitHandler = async (event) => {
         event.preventDefault();
         auth.login('userId1', 'token');
-        console.log(history)
+        // console.log(history)
         history.push('/')
     }
 

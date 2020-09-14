@@ -6,12 +6,20 @@
 .NavigationItem a {
     display: inline-block;
 
-    color: rgb(246, 246, 246);
+    color: rgba(246, 246, 246, 0.65);
     text-decoration: none;
     text-transform: capitalize;
     letter-spacing: 3px;
     font-weight: bold;
     font-size: 1.6em;
+    transition: color .3s;
+}
+
+.NavigationItem a:hover,
+.NavigationItem a:active, 
+.NavigationItem a.active {
+    color: rgb(246, 246, 246);
+    content: "";
 }
 
 .NavigationItem a::after {
@@ -20,8 +28,18 @@
     height: 2px;
 
     content: '';
-    background-color: #fff;
+    background-color: #f01390 ;
     transition: width .3s;
+}
+
+.NavigationItem a.active::after,
+.NavigationItem a.active:hover::after{
+    display: block;
+    width: 100%;
+    height: 2px;
+
+    content: '';
+    background-color: #f01390 ;
 }
 
 .NavigationItem a:hover::after {
@@ -29,21 +47,19 @@
     transition: width .3s;
 }
 
-.NavigationItem .active::after{
-    display: block;
-    width: 100%;
-    height: 2px;
 
-    content: '';
-    background-color: #fff;
-}
-
-.NavigationItem a:hover,
-.NavigationItem a:active, 
-.NavigationItem a.active {
-    color: #f01390 ;
-}
-
-.NavigationItem a:hover:not(.active) {
+/* .NavigationItem a:hover:not(.active) {
     color: black
+} */
+
+@media screen and (min-width: 768px) {
+    .NavigationItem a {
+        margin: 0 5px;
+    }
+
+    .NavigationItem a:hover::after,
+    .NavigationItem a::after{
+        content: none;
+
+    }
 }

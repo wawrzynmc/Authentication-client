@@ -15,7 +15,7 @@ import { useAuth } from './shared/hooks/auth-hook';
 
 function App() {
 	const { token, login, logout, duringAutologin, userId } = useAuth();
-	console.log('token', token);
+	// console.log('token', token);
 
 	return (
 		<AuthContext.Provider

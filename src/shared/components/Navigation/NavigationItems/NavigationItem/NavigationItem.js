@@ -6,7 +6,7 @@ import classes from './NavigationItem.module.css'
 const NavigationItem = (props) => {
     return(
         <li className={classes.NavigationItem}>
-            <NavLink to={props.link} activeClassName={classes.active} exact={props.exact}>
+            <NavLink to={props.link} activeClassName={classes.active} exact={props.exact} onMouseOver={props.mouseOver} onClick={props.mouseOver}>
                 {props.children}
             </NavLink>
         </li>

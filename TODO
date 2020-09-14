@@ -1,6 +1,8 @@
 
 Todo:
   ☐ @high If user will be redirect to '/auth' from some '/url/' then after success login i want to redirect him there
+  ☐ @high Use ESLint
+  ☐ Implement the same animation as in desktop nav in mobile nav
 
   
 
