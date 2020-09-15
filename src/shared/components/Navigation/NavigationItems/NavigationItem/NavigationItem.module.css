@@ -14,7 +14,7 @@
 
     color: var(--inactiveLinkColor);
     text-decoration: none;
-    text-transform: capitalize;
+    text-transform: uppercase;
     letter-spacing: 3px;
     font-weight: bold;
     font-size: 1.6em;

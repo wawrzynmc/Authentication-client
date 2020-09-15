@@ -15,7 +15,42 @@ import { useAuth } from './shared/hooks/auth-hook';
 
 function App() {
 	const { token, login, logout, duringAutologin, userId } = useAuth();
+	let routes;
+
 	// console.log('token', token);
+	if (token) {
+		routes = (
+			<Switch>
+				<Route path="/" exact>
+					<Main />
+				</Route>
+				<Route path="/protected/admin" exact>
+					PROTECTED ADMIN
+				</Route>
+				<Route path="/protected/user" exact>
+					PROTECTED USER
+				</Route>
+				<Redirect to="/" />
+			</Switch>
+		);
+	} else {
+		routes = (
+			<Switch>
+				<Route path="/auth/login" exact>
+					LOGIN
+				</Route>
+				<Route path="/auth/signup" exact>
+					SIGNUP
+				</Route>
+				<Route path="/auth" exact>
+					<Auth />
+				</Route>
+				<Redirect to="/auth" />
+			</Switch>
+		);
+	}
+
+	// <Route path="*" component={() => 'PAGE NOT FOUND'} />
 
 	return (
 		<AuthContext.Provider
@@ -29,18 +64,7 @@ function App() {
 		>
 			<Router>
 				<Layout>
-					<Suspense fallback={<p>Loading...</p>}>
-						<Switch>
-							<ProtectedRoute path="/" exact component={Main} />
-							<Route path="/auth" exact>
-								<Auth />
-							</Route>
-							<Route
-								path="*"
-								component={() => 'PAGE NOT FOUND'}
-							/>
-						</Switch>
-					</Suspense>
+					<Suspense fallback={<p>Loading...</p>}>{routes}</Suspense>
 				</Layout>
 			</Router>
 		</AuthContext.Provider>

@@ -41,34 +41,55 @@ const NavigationItems = (props) => {
 		>
 			<ul className={attachedClasses.join(' ')}>
 				<div className={classes.marker} ref={marker}></div>
-				<NavigationItem
-					link="/"
-					mouseOver={navigationItemMouseOverHandler}
-					exact
-				>
-					Main
-				</NavigationItem>
-				<NavigationItem
-					link="/auth"
-					exact
-					mouseOver={navigationItemMouseOverHandler}
-				>
-					Login
-				</NavigationItem>
-				<NavigationItem
-					link="/"
-					exact
-					mouseOver={navigationItemMouseOverHandler}
-				>
-					Signup
-				</NavigationItem>
-				<NavigationItem
-					link="/"
-					exact
-					mouseOver={navigationItemMouseOverHandler}
-				>
-					Protected
-				</NavigationItem>
+				{/* NOT LOGGED IN */}
+				{!auth.isLoggedIn && (
+					<NavigationItem
+						link="/auth/login"
+						exact
+						mouseOver={navigationItemMouseOverHandler}
+					>
+						Login
+					</NavigationItem>
+				)}
+				{!auth.isLoggedIn && (
+					<NavigationItem
+						link="/auth/signup"
+						exact
+						mouseOver={navigationItemMouseOverHandler}
+					>
+						Signup
+					</NavigationItem>
+				)}
+
+				{/* LOGGED IN */}
+				{auth.isLoggedIn && (
+					<NavigationItem
+						link="/"
+						mouseOver={navigationItemMouseOverHandler}
+						exact
+					>
+						Main
+					</NavigationItem>
+				)}
+				{auth.isLoggedIn && (
+					<NavigationItem
+						link="/protected/admin"
+						exact
+						mouseOver={navigationItemMouseOverHandler}
+					>
+						Protected Admin
+					</NavigationItem>
+				)}
+
+				{auth.isLoggedIn && (
+					<NavigationItem
+						link="/protected/user"
+						exact
+						mouseOver={navigationItemMouseOverHandler}
+					>
+						Protected User
+					</NavigationItem>
+				)}
 			</ul>
 		</nav>
 	);
