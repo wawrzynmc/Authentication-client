@@ -24,7 +24,7 @@ const Layout = (props) => {
     return(
         <React.Fragment>
             <div className={classes.Container}>
-                <MainNavigation
+                <MainNavigation mainPageAddress = {props.mainPageAddress}
                     drawerToggleClick = {sideDrawerToggleHandler}
                     sideDrawerIsVisible = {sideDrawerIsVisible}
                     navigationItemsDesktopView = {true}

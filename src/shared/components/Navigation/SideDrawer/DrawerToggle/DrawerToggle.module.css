@@ -6,7 +6,7 @@
 
     width: 40px;
     height: 100%;
-    padding: 25px 0;
+    padding: 26px 0;
     margin-right: 20px;
     
     cursor: pointer;
@@ -20,7 +20,7 @@
 }
 
 .Toggle .DrawerToggleLine:nth-child(1) {
-    transform: rotate(-45deg) translate(-10px, 6px);
+    transform: rotate(-45deg) translate(-10px, 4px);
 }
 
 .Toggle .DrawerToggleLine:nth-child(2) {
@@ -28,7 +28,7 @@
 }
 
 .Toggle .DrawerToggleLine:nth-child(3) {
-    transform: rotate(45deg) translate(-10px, -6px);
+    transform: rotate(45deg) translate(-10px, -4px);
 }
 
 @media screen and (min-width: 768px) {

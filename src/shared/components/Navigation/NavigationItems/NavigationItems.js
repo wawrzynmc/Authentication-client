@@ -19,17 +19,25 @@ const NavigationItems = (props) => {
 	}
 
 	const navigationItemMouseOverHandler = (event) => {
-		marker.current.style.bottom = `27px`;
-		marker.current.style.left = `${event.target.offsetLeft}px`;
-		marker.current.style.width = `${event.target.offsetWidth}px`;
-		marker.current.style.animation = '';
+		let isActive = event.target.className
+			.split(' ')
+			.filter((className) => className.includes('active'));
+
+		if (!isActive.length) {
+			marker.current.style.opacity = '1';
+			marker.current.style.bottom = `28.5px`;
+			marker.current.style.left = `${event.target.offsetLeft}px`;
+			marker.current.style.width = `${event.target.offsetWidth}px`;
+			marker.current.style.animation = '';
+		}
 	};
 
 	const navigationMouseOutHandler = (event) => {
-		console.log('adsad');
-		// marker.current.style.bottom= '0px'
-		// marker.current.style.width = `0px`
-		marker.current.style.animation = `${classes.xd} 2s both`;
+		marker.current.style.left = '0px'
+		marker.current.style.opacity = '0';
+		marker.current.style.width = `0px`;
+
+		// marker.current.style.animation = `${classes.xd} 10s both`;
 	};
 
 	// Maybe on mouseOut focus on active link?
@@ -47,6 +55,7 @@ const NavigationItems = (props) => {
 						link="/auth/login"
 						exact
 						mouseOver={navigationItemMouseOverHandler}
+						mouseOut={navigationMouseOutHandler}
 					>
 						Login
 					</NavigationItem>
@@ -56,6 +65,7 @@ const NavigationItems = (props) => {
 						link="/auth/signup"
 						exact
 						mouseOver={navigationItemMouseOverHandler}
+						mouseOut={navigationMouseOutHandler}
 					>
 						Signup
 					</NavigationItem>

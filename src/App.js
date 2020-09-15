@@ -9,16 +9,18 @@ import {
 import Layout from './hoc/Layout/Layout';
 import ProtectedRoute from './shared/components/ProtectedRoute/ProtectedRoute';
 import Main from './main/pages/Main';
-import Auth from './user/pages/Auth';
+import Auth from './auth/pages/Auth';
 import { AuthContext } from './shared/context/auth-context';
 import { useAuth } from './shared/hooks/auth-hook';
 
 function App() {
 	const { token, login, logout, duringAutologin, userId } = useAuth();
 	let routes;
+	let mainPageAddress;
 
 	// console.log('token', token);
 	if (token) {
+		mainPageAddress = "/"
 		routes = (
 			<Switch>
 				<Route path="/" exact>
@@ -35,6 +37,7 @@ function App() {
 			</Switch>
 		);
 	} else {
+		mainPageAddress = "/auth"
 		routes = (
 			<Switch>
 				<Route path="/auth/login" exact>
@@ -65,7 +68,7 @@ function App() {
 			}}
 		>
 			<Router>
-				<Layout>
+				<Layout mainPageAddress={mainPageAddress}>
 					<Suspense fallback={<p>Loading...</p>}>{routes}</Suspense>
 				</Layout>
 			</Router>

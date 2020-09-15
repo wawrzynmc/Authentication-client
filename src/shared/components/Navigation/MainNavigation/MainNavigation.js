@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
 import MainHeader from '../MainHeader/MainHeader';
@@ -14,7 +15,7 @@ const MainNavigation = (props) => {
 	return (
 		<MainHeader>
 			<Logo navigation/>
-			<h1 className={classes.Title}>full authentication</h1>
+			<Link to= {props.mainPageAddress} className={classes.Title}>full authentication</Link>
 			<NavigationItems desktopView={props.navigationItemsDesktopView}/>
 			<DrawerToggle
 				onClick={props.drawerToggleClick}

@@ -5,12 +5,15 @@
 .Title {
     flex-grow: 1;
 
+    margin: 10px 0;
+
     font-size: 2.2em;
     text-transform: uppercase;
     letter-spacing: 2px;
     color: var(--titleColor);
     text-align: center;
-    margin: 10px 0;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 @media screen and (min-width: 576px) {

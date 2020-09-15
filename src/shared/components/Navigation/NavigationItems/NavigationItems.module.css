@@ -27,11 +27,11 @@
 
     .marker {
         position: absolute;
-        height: 2px;
+        height: 1.5px;
         width: 0;
         background-color:  #f01390 ;
         left: -10px;
-        transition: 0.5s;
+        transition: all 0.4s 0.2s linear;
         border-radius: 5px;
     }
 }
@@ -57,24 +57,21 @@
 
 @keyframes xd {
     0% {
-        bottom: 27px;
         opacity: 1;
     }
 
     10% {
-        bottom: 27px;
         opacity: 0;
     }
 
     75% {
-        bottom: 0;
         opacity: 0;
     }
 
     100% {
         left: -10px;
         bottom: 27px;
-        opacity: 0;
+        opacity: 1;
         width: 0;
     }
 }

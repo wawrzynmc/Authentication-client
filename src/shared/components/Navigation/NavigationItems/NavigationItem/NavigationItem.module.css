@@ -31,11 +31,11 @@
 .NavigationItem a::after {
     display: block;
     width: 0;
-    height: 2px;
+    height: 1.5px;
 
     content: '';
     background-color: var(--slidingLineColor);
-    transition: width .3s;
+    transition: width .5s linear ;
 }
 
 .NavigationItem a.active::after,
