@@ -30,7 +30,8 @@ function App() {
 				<Route path="/protected/user" exact>
 					PROTECTED USER
 				</Route>
-				<Redirect to="/" />
+				<Route path="*" component={() => 'PAGE NOT FOUND'} />
+				{/* <Redirect to="/" /> */}
 			</Switch>
 		);
 	} else {
@@ -45,7 +46,8 @@ function App() {
 				<Route path="/auth" exact>
 					<Auth />
 				</Route>
-				<Redirect to="/auth" />
+				<Route path="*" component={() => 'PAGE NOT FOUND'} />
+				{/* <Redirect to="/auth" /> */}
 			</Switch>
 		);
 	}

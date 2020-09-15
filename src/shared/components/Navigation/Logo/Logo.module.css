@@ -1,8 +1,13 @@
 .Logo {
-    padding: 10px;
     height: 100%;
     box-sizing: border-box;
 }
+
+.NavigationLogo {
+    padding: 10px 0;
+    margin-left: 20px;
+}
+
 .Logo img {
     height: 100%;
 }

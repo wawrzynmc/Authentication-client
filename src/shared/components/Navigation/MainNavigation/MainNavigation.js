@@ -13,7 +13,7 @@ const MainNavigation = (props) => {
 
 	return (
 		<MainHeader>
-			<Logo />
+			<Logo navigation/>
 			<h1 className={classes.Title}>full authentication</h1>
 			<NavigationItems desktopView={props.navigationItemsDesktopView}/>
 			<DrawerToggle

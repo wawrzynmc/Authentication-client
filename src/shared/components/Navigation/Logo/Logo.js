@@ -5,8 +5,14 @@ import logo from '../../../../assets/images/logo.png'
 import classes from './Logo.module.css'
 
 const Logo = (props) => {
+    let attachedClasses = [classes.Logo];
+
+    if (props.navigation) {
+        attachedClasses.push(classes.NavigationLogo)
+    }
+
     return(
-        <div className= {classes.Logo} style={{height: props.height}}>
+        <div className= {attachedClasses.join(' ')} style={{height: props.height}}>
             <img src={logo} alt="logo"/>
         </div>
     )
