@@ -1,38 +1,37 @@
 .DrawerToggle {
-    display: flex;
-    flex-flow: column;
-    justify-content: space-around;
-    align-items: center;
+	display: flex;
+	flex-flow: column;
+	justify-content: space-around;
+	align-items: center;
 
-    width: 40px;
-    height: 100%;
-    padding: 26px 0;
-    margin-right: 20px;
-    
-    cursor: pointer;
+	width: 40px;
+	height: 100%;
+	padding: 25px 0;
+
+	cursor: pointer;
 }
 
 .DrawerToggleLine {
-    width: 90%;
-    height: 3px;
-    background-color: black;
-    transition: all 0.3s ease;
+	width: 90%;
+	height: 3px;
+	background-color: black;
+	transition: all 0.3s ease;
 }
 
 .Toggle .DrawerToggleLine:nth-child(1) {
-    transform: rotate(-45deg) translate(-10px, 4px);
+	transform: rotate(-45deg) translate(-10px, 4px);
 }
 
 .Toggle .DrawerToggleLine:nth-child(2) {
-    opacity: 0;
+	opacity: 0;
 }
 
 .Toggle .DrawerToggleLine:nth-child(3) {
-    transform: rotate(45deg) translate(-10px, -4px);
+	transform: rotate(45deg) translate(-10px, -4px);
 }
 
 @media screen and (min-width: 768px) {
-    .DrawerToggle {
-        display: none;
-    }   
+	.DrawerToggle {
+		display: none;
+	}
 }

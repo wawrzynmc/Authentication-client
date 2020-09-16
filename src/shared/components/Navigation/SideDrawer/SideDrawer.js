@@ -9,7 +9,7 @@ import classes from './SideDrawer.module.css';
 const SideDrawer = (props) => {
 	const nodeRef = useRef(null);
 
-	console.log('Rednering Side Drawer')
+	console.log('Rednering Side Drawer');
 
 	return (
 		<React.Fragment>
@@ -28,10 +28,9 @@ const SideDrawer = (props) => {
 					exitActive: classes.ExitActive,
 				}}
 				mountOnEnter
-				unmountOnExit
-			>
+				unmountOnExit>
 				<aside ref={nodeRef} className={classes.SideDrawer}>
-					{props.sideDrawerIsVisible && <NavigationItems/>}
+					{props.sideDrawerIsVisible && <NavigationItems />}
 				</aside>
 			</CSSTransition>
 		</React.Fragment>

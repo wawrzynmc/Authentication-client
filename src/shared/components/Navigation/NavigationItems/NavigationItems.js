@@ -33,7 +33,7 @@ const NavigationItems = (props) => {
 	};
 
 	const navigationMouseOutHandler = (event) => {
-		marker.current.style.left = '0px'
+		marker.current.style.left = '0px';
 		marker.current.style.opacity = '0';
 		marker.current.style.width = `0px`;
 
@@ -45,8 +45,7 @@ const NavigationItems = (props) => {
 	return (
 		<nav
 			className={classes.Navigation}
-			onMouseLeave={navigationMouseOutHandler}
-		>
+			onMouseLeave={navigationMouseOutHandler}>
 			<ul className={attachedClasses.join(' ')}>
 				<div className={classes.marker} ref={marker}></div>
 				{/* NOT LOGGED IN */}
@@ -55,8 +54,7 @@ const NavigationItems = (props) => {
 						link="/auth/login"
 						exact
 						mouseOver={navigationItemMouseOverHandler}
-						mouseOut={navigationMouseOutHandler}
-					>
+						mouseOut={navigationMouseOutHandler}>
 						Login
 					</NavigationItem>
 				)}
@@ -65,8 +63,7 @@ const NavigationItems = (props) => {
 						link="/auth/signup"
 						exact
 						mouseOver={navigationItemMouseOverHandler}
-						mouseOut={navigationMouseOutHandler}
-					>
+						mouseOut={navigationMouseOutHandler}>
 						Signup
 					</NavigationItem>
 				)}
@@ -76,8 +73,7 @@ const NavigationItems = (props) => {
 					<NavigationItem
 						link="/"
 						mouseOver={navigationItemMouseOverHandler}
-						exact
-					>
+						exact>
 						Main
 					</NavigationItem>
 				)}
@@ -85,8 +81,7 @@ const NavigationItems = (props) => {
 					<NavigationItem
 						link="/protected/admin"
 						exact
-						mouseOver={navigationItemMouseOverHandler}
-					>
+						mouseOver={navigationItemMouseOverHandler}>
 						Protected Admin
 					</NavigationItem>
 				)}
@@ -95,8 +90,7 @@ const NavigationItems = (props) => {
 					<NavigationItem
 						link="/protected/user"
 						exact
-						mouseOver={navigationItemMouseOverHandler}
-					>
+						mouseOver={navigationItemMouseOverHandler}>
 						Protected User
 					</NavigationItem>
 				)}

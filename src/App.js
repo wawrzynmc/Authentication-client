@@ -20,7 +20,7 @@ function App() {
 
 	// console.log('token', token);
 	if (token) {
-		mainPageAddress = "/"
+		mainPageAddress = '/';
 		routes = (
 			<Switch>
 				<Route path="/" exact>
@@ -37,7 +37,7 @@ function App() {
 			</Switch>
 		);
 	} else {
-		mainPageAddress = "/auth"
+		mainPageAddress = '/auth';
 		routes = (
 			<Switch>
 				<Route path="/auth/login" exact>
@@ -65,8 +65,7 @@ function App() {
 				userId: userId,
 				login: login,
 				logout: logout,
-			}}
-		>
+			}}>
 			<Router>
 				<Layout mainPageAddress={mainPageAddress}>
 					<Suspense fallback={<p>Loading...</p>}>{routes}</Suspense>

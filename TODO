@@ -2,9 +2,10 @@
 Todo:
   Overall: 
     ☐ @high If user will be redirect to '/auth' from some '/url/' then after success login i want to redirect him there
-    ☐ @high Use ESLint
+    ✔ @high Use ESLint @done(20-09-16 19:54)
  
   Navigation:
+    ☐ @high implement language change (multilanguage page)
     ☐ @low check main navigatio animation (first time works fine, but next don't)
     ☐ @low Implement the same animation as in desktop nav in mobile nav
   

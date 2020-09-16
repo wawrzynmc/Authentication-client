@@ -8,11 +8,13 @@
 	left: 0;
 	z-index: 20;
 
+
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
 
 	width: 100%;
+	padding: 0 5%;
 	height: 84px;
 
 	border-bottom: 2px solid #d0b4dc;
