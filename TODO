@@ -3,6 +3,7 @@ Todo:
   Overall: 
     ☐ @high If user will be redirect to '/auth' from some '/url/' then after success login i want to redirect him there
     ✔ @high Use ESLint @done(20-09-16 19:54)
+    ☐ @low move Logo from Navigation to UIElements
  
   Navigation:
     ☐ @high implement language change (multilanguage page)

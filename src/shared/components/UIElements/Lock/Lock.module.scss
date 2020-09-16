@@ -17,14 +17,19 @@
 	stroke-dasharray: 300;
 	stroke-dashoffset: -30;
 	transition: all 300ms ease-out;
+
+	&Loaded {
+		stroke-dashoffset: 0;
+		stroke: #fa113d;
+
+		& ~ .LockBody {
+			fill: #fa113d;
+		}
+	}
 }
-.LockTop.loaded {
-	stroke-dashoffset: 0;
-	stroke: #fa113d;
-}
-.LockTop.loaded ~ .LockBody {
-	fill: #fa113d;
-}
+// .LockTop.loaded ~ .LockBody {
+// 	fill: #fa113d;
+// }
 .LockTop.loading {
 	stroke: #000;
 	opacity: 0.3;
