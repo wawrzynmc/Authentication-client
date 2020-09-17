@@ -65,7 +65,8 @@ function App() {
 				userId: userId,
 				login: login,
 				logout: logout,
-			}}>
+			}}
+		>
 			<Router>
 				<Layout mainPageAddress={mainPageAddress}>
 					<Suspense fallback={<p>Loading...</p>}>{routes}</Suspense>

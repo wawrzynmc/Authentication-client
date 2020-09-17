@@ -10,7 +10,7 @@ const Auth = (props) => {
 	const history = useHistory();
 
 	const [lockIsClosed, setLockIsClose] = useState(false);
-	const [signupActive, setSignupActive] = useState(true);
+	const [signupActive, setSignupActive] = useState(false);
 
 	const toggleLockStateHandler = () => {
 		setLockIsClose((prevState) => {

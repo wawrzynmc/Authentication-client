@@ -5,7 +5,7 @@ import classes from './Form.module.scss';
 const Form = (props) => {
 	let attachedClasses = [classes.Container];
 	if (props.rightPanelActive) {
-		attachedClasses.push(classes.Container_rightPanelActive);
+		attachedClasses.push(classes.Container_secondPanelActive);
 	}
 	return (
 		<div className={attachedClasses.join(' ')}>
@@ -58,7 +58,7 @@ const Form = (props) => {
 			<div className={classes.OverlayContainer}>
 				<div className={classes.OverlayContainer__Overlay}>
 					<div
-						className={`${classes.OverlayContainer__Panel} ${classes.OverlayContainer__Panel_left}`}
+						className={`${classes.OverlayContainer__Panel} ${classes.OverlayContainer__Panel_first}`}
 					>
 						<h1>Welcome Back!</h1>
 						<p>
@@ -73,7 +73,7 @@ const Form = (props) => {
 						</button>
 					</div>
 					<div
-						className={`${classes.OverlayContainer__Panel} ${classes.OverlayContainer__Panel_rigth}`}
+						className={`${classes.OverlayContainer__Panel} ${classes.OverlayContainer__Panel_second}`}
 					>
 						<h1>Hello, Friend!</h1>
 						<p>
