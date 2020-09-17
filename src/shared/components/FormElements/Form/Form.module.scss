@@ -16,7 +16,8 @@
 
 	&_secondPanelActive {
 		& .FormContainer_signin {
-			transform: translate(0, 60%);
+			transform: translate(0, 35%);
+			opacity: 0;
 			z-index: 0;
 			@media screen and (min-width: 768px) {
 				transform: translate(100%, 0);
@@ -26,8 +27,8 @@
 		& .FormContainer_signup {
 			opacity: 1;
 			z-index: 10;
-			transform: translate(0, 60%);
-			animation: show 0.6s;
+			transform: translate(0, 50%);
+			animation: show 0.4s;
 
 			@media screen and (min-width: 768px) {
 				transform: translate(100%, 0);
@@ -35,25 +36,28 @@
 		}
 
 		& .OverlayContainer {
-			transform: translate(0, -150%);
+			transform: translate(0, -234%);
 			@media screen and (min-width: 768px) {
 				transform: translate(-100%, 0);
 			}
 		}
 
 		& .OverlayContainer__Overlay {
+			transform: translate(0, 70%);
 			@media screen and (min-width: 768px) {
 				transform: translate(50%, 0);
 			}
 		}
 
 		& .OverlayContainer__Panel_first {
+			transform: translate(0, 0%);
 			@media screen and (min-width: 768px) {
 				transform: translate(100%, 0);
 			}
 		}
 
 		& .OverlayContainer__Panel_second {
+			transform: translate(0, -233%);
 			@media screen and (min-width: 768px) {
 				transform: translate(-100%, 0);
 			}
@@ -63,8 +67,9 @@
 
 .FormContainer {
 	position: absolute;
+	top: 0;
 
-	height: 60%;
+	height: 65%;
 	width: 100%;
 
 	transition: all 0.6s ease-in-out;
@@ -86,9 +91,16 @@
 		z-index: 10;
 	}
 
-	&__Socials {
-		margin: 20px 0;
-		@media screen and (min-width: 768px) {
+	// &__Socials {
+
+	// }
+
+	&__Title {
+		font-weight: bold;
+		font-size: 2rem;
+
+		@media (min-width: 375px) {
+			font-size: 2.4rem;
 		}
 	}
 
@@ -99,7 +111,7 @@
 
 		height: 40px;
 		width: 40px;
-		margin: 15px 5px;
+		margin: 10px 5px;
 
 		border: 1px solid #dddddd;
 		border-radius: 50%;
@@ -111,10 +123,10 @@
 
 .OverlayContainer {
 	position: absolute;
-	top: 75%;
+	top: 70%;
 	left: 0;
 
-	height: 25%;
+	height: 30%;
 	width: 100%;
 
 	overflow: hidden;
@@ -131,9 +143,9 @@
 
 	&__Overlay {
 		position: relative;
-		top: -300%;
+		top: -233%;
 
-		height: 400%;
+		height: 333%;
 
 		background: #ff416c;
 		background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
@@ -160,7 +172,7 @@
 		align-items: center;
 		justify-content: center;
 
-		height: 25%;
+		height: 30%;
 		width: 100%;
 
 		text-align: center;
@@ -177,7 +189,7 @@
 		}
 
 		&_first {
-			transform: translate(0, 150%);
+			transform: translate(0, 0);
 
 			@media screen and (min-width: 768px) {
 				transform: translate(100%, 0);
@@ -185,7 +197,7 @@
 		}
 
 		&_second {
-			transform: translate(0, 0);
+			transform: translate(0, 200%);
 
 			@media screen and (min-width: 768px) {
 				right: 0;
@@ -193,27 +205,46 @@
 			}
 		}
 	}
-}
 
-h1 {
-	font-weight: bold;
-	margin: 0;
-}
+	&__Title {
+		font-size: 2rem;
+	}
 
-h2 {
-	text-align: center;
-}
+	&__Information {
+		font-size: 1rem;
+		font-weight: 100;
+		line-height: 20px;
+		letter-spacing: 0.5px;
+		margin: 5px 0;
+		width: 70%;
 
-p {
-	font-size: 14px;
-	font-weight: 100;
-	line-height: 20px;
-	letter-spacing: 0.5px;
-	margin: 20px 0 30px;
-}
+		h1 {
+			font-size: 1.2rem;
+			position: relative;
+		}
 
-span {
-	font-size: 12px;
+		h1:before {
+			content: '';
+			display: block;
+			width: 100px;
+			height: 1px;
+			background-color: rgb(246, 246, 246);
+			position: absolute;
+			left: 5%;
+			top: 50%;
+		}
+
+		h1:after {
+			content: '';
+			display: block;
+			width: 100px;
+			height: 1px;
+			background-color: rgb(246, 246, 246);
+			position: absolute;
+			right: 5%;
+			top: 50%;
+		}
+	}
 }
 
 button {
@@ -223,7 +254,7 @@ button {
 	color: #ffffff;
 	font-size: 12px;
 	font-weight: bold;
-	padding: 12px 45px;
+	padding: 10px 45px;
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
@@ -259,6 +290,7 @@ input {
 	padding: 12px 15px;
 	margin: 8px 0;
 	width: 100%;
+	height: 4vh;
 }
 
 @keyframes show {

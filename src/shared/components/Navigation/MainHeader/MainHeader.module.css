@@ -1,13 +1,12 @@
 :root {
-    --headerBgcColor: #7313f0
+	--headerBgcColor: #7313f0;
 }
 
 .MainHeader {
 	position: fixed;
 	top: 0;
 	left: 0;
-	z-index: 20;
-
+	z-index: 200;
 
 	display: flex;
 	justify-content: space-around;
@@ -19,13 +18,12 @@
 
 	border-bottom: 2px solid #d0b4dc;
 
-	background-color: var(--headerBgcColor)
+	background-color: var(--headerBgcColor);
 }
 
 /* szerokosc wieksza niz 768 */
 @media (min-width: 768px) {
 	.MainHeader {
-		
 	}
 }
 

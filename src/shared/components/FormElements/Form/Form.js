@@ -13,7 +13,9 @@ const Form = (props) => {
 				className={`${classes.FormContainer} ${classes.FormContainer_signup}`}
 			>
 				<form action="#">
-					<h1>Create Account</h1>
+					<h1 className={classes.FormContainer__Title}>
+						Create Account
+					</h1>
 					<div className={classes.FormContainer__Socials}>
 						<a href="#" className={classes.FormContainer__Social}>
 							<i className="fab fa-facebook-f"></i>
@@ -25,9 +27,12 @@ const Form = (props) => {
 							<i className="fab fa-linkedin-in"></i>
 						</a>
 					</div>
-					<span>or use your email for registration</span>
+					<span className={classes.FormContainer__paragraph}>
+						or fill the form
+					</span>
 					<input type="text" placeholder="Name" />
 					<input type="email" placeholder="Email" />
+					<input type="password" placeholder="Password" />
 					<input type="password" placeholder="Password" />
 					<button>Sign Up</button>
 				</form>
@@ -36,7 +41,7 @@ const Form = (props) => {
 				className={`${classes.FormContainer} ${classes.FormContainer_signin}`}
 			>
 				<form action="#">
-					<h1>Sign in</h1>
+					<h1 className={classes.FormContainer__Title}>Sign in</h1>
 					<div className={classes.FormContainer__Socials}>
 						<a href="#" className={classes.FormContainer__Social}>
 							<i className="fab fa-facebook-f"></i>
@@ -48,7 +53,9 @@ const Form = (props) => {
 							<i className="fab fa-linkedin-in"></i>
 						</a>
 					</div>
-					<span>or use your account</span>
+					<span className={classes.FormContainer__paragraph}>
+						or fill the form
+					</span>
 					<input type="email" placeholder="Email" />
 					<input type="password" placeholder="Password" />
 					<a href="#">Forgot your password?</a>
@@ -60,31 +67,45 @@ const Form = (props) => {
 					<div
 						className={`${classes.OverlayContainer__Panel} ${classes.OverlayContainer__Panel_first}`}
 					>
-						<h1>Welcome Back!</h1>
-						<p>
-							To keep connected with us please login with your
-							personal info
-						</p>
-						<button
-							className={classes.Ghost}
-							onClick={props.togglePannels}
-						>
-							Sign In
-						</button>
-					</div>
-					<div
-						className={`${classes.OverlayContainer__Panel} ${classes.OverlayContainer__Panel_second}`}
-					>
-						<h1>Hello, Friend!</h1>
-						<p>
-							Enter your personal details and start journey with
-							us
-						</p>
+						<h1 className={classes.OverlayContainer__Title}>
+							Welcome Back
+						</h1>
+						<span className={classes.OverlayContainer__Information}>
+							<p>
+								Enter your personal details, <br />
+								log in and have fun!
+							</p>
+							<h1>
+								<span>or</span>
+							</h1>
+						</span>
 						<button
 							className={classes.Ghost}
 							onClick={props.togglePannels}
 						>
 							Sign Up
+						</button>
+					</div>
+					<div
+						className={`${classes.OverlayContainer__Panel} ${classes.OverlayContainer__Panel_second}`}
+					>
+						<h1 className={classes.OverlayContainer__Title}>
+							First Time Here?
+						</h1>
+						<span className={classes.OverlayContainer__Information}>
+							<p>
+								Enter your personal details, <br />
+								create an account and start the journey!
+							</p>
+							<h1>
+								<span>or</span>
+							</h1>
+						</span>
+						<button
+							className={classes.Ghost}
+							onClick={props.togglePannels}
+						>
+							Sign In
 						</button>
 					</div>
 				</div>
