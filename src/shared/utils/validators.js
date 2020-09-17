@@ -12,15 +12,37 @@ const VALIDATOR_TYPE_FILE = 'FILE';
 const emailRegex = new RegExp(
 	'^(([^<>()[]\\.,;:s@"]+(.[^<>()[]\\.,;:s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$'
 );
-const lowPassword = new RegExp(
+
+/* 
+	- at least six or more characters 
+		- && (and) at least 1. lowercase alphabetical character && at least 1 uppercase alphabetical character
+		- || (or) at least 1. lowercase alphabetical character && at least 1 numeric character
+		- || (or) at least 1 uppercase alphabetical character  && at least 1 numeric character
+*/
+const mediumPassword = new RegExp(
 	'^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})'
 );
-const mediuPassword = new RegExp(
-	'^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})'
+/* 
+	-  at least 1. lowercase alphabetical character
+	- && (and) at least 1 uppercase alphabetical character
+	- && at least 1 numeric character
+	- && at least one special character
+	- && eight characters or longer
+*/
+const strongPassword = new RegExp(
+	'^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})'
 );
-const highPassword = new RegExp(
-	'^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})'
-);
+
+// functions
+const analyzePassword = (password) => {
+	let result = 0;
+	if (strongPassword.test(password)) {
+		result = 2;
+	} else if (mediumPassword.test(password)) {
+		result = 1;
+	}
+	return result;
+};
 
 // export validators
 export const VALIDATOR_REQUIRE = () => ({ type: VALIDATOR_TYPE_REQUIRE });
@@ -35,7 +57,10 @@ export const VALIDATOR_MAXLENGTH = (val) => ({
 });
 export const VALIDATOR_MIN = (val) => ({ type: VALIDATOR_TYPE_MIN, val: val });
 export const VALIDATOR_MAX = (val) => ({ type: VALIDATOR_TYPE_MAX, val: val });
-export const VALIDATOR_EMAIL = () => ({ type: VALIDATOR_TYPE_EMAIL });
+export const VALIDATOR_EMAIL = () => ({
+	type: VALIDATOR_TYPE_EMAIL,
+	regex: emailRegex,
+});
 export const VALIDATOR_PASSWORD = () => ({ type: VALIDATOR_TYPE_PASSWORD });
 
 export const validate = (value, validators) => {
@@ -59,14 +84,10 @@ export const validate = (value, validators) => {
 			isValid = isValid && +value <= validator.val;
 		}
 		if (validator.type === VALIDATOR_TYPE_EMAIL) {
-			isValid =
-				isValid &&
-				/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-					value
-				);
+			isValid = isValid && validator.regex.test(value);
 		}
-		if (validator.type === VALIDATOR_TYPE_EMAIL) {
-			isValid = isValid && /^\S+@\S+\.\S+$/.test(value);
+		if (validator.type === VALIDATOR_TYPE_PASSWORD) {
+			metaData.passwordStrength = analyzePassword(value);
 		}
 	}
 	return {
