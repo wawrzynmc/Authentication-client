@@ -5,17 +5,24 @@
 }
 
 .main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+
 	position: absolute;
 	top: 84px;
 	height: calc(100vh - 84px);
 	width: 100%;
-	background: linear-gradient(180deg, rgba(115,19,240,1) 0%, rgba(148,92,180,1) 50%, rgba(208,180,220,1) 100%);
-	
+	background: linear-gradient(
+		180deg,
+		rgba(115, 19, 240, 1) 0%,
+		rgba(148, 92, 180, 1) 50%,
+		rgba(208, 180, 220, 1) 100%
+	);
 }
 
 /* #d0b4dc */
 /* #db9056 */
 /* #b16f3c  */
 /* #14a75 */
-
-
