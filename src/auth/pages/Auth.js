@@ -1,16 +1,16 @@
 import React, { useContext, useState } from 'react';
-import { AuthContext } from '../../shared/context/auth-context';
 import { useHistory } from 'react-router-dom';
 
 import Lock from '../../shared/components/UIElements/Lock/Lock';
 import Form from '../../shared/components/FormElements/Form/Form';
+
+import { AuthContext } from '../../shared/context/auth-context';
 
 const Auth = (props) => {
 	const auth = useContext(AuthContext);
 	const history = useHistory();
 
 	const [lockIsClosed, setLockIsClose] = useState(false);
-	const [signupActive, setSignupActive] = useState(false);
 
 	const toggleLockStateHandler = () => {
 		setLockIsClose((prevState) => {
@@ -19,9 +19,9 @@ const Auth = (props) => {
 	};
 
 	const togglePanelsHandler = () => {
-		setSignupActive((prevState) => {
-			return !prevState;
-		});
+		// setIsLoginMode((prevState) => {
+		// 	return !prevState;
+		// });
 	};
 
 	const authSubmitHandler = async (event) => {
@@ -33,8 +33,8 @@ const Auth = (props) => {
 
 	return (
 		<Form
-			rightPanelActive={signupActive}
-			togglePannels={togglePanelsHandler}
+		// rightPanelActive={!setIsLoginMode}
+		// togglePannels={togglePanelsHandler}
 		/>
 		// <Lock lockClick={toggleLockStateHandler} closed={lockIsClosed} />
 		// <div>

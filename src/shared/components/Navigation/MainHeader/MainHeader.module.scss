@@ -1,6 +1,4 @@
-:root {
-	--headerBgcColor: #7313f0;
-}
+$headerBgcColor: #7313f0;
 
 .MainHeader {
 	position: fixed;
@@ -13,18 +11,10 @@
 	align-items: center;
 
 	width: 100%;
-	padding: 0 5%;
 	height: 84px;
+	padding: 0 5%;
+	margin-bottom: 20px;
 
 	border-bottom: 2px solid #d0b4dc;
-
-	background-color: var(--headerBgcColor);
+	background-color: $headerBgcColor;
 }
-
-/* szerokosc wieksza niz 768 */
-@media (min-width: 768px) {
-	.MainHeader {
-	}
-}
-
-/* #7313f0; */

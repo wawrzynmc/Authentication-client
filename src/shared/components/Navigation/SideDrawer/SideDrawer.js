@@ -4,7 +4,7 @@ import { CSSTransition } from 'react-transition-group';
 import Backdrop from '../../UIElements/Backdrop/Backdrop';
 import NavigationItems from '../NavigationItems/NavigationItems';
 
-import classes from './SideDrawer.module.css';
+import classes from './SideDrawer.module.scss';
 
 const SideDrawer = (props) => {
 	const nodeRef = useRef(null);
@@ -28,7 +28,8 @@ const SideDrawer = (props) => {
 					exitActive: classes.ExitActive,
 				}}
 				mountOnEnter
-				unmountOnExit>
+				unmountOnExit
+			>
 				<aside ref={nodeRef} className={classes.SideDrawer}>
 					{props.sideDrawerIsVisible && <NavigationItems />}
 				</aside>

@@ -1,14 +1,13 @@
 .Logo {
-	height: 80%;
+	height: 100%;
 	box-sizing: border-box;
-
-	@media (min-width: 375px) {
-		height: 100%;
-	}
 }
 
 .NavigationLogo {
-	padding: 10px 5px 10px 0;
+	height: 60%;
+	@media (min-width: 375px) {
+		height: 80%;
+	}
 }
 
 .Logo img {

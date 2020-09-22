@@ -1,16 +1,14 @@
-:root {
-	--titleColor: rgb(246, 246, 246);
-}
+$titleColor: rgb(246, 246, 246);
 
 .Title {
 	flex-grow: 1;
 
-	margin: 10px 0;
+	margin: 10px 5px;
 
 	font-size: 1.6em;
 	text-transform: uppercase;
 	letter-spacing: 2px;
-	color: var(--titleColor);
+	color: $titleColor;
 	text-align: center;
 	text-decoration: none;
 	font-weight: bold;

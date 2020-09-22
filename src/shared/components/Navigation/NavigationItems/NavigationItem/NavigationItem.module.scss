@@ -1,0 +1,50 @@
+$activeLinkColor: rgb(246, 246, 246);
+$inactiveLinkColor: rgba(246, 246, 246, 0.65);
+$slidingLineColor: #f01390;
+
+.NavigationItem {
+	text-align: center;
+}
+
+.NavigationItem a {
+	display: inline-block;
+
+	color: $inactiveLinkColor;
+	text-decoration: none;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	font-weight: bold;
+	font-size: 1.6em;
+	transition: color 0.3s;
+}
+
+.NavigationItem a::after {
+	display: block;
+	width: 0;
+	height: 2px;
+
+	content: '';
+	background-color: $slidingLineColor;
+	transition: width 0.3s linear;
+}
+
+.NavigationItem a:hover,
+.NavigationItem a:active,
+.NavigationItem a.active {
+	color: $activeLinkColor;
+}
+
+.NavigationItem a.active::after,
+.NavigationItem a:hover::after {
+	width: 100%;
+}
+
+/* .NavigationItem a:hover:not(.active) {
+    color: black
+} */
+
+@media screen and (min-width: 768px) {
+	// .NavigationItem a {
+	// 	margin: 0 5px;
+	// }
+}

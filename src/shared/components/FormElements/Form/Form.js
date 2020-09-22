@@ -1,10 +1,74 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
+
+import Button from '../Button/Button';
+import Input from '../Input/Input';
+
+import { useForm } from '../../../hooks/form-hook'; // custom hook
+import { useHttpClient } from '../../../hooks/http-hook'; // custom hook
+import {
+	VALIDATOR_EMAIL,
+	VALIDATOR_MINLENGTH,
+	VALIDATOR_REQUIRE,
+} from '../../../utils/validators';
 
 import classes from './Form.module.scss';
 
 const Form = (props) => {
+	// -- variables
+	const [isLoginMode, setIsLoginMode] = useState(true);
+
+	// call for my won hook for managing http request
+	const { isLoading, error, sendRequest, clearError } = useHttpClient();
+
+	// call for my own hook
+	const [formState, inputHandler, setFormData] = useForm(
+		{
+			email: {
+				value: '',
+				isValid: false,
+			},
+			password: {
+				value: '',
+				isValid: false,
+			},
+		},
+		false
+	);
+
+	// -- functions
+	const switchModeHandler = () => {
+		if (!isLoginMode) {
+			// switch from SINGUP to LOGIN
+			setFormData(
+				{
+					...formState.inputs,
+					name: undefined,
+					image: undefined,
+				},
+				formState.inputs.email.isValid &&
+					formState.inputs.password.isValid
+			);
+		} else {
+			// switch from LOGIN to SINGUP
+			setFormData(
+				{
+					...formState.inputs,
+					name: {
+						value: '',
+						isValid: false,
+					},
+					image: {
+						value: null,
+						isValid: false,
+					},
+				},
+				false
+			);
+		}
+		setIsLoginMode((prevMode) => !prevMode);
+	};
 	let attachedClasses = [classes.Container];
-	if (props.rightPanelActive) {
+	if (!isLoginMode) {
 		attachedClasses.push(classes.Container_secondPanelActive);
 	}
 	return (
@@ -30,11 +94,49 @@ const Form = (props) => {
 					<span className={classes.FormContainer__paragraph}>
 						or fill the form
 					</span>
-					<input type="text" placeholder="Name" />
-					<input type="email" placeholder="Email" />
-					<input type="password" placeholder="Password" />
-					<input type="password" placeholder="Password" />
-					<button>Sign Up</button>
+					<Input
+						element="input"
+						id="name"
+						type="text"
+						label="Your name"
+						placeholder="Name"
+						validators={[VALIDATOR_REQUIRE()]}
+						errorText="Please enter a name"
+						onInput={inputHandler}
+					/>
+					<Input
+						id="email"
+						element="input"
+						type="email"
+						label="E-mail"
+						placeholder="E-mail"
+						validators={[VALIDATOR_EMAIL()]}
+						errorText="Please enter a valid email address."
+						onInput={inputHandler}
+					/>
+					<Input
+						id="password"
+						element="input"
+						type="password"
+						label="Password"
+						placeholder="Password"
+						validators={[VALIDATOR_MINLENGTH(6)]}
+						errorText="Please enter a valid passsword (at least 6 characters)."
+						onInput={inputHandler}
+					/>
+					<Input
+						id="password2"
+						element="input"
+						type="password"
+						label="Password confirmation"
+						placeholder="Password confirmation"
+						validators={[VALIDATOR_MINLENGTH(6)]}
+						errorText="Please enter a valid passsword (at least 6 characters)."
+						onInput={inputHandler}
+					/>
+					<Button type="submit" disabled={!formState.isValid}>
+						SINGUP
+					</Button>
 				</form>
 			</div>
 			<div
@@ -81,7 +183,7 @@ const Form = (props) => {
 						</span>
 						<button
 							className={classes.Ghost}
-							onClick={props.togglePannels}
+							onClick={switchModeHandler}
 						>
 							Sign Up
 						</button>
@@ -103,7 +205,7 @@ const Form = (props) => {
 						</span>
 						<button
 							className={classes.Ghost}
-							onClick={props.togglePannels}
+							onClick={switchModeHandler}
 						>
 							Sign In
 						</button>
