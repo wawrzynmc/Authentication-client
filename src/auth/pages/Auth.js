@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import Lock from '../../shared/components/UIElements/Lock/Lock';
 import Form from '../../shared/components/FormElements/Form/Form';
 
 import { AuthContext } from '../../shared/context/auth-context';
@@ -9,14 +8,6 @@ import { AuthContext } from '../../shared/context/auth-context';
 const Auth = (props) => {
 	const auth = useContext(AuthContext);
 	const history = useHistory();
-
-	const [lockIsClosed, setLockIsClose] = useState(false);
-
-	const toggleLockStateHandler = () => {
-		setLockIsClose((prevState) => {
-			return !prevState;
-		});
-	};
 
 	const togglePanelsHandler = () => {
 		// setIsLoginMode((prevState) => {

@@ -7,12 +7,11 @@ const NavigationItem = (props) => {
 	return (
 		<li className={classes.NavigationItem}>
 			<NavLink
-				to={props.link}
+				to={{
+					pathname: props.link,
+				}}
 				activeClassName={classes.active}
 				exact={props.exact}
-				onMouseOver={props.mouseOver}
-				onMouseOut={props.mouseOut}
-				// onClick={props.mouseOver}
 			>
 				{props.children}
 			</NavLink>

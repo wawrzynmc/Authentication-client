@@ -22,13 +22,13 @@ const NavigationItems = (props) => {
 			<ul className={attachedClasses.join(' ')}>
 				{/* NOT LOGGED IN */}
 				{!auth.isLoggedIn && (
-					<NavigationItem link="/auth/login" exact>
-						Login
+					<NavigationItem link="/" exact>
+						Main
 					</NavigationItem>
 				)}
 				{!auth.isLoggedIn && (
-					<NavigationItem link="/auth/signup" exact>
-						Signup
+					<NavigationItem link="/auth" exact>
+						Authenticate
 					</NavigationItem>
 				)}
 

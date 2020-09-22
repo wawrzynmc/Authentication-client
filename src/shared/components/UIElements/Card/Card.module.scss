@@ -1,0 +1,19 @@
+.Card {
+	position: relative;
+	margin: 0;
+
+	background-color: white;
+	border-radius: 6px;
+	padding: 1rem;
+	overflow: hidden;
+
+	&_information {
+        display: flex;
+
+		height: 50vh;
+		width: 100%;
+		@media screen and (min-width: 768px) {
+            width: 80%
+		}
+	}
+}

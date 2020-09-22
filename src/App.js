@@ -40,11 +40,8 @@ function App() {
 		mainPageAddress = '/auth';
 		routes = (
 			<Switch>
-				<Route path="/auth/login" exact>
-					LOGIN
-				</Route>
-				<Route path="/auth/signup" exact>
-					SIGNUP
+				<Route path="/" exact>
+					<Main />
 				</Route>
 				<Route path="/auth" exact>
 					<Auth />
