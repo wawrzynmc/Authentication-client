@@ -1,11 +1,18 @@
 .Lock {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
 	width: 200px;
 	height: 200px;
 	cursor: pointer;
+
+	&_logo {
+		margin-top: 20px;
+	}
+
+	&_spinner {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
 
 	&__Top {
 		fill: none;

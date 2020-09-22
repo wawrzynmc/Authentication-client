@@ -12,6 +12,7 @@ const NavigationItem = (props) => {
 				}}
 				activeClassName={classes.active}
 				exact={props.exact}
+				onClick={props.closeSideDrawer}
 			>
 				{props.children}
 			</NavLink>

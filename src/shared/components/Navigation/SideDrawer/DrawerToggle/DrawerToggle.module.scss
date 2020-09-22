@@ -19,7 +19,7 @@
 }
 
 .Toggle .DrawerToggleLine:nth-child(1) {
-	transform: rotate(-45deg) translate(-10px, 4px);
+	transform: rotate(-45deg) translate(-10px, 5px);
 }
 
 .Toggle .DrawerToggleLine:nth-child(2) {
@@ -27,7 +27,7 @@
 }
 
 .Toggle .DrawerToggleLine:nth-child(3) {
-	transform: rotate(45deg) translate(-10px, -4px);
+	transform: rotate(45deg) translate(-10px, -5px);
 }
 
 @media screen and (min-width: 768px) {

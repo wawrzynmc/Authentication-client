@@ -1,3 +1,5 @@
+@import '../../../../assets/styles/variables.module.scss';
+
 .SideDrawer {
 	position: fixed;
 	right: 0;
@@ -10,7 +12,7 @@
 		rgba(115, 19, 240, 1) 33%,
 		rgba(146, 25, 244, 1) 100%
 	);
-	border-left: 2px solid #d0b4dc;
+	border-left: 2px solid $white-border-color;
 }
 
 .Enter {

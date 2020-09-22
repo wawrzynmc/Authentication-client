@@ -31,7 +31,11 @@ const SideDrawer = (props) => {
 				unmountOnExit
 			>
 				<aside ref={nodeRef} className={classes.SideDrawer}>
-					{props.sideDrawerIsVisible && <NavigationItems />}
+					{props.sideDrawerIsVisible && (
+						<NavigationItems
+							closeSideDrawer={props.closeSideDrawer}
+						/>
+					)}
 				</aside>
 			</CSSTransition>
 		</React.Fragment>

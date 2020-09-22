@@ -22,30 +22,50 @@ const NavigationItems = (props) => {
 			<ul className={attachedClasses.join(' ')}>
 				{/* NOT LOGGED IN */}
 				{!auth.isLoggedIn && (
-					<NavigationItem link="/" exact>
+					<NavigationItem
+						link="/"
+						exact
+						closeSideDrawer={props.closeSideDrawer}
+					>
 						Main
 					</NavigationItem>
 				)}
 				{!auth.isLoggedIn && (
-					<NavigationItem link="/auth" exact>
+					<NavigationItem
+						link="/auth"
+						exact
+						closeSideDrawer={props.closeSideDrawer}
+					>
 						Authenticate
 					</NavigationItem>
 				)}
 
 				{/* LOGGED IN */}
 				{auth.isLoggedIn && (
-					<NavigationItem link="/" exact>
+					<NavigationItem
+						link="/"
+						exact
+						closeSideDrawer={props.closeSideDrawer}
+					>
 						Main
 					</NavigationItem>
 				)}
 				{auth.isLoggedIn && (
-					<NavigationItem link="/protected/admin" exact>
+					<NavigationItem
+						link="/protected/admin"
+						exact
+						closeSideDrawer={props.closeSideDrawer}
+					>
 						Protected Admin
 					</NavigationItem>
 				)}
 
 				{auth.isLoggedIn && (
-					<NavigationItem link="/protected/user" exact>
+					<NavigationItem
+						link="/protected/user"
+						exact
+						closeSideDrawer={props.closeSideDrawer}
+					>
 						Protected User
 					</NavigationItem>
 				)}

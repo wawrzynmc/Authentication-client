@@ -2,8 +2,18 @@ import React from 'react';
 import classes from './Lock.module.scss';
 
 const Lock = (props) => {
+	let attachedClasses = [];
+
+	if (props.logo) {
+		attachedClasses.push(classes.Lock_logo);
+	}
+
 	return (
-		<div className={`${classes.Lock}`} onClick={props.lockClick}>
+		<div
+			className={`${classes.Lock} ${attachedClasses.join(' ')}`}
+			onClick={props.lockClick}
+			style={props.style}
+		>
 			<svg viewBox="0 0 100 100">
 				<path
 					y="50"
