@@ -24,7 +24,7 @@ $invalid-input-bgc: #ffd1d1;
 	font: inherit;
 	border: 1px solid #ccc;
 	background: $normal-input-bgc;
-	padding: 0.3rem 0.25rem;
+	padding: 0.3rem 3rem 0.3rem 0.3rem;
 }
 
 .FormControl input:focus,
@@ -54,15 +54,6 @@ $invalid-input-bgc: #ffd1d1;
 	text-align: center;
 	cursor: pointer;
 	font-weight: 600;
-	background: $normal-input-bgc;
-
-	&_focused {
-		background: $focus-input-bgc;
-	}
-
-	&_invalid {
-		background: $invalid-input-bgc;
-	}
 
 	i {
 		font-size: 1.4rem;

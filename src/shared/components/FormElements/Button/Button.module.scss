@@ -1,7 +1,7 @@
 .Button {
 	display: block;
 
-	margin: 20px auto;
+	margin: 10px auto;
 	padding: 1rem 4.5rem;
 
 	font: inherit;
@@ -62,5 +62,9 @@
 			background-color: #bb2d5c;
 			border-color: white;
 		}
+	}
+
+	&_big {
+		font-size: 2rem;
 	}
 }

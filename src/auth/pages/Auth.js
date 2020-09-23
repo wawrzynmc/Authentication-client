@@ -192,7 +192,7 @@ const Auth = (props) => {
 							</h1>
 						</span>
 						{/* GHOST className */}
-						<Button big ghost onClick={switchModeHandler}>
+						<Button ghost onClick={switchModeHandler}>
 							SIGNUP
 						</Button>
 					</div>
@@ -212,7 +212,7 @@ const Auth = (props) => {
 							</h1>
 						</span>
 						{/* GHOST className */}
-						<Button big ghost onClick={switchModeHandler}>
+						<Button ghost onClick={switchModeHandler}>
 							SIGNUP
 						</Button>
 					</div>

@@ -18,13 +18,8 @@ const inputReducer = (state, action) => {
 			return {
 				...state,
 				wasTouched: true,
-				isFocused: false,
 			};
-		case 'FOCUS':
-			return {
-				...state,
-				isFocused: true,
-			};
+
 		default:
 			return state;
 	}
@@ -36,7 +31,6 @@ const Input = (props) => {
 	const [inputState, dispatch] = useReducer(inputReducer, {
 		value: props.initialValue || '',
 		wasTouched: false,
-		isFocused: false,
 		isValid: props.initialValid || false,
 		metaData: {},
 	});
@@ -59,16 +53,8 @@ const Input = (props) => {
 	};
 
 	const touchHandler = (event) => {
-		console.log('touch', inputState.isFocused);
 		dispatch({
 			type: 'TOUCH',
-		});
-	};
-
-	const focusHandler = (event) => {
-		console.log('focuse', inputState.isFocused);
-		dispatch({
-			type: 'FOCUS',
 		});
 	};
 
@@ -87,7 +73,6 @@ const Input = (props) => {
 				placeholder={props.placeholder}
 				onChange={changeHandler}
 				onBlur={touchHandler}
-				onFocus={focusHandler}
 				value={inputState.value}
 			/>
 		) : (
@@ -116,8 +101,6 @@ const Input = (props) => {
 					onClick={showPasswordToggle}
 					className={`
 						${classes.ShowPassword}
-						${inputState.isFocused && classes.ShowPassword_focused}
-						${!inputState.isValid && !inputState.isFocused && classes.ShowPassword_invalid}
 					`}
 				>
 					<i className="fas fa-eye"></i>
