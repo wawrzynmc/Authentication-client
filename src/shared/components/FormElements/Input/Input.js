@@ -1,6 +1,7 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect, useState } from 'react';
 
 import { validate } from '../../../utils/validators';
+import PasswordMeter from './PasswordMeter/PasswordMeter';
 
 import classes from './Input.module.scss';
 
@@ -11,12 +12,18 @@ const inputReducer = (state, action) => {
 			return {
 				...state,
 				value: action.val,
-				isValid: validate(action.val, action.validators),
+				...validate(action.val, action.validators),
 			};
 		case 'TOUCH':
 			return {
 				...state,
 				wasTouched: true,
+				isFocused: false,
+			};
+		case 'FOCUS':
+			return {
+				...state,
+				isFocused: true,
 			};
 		default:
 			return state;
@@ -25,10 +32,13 @@ const inputReducer = (state, action) => {
 
 // component
 const Input = (props) => {
+	const [inputType, setInputType] = useState(props.type);
 	const [inputState, dispatch] = useReducer(inputReducer, {
 		value: props.initialValue || '',
 		wasTouched: false,
+		isFocused: false,
 		isValid: props.initialValid || false,
+		metaData: {},
 	});
 
 	// useEffect to check validity of
@@ -49,9 +59,22 @@ const Input = (props) => {
 	};
 
 	const touchHandler = (event) => {
-		console.log('touch');
+		console.log('touch', inputState.isFocused);
 		dispatch({
 			type: 'TOUCH',
+		});
+	};
+
+	const focusHandler = (event) => {
+		console.log('focuse', inputState.isFocused);
+		dispatch({
+			type: 'FOCUS',
+		});
+	};
+
+	const showPasswordToggle = (event) => {
+		setInputType((prevState) => {
+			return prevState === 'password' ? 'text' : 'password';
 		});
 	};
 
@@ -60,10 +83,11 @@ const Input = (props) => {
 		props.element === 'input' ? (
 			<input
 				id={props.id}
-				type={props.type}
+				type={inputType}
 				placeholder={props.placeholder}
 				onChange={changeHandler}
 				onBlur={touchHandler}
+				onFocus={focusHandler}
 				value={inputState.value}
 			/>
 		) : (
@@ -87,8 +111,25 @@ const Input = (props) => {
 		>
 			<label htmlFor={props.id}>{props.label}</label>
 			{element}
-			{!inputState.isValid && inputState.isTouched && (
+			{props.isPassword && inputState.value && (
+				<span
+					onClick={showPasswordToggle}
+					className={`
+						${classes.ShowPassword}
+						${inputState.isFocused && classes.ShowPassword_focused}
+						${!inputState.isValid && !inputState.isFocused && classes.ShowPassword_invalid}
+					`}
+				>
+					<i className="fas fa-eye"></i>
+				</span>
+			)}
+			{!inputState.isValid && inputState.wasTouched && (
 				<p>{props.errorText}</p>
+			)}
+			{props.isPassword && props.validatePassword && inputState.value && (
+				<PasswordMeter
+					passwordStrength={inputState.metaData.passwordStrength}
+				/>
 			)}
 		</div>
 	);

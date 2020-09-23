@@ -1,0 +1,26 @@
+@import '../../../../assets/styles/variables.module.scss';
+
+.Button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	height: 30px;
+	width: 30px;
+	margin: 5px 10px;
+
+	border-radius: 50%;
+	border-style: none;
+	font-size: 1.6rem;
+	cursor: pointer;
+
+	&_facebook {
+		background-color: #3b5998;
+		color: white;
+	}
+
+	&_google {
+		background-color: #d44638;
+		color: white;
+	}
+}

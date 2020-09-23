@@ -4,36 +4,32 @@ import { Link } from 'react-router-dom';
 import classes from './Button.module.scss';
 
 const Button = (props) => {
+	let attachedClasses = `${classes.Button} 
+		${props.inverse && classes.Button_inverse} 
+		${props.danger && classes.Button_danger}
+		${props.information && classes.Button_information}
+		${props.ghost && classes.Button_ghost}
+		${props.small && classes.Button_small}
+		${props.big && classes.Button_big}
+	`;
+
 	if (props.href) {
 		return (
-			<a
-				className={`${classes.Button} 
-					${props.inverse && classes.Button_inverse} 
-					${props.danger && classes.Button_danger}`}
-				href={props.href}
-			>
+			<a className={attachedClasses} href={props.href}>
 				{props.children}
 			</a>
 		);
 	}
 	if (props.to) {
 		return (
-			<Link
-				to={props.to}
-				exact={props.exact}
-				className={`button button--${props.size || 'default'} ${
-					props.inverse && 'button--inverse'
-				} ${props.danger && 'button--danger'}`}
-			>
+			<Link to={props.to} exact={props.exact} className={attachedClasses}>
 				{props.children}
 			</Link>
 		);
 	}
 	return (
 		<button
-			className={`button button--${props.size || 'default'} ${
-				props.inverse && 'button--inverse'
-			} ${props.danger && 'button--danger'}`}
+			className={attachedClasses}
 			type={props.type}
 			onClick={props.onClick}
 			disabled={props.disabled}

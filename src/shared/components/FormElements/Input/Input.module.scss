@@ -1,5 +1,10 @@
+$normal-input-bgc: #f8f8f8;
+$focus-input-bgc: #ebebeb;
+$invalid-input-bgc: #ffd1d1;
+
 .FormControl {
-	margin: 0.5rem 0;
+	margin: 1rem 0;
+	position: relative;
 }
 
 .FormControl label,
@@ -18,24 +23,48 @@
 	width: 100%;
 	font: inherit;
 	border: 1px solid #ccc;
-	background: #f8f8f8;
-	padding: 0.15rem 0.25rem;
+	background: $normal-input-bgc;
+	padding: 0.3rem 0.25rem;
 }
 
 .FormControl input:focus,
 .FormControl textarea:focus {
 	outline: none;
-	background: #ebebeb;
+	background: $focus-input-bgc;
 	border-color: #510077;
 }
 
 .FormControl_invalid label,
 .FormControl_invalid p {
+	font-size: 1rem;
 	color: red;
 }
 
 .FormControl_invalid input,
 .FormControl_invalid textarea {
 	border-color: red;
-	background: #ffd1d1;
+	background: $invalid-input-bgc;
+}
+
+.ShowPassword {
+	position: absolute;
+	right: 3px;
+	top: 4px;
+	width: 30px;
+	text-align: center;
+	cursor: pointer;
+	font-weight: 600;
+	background: $normal-input-bgc;
+
+	&_focused {
+		background: $focus-input-bgc;
+	}
+
+	&_invalid {
+		background: $invalid-input-bgc;
+	}
+
+	i {
+		font-size: 1.4rem;
+	}
 }

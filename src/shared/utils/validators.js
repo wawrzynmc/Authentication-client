@@ -10,7 +10,7 @@ const VALIDATOR_TYPE_FILE = 'FILE';
 
 // regex
 const emailRegex = new RegExp(
-	'^(([^<>()[]\\.,;:s@"]+(.[^<>()[]\\.,;:s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$'
+	"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$"
 );
 
 /* 
@@ -84,12 +84,14 @@ export const validate = (value, validators) => {
 			isValid = isValid && +value <= validator.val;
 		}
 		if (validator.type === VALIDATOR_TYPE_EMAIL) {
+			console.log(validator.regex.test(value));
 			isValid = isValid && validator.regex.test(value);
 		}
 		if (validator.type === VALIDATOR_TYPE_PASSWORD) {
 			metaData.passwordStrength = analyzePassword(value);
 		}
 	}
+
 	return {
 		isValid,
 		metaData,

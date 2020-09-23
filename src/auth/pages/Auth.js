@@ -3,6 +3,10 @@ import { useHistory } from 'react-router-dom';
 
 import Button from '../../shared/components/FormElements/Button/Button';
 import Input from '../../shared/components/FormElements/Input/Input';
+import {
+	Facebook as FacebookLogin,
+	Google as GoogleLogin,
+} from '../../shared/components/FormElements/Socials/Socials';
 
 import { useForm } from '../../shared/hooks/form-hook'; // custom hook
 import { useHttpClient } from '../../shared/hooks/http-hook'; // custom hook
@@ -10,6 +14,7 @@ import {
 	VALIDATOR_EMAIL,
 	VALIDATOR_MINLENGTH,
 	VALIDATOR_REQUIRE,
+	VALIDATOR_PASSWORD,
 } from '../../shared/utils/validators';
 
 import { AuthContext } from '../../shared/context/auth-context';
@@ -18,7 +23,7 @@ import classes from './Auth.module.scss';
 
 const Auth = (props) => {
 	// -- variables
-	const [isLoginMode, setIsLoginMode] = useState(true);
+	const [isLoginMode, setIsLoginMode] = useState(false);
 	const auth = useContext(AuthContext);
 
 	// call for my won hook for managing http request
@@ -47,7 +52,7 @@ const Auth = (props) => {
 				{
 					...formState.inputs,
 					name: undefined,
-					image: undefined,
+					password2: undefined,
 				},
 				formState.inputs.email.isValid &&
 					formState.inputs.password.isValid
@@ -61,8 +66,16 @@ const Auth = (props) => {
 						value: '',
 						isValid: false,
 					},
-					image: {
-						value: null,
+					email: {
+						value: '',
+						isValid: false,
+					},
+					password: {
+						value: '',
+						isValid: false,
+					},
+					password2: {
+						value: '',
 						isValid: false,
 					},
 				},
@@ -72,39 +85,32 @@ const Auth = (props) => {
 		setIsLoginMode((prevMode) => !prevMode);
 	};
 
-	let attachedClasses = [];
-	if (!isLoginMode) {
-		attachedClasses.push(classes.Container_secondPanelActive);
-	}
-
 	return (
-		<div className={`${classes.Container} ${attachedClasses.join(' ')}`}>
+		<div
+			className={`
+				${classes.Container} 
+				${!isLoginMode && classes.Container_secondPanelActive}
+			`}
+		>
 			<div
-				className={`${classes.FormContainer} ${classes.FormContainer_signup}`}
+				className={`
+					${classes.FormContainer} 
+					${classes.FormContainer_signup}
+				`}
 			>
-				<form action="#">
-					<h1 className={classes.FormContainer__Title}>
-						Create Account
-					</h1>
-					<div className={classes.FormContainer__Socials}>
-						<a href="#" className={classes.FormContainer__Social}>
-							<i className="fab fa-facebook-f"></i>
-						</a>
-						<a href="#" className={classes.FormContainer__Social}>
-							<i className="fab fa-google-plus-g"></i>
-						</a>
-						<a href="#" className={classes.FormContainer__Social}>
-							<i className="fab fa-linkedin-in"></i>
-						</a>
-					</div>
-					<span className={classes.FormContainer__paragraph}>
-						or fill the form
-					</span>
+				<h1 className={classes.FormContainer__Title}>Create Account</h1>
+				<div className={classes.FormContainer__Socials}>
+					<FacebookLogin />
+					<GoogleLogin />
+				</div>
+				<span className={classes.FormContainer__paragraph}>
+					or fill the form
+				</span>
+				<form className={classes.Form} action="#">
 					<Input
 						element="input"
 						id="name"
 						type="text"
-						label="Your name"
 						placeholder="Name"
 						validators={[VALIDATOR_REQUIRE()]}
 						errorText="Please enter a name"
@@ -114,7 +120,6 @@ const Auth = (props) => {
 						id="email"
 						element="input"
 						type="email"
-						label="E-mail"
 						placeholder="E-mail"
 						validators={[VALIDATOR_EMAIL()]}
 						errorText="Please enter a valid email address."
@@ -124,21 +129,25 @@ const Auth = (props) => {
 						id="password"
 						element="input"
 						type="password"
-						label="Password"
 						placeholder="Password"
-						validators={[VALIDATOR_MINLENGTH(6)]}
+						validators={[
+							VALIDATOR_MINLENGTH(6),
+							VALIDATOR_PASSWORD(),
+						]}
 						errorText="Please enter a valid passsword (at least 6 characters)."
 						onInput={inputHandler}
+						validatePassword
+						isPassword
 					/>
 					<Input
 						id="password2"
 						element="input"
 						type="password"
-						label="Password confirmation"
 						placeholder="Password confirmation"
 						validators={[VALIDATOR_MINLENGTH(6)]}
 						errorText="Please enter a valid passsword (at least 6 characters)."
 						onInput={inputHandler}
+						isPassword
 					/>
 					<Button type="submit" disabled={!formState.isValid}>
 						SINGUP
@@ -151,15 +160,8 @@ const Auth = (props) => {
 				<form action="#">
 					<h1 className={classes.FormContainer__Title}>Sign in</h1>
 					<div className={classes.FormContainer__Socials}>
-						<a href="#" className={classes.FormContainer__Social}>
-							<i className="fab fa-facebook-f"></i>
-						</a>
-						<a href="#" className={classes.FormContainer__Social}>
-							<i className="fab fa-google-plus-g"></i>
-						</a>
-						<a href="#" className={classes.FormContainer__Social}>
-							<i className="fab fa-linkedin-in"></i>
-						</a>
+						<FacebookLogin />
+						<GoogleLogin />
 					</div>
 					<span className={classes.FormContainer__paragraph}>
 						or fill the form
@@ -167,7 +169,9 @@ const Auth = (props) => {
 					<input type="email" placeholder="Email" />
 					<input type="password" placeholder="Password" />
 					<a href="#">Forgot your password?</a>
-					<button>Sign In</button>
+					<Button type="submit" disabled={!formState.isValid}>
+						SINGUP
+					</Button>
 				</form>
 			</div>
 			<div className={classes.OverlayContainer}>
@@ -187,12 +191,10 @@ const Auth = (props) => {
 								<span>or</span>
 							</h1>
 						</span>
-						<button
-							className={classes.Ghost}
-							onClick={switchModeHandler}
-						>
-							Sign Up
-						</button>
+						{/* GHOST className */}
+						<Button big ghost onClick={switchModeHandler}>
+							SIGNUP
+						</Button>
 					</div>
 					<div
 						className={`${classes.OverlayContainer__Panel} ${classes.OverlayContainer__Panel_second}`}
@@ -209,12 +211,10 @@ const Auth = (props) => {
 								<span>or</span>
 							</h1>
 						</span>
-						<button
-							className={classes.Ghost}
-							onClick={switchModeHandler}
-						>
-							Sign In
-						</button>
+						{/* GHOST className */}
+						<Button big ghost onClick={switchModeHandler}>
+							SIGNUP
+						</Button>
 					</div>
 				</div>
 			</div>

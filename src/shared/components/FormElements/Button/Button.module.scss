@@ -1,23 +1,21 @@
-.button {
+.Button {
+	display: block;
+
+	margin: 20px auto;
+	padding: 1rem 4.5rem;
+
 	font: inherit;
-	padding: 0.5rem 1.5rem;
+	font-size: 1rem;
+	font-weight: bold;
 	border: 1px solid #ff0055;
 	border-radius: 4px;
-	background: #ff0055;
 	color: white;
+	background: #ff0055;
 	cursor: pointer;
-	margin-right: 1rem;
-	text-decoration: none;
-	display: inline-block;
+	letter-spacing: 1px;
 
 	&:focus {
 		outline: none;
-	}
-
-	&:hover,
-	&:active {
-		background: #ff4382;
-		border-color: #ff4382;
 	}
 
 	&:disabled,
@@ -51,11 +49,18 @@
 		}
 	}
 
-	&_small {
-		font-size: 0.8rem;
+	&_information {
+		border-color: #ff4b2b;
+		background-color: #ff4b2b;
 	}
 
-	&_big {
-		font-size: 1.5rem;
+	&_ghost {
+		background-color: transparent;
+		border-color: white;
+
+		&:hover {
+			background-color: #bb2d5c;
+			border-color: white;
+		}
 	}
 }
