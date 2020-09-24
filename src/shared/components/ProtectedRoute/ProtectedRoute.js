@@ -5,14 +5,14 @@ import { AuthContext } from '../../context/auth-context';
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
 	const auth = useContext(AuthContext);
-    // console.log(auth)
+	// console.log(auth)
 
 	return (
 		<Route
 			{...rest}
 			render={(props) => {
 				if (auth.isLoggedIn) {
-                    return <Component {...props} />;
+					return <Component {...props} />;
 				} else {
 					return (
 						<Redirect

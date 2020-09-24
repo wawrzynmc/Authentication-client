@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import Button from '../../shared/components/FormElements/Button/Button';
@@ -15,6 +15,7 @@ import {
 	VALIDATOR_MINLENGTH,
 	VALIDATOR_REQUIRE,
 	VALIDATOR_PASSWORD,
+	VALIDATOR_PASSWORDS_COHERESION,
 } from '../../shared/utils/validators';
 
 import { AuthContext } from '../../shared/context/auth-context';
@@ -85,6 +86,8 @@ const Auth = (props) => {
 		setIsLoginMode((prevMode) => !prevMode);
 	};
 
+	// console.log('form', formState.inputs.password2);
+
 	return (
 		<div
 			className={`
@@ -130,13 +133,14 @@ const Auth = (props) => {
 						element="input"
 						type="password"
 						placeholder="Password"
-						validators={[
-							VALIDATOR_MINLENGTH(6),
-							VALIDATOR_PASSWORD(),
-						]}
+						validators={
+							isLoginMode
+								? [VALIDATOR_MINLENGTH(6)]
+								: [VALIDATOR_MINLENGTH(6), VALIDATOR_PASSWORD()]
+						}
 						errorText="Please enter a valid passsword (at least 6 characters)."
 						onInput={inputHandler}
-						validatePassword
+						validatePassword={isLoginMode ? false : true}
 						isPassword
 					/>
 					<Input
@@ -144,8 +148,12 @@ const Auth = (props) => {
 						element="input"
 						type="password"
 						placeholder="Password confirmation"
-						validators={[VALIDATOR_MINLENGTH(6)]}
-						errorText="Please enter a valid passsword (at least 6 characters)."
+						validators={[
+							VALIDATOR_PASSWORDS_COHERESION(
+								formState.inputs.password.value
+							),
+						]}
+						errorText="Passwords don't match."
 						onInput={inputHandler}
 						isPassword
 					/>

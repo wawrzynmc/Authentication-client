@@ -7,6 +7,7 @@ const VALIDATOR_TYPE_MAX = 'MAX';
 const VALIDATOR_TYPE_EMAIL = 'EMAIL';
 const VALIDATOR_TYPE_PASSWORD = 'PASSWORD';
 const VALIDATOR_TYPE_FILE = 'FILE';
+const VALIDATOR_TYPE_PASSWORDS_COHERESION = 'PASSWORD_COHERESION';
 
 // regex
 const emailRegex = new RegExp(
@@ -62,6 +63,10 @@ export const VALIDATOR_EMAIL = () => ({
 	regex: emailRegex,
 });
 export const VALIDATOR_PASSWORD = () => ({ type: VALIDATOR_TYPE_PASSWORD });
+export const VALIDATOR_PASSWORDS_COHERESION = (password1) => ({
+	type: VALIDATOR_TYPE_PASSWORDS_COHERESION,
+	password1: password1,
+});
 
 export const validate = (value, validators) => {
 	let isValid = true,
@@ -84,11 +89,15 @@ export const validate = (value, validators) => {
 			isValid = isValid && +value <= validator.val;
 		}
 		if (validator.type === VALIDATOR_TYPE_EMAIL) {
-			console.log(validator.regex.test(value));
 			isValid = isValid && validator.regex.test(value);
 		}
 		if (validator.type === VALIDATOR_TYPE_PASSWORD) {
 			metaData.passwordStrength = analyzePassword(value);
+		}
+		if (validator.type === VALIDATOR_TYPE_PASSWORDS_COHERESION) {
+			console.log('password2', value);
+			console.log('password1', validator.password1);
+			isValid = validator.password1 === value;
 		}
 	}
 

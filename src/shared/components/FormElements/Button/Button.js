@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import classes from './Button.module.scss';
 
 const Button = (props) => {
-	console.log(props.small)
 	let attachedClasses = `${classes.Button} 
 		${props.inverse && classes.Button_inverse} 
 		${props.danger && classes.Button_danger}

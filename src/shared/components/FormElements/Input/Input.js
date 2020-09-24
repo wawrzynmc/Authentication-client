@@ -53,6 +53,7 @@ const Input = (props) => {
 	};
 
 	const touchHandler = (event) => {
+		console.log('Touch')
 		dispatch({
 			type: 'TOUCH',
 		});
@@ -103,7 +104,11 @@ const Input = (props) => {
 						${classes.ShowPassword}
 					`}
 				>
-					<i className="fas fa-eye"></i>
+					{inputType === 'password' ? (
+						<i className="fas fa-eye"></i>
+					) : (
+						<i class="fas fa-eye-slash"></i>
+					)}
 				</span>
 			)}
 			{!inputState.isValid && inputState.wasTouched && (
