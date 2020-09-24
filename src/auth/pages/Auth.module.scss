@@ -210,10 +210,9 @@
 	&__Information {
 		font-size: 1rem;
 		font-weight: 100;
-		line-height: 20px;
-		letter-spacing: 0.5px;
-		margin: 5px 0;
-		width: 70%;
+		line-height: 2rem;
+		letter-spacing: 0.1rem;
+		width: 80%;
 
 		h1 {
 			font-size: 1.2rem;
@@ -243,47 +242,6 @@
 		}
 	}
 }
-
-// button {
-// 	border-radius: 20px;
-// 	border: 1px solid #ff4b2b;
-// 	background-color: #ff4b2b;
-// 	color: #ffffff;
-// 	font-size: 12px;
-// 	font-weight: bold;
-// 	padding: 10px 45px;
-// 	letter-spacing: 1px;
-// 	text-transform: uppercase;
-// 	transition: transform 80ms ease-in;
-// }
-
-// button:active {
-// 	transform: scale(0.95);
-// }
-
-// button:focus {
-// 	outline: none;
-// }
-
-// form {
-// 	background-color: #ffffff;
-// 	display: flex;
-// 	align-items: center;
-// 	justify-content: center;
-// 	flex-direction: column;
-// 	padding: 0 50px;
-// 	height: 100%;
-// 	text-align: center;
-// }
-
-// input {
-// 	background-color: #eee;
-// 	border: none;
-// 	padding: 12px 15px;
-// 	margin: 8px 0;
-// 	width: 100%;
-// 	height: 4vh;
-// }
 
 @keyframes show {
 	0%,

@@ -53,7 +53,7 @@ const Input = (props) => {
 	};
 
 	const touchHandler = (event) => {
-		console.log('Touch')
+		console.log('Touch');
 		dispatch({
 			type: 'TOUCH',
 		});

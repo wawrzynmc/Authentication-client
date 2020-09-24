@@ -136,11 +136,21 @@ const Auth = (props) => {
 						validators={
 							isLoginMode
 								? [VALIDATOR_MINLENGTH(6)]
-								: [VALIDATOR_MINLENGTH(6), VALIDATOR_PASSWORD()]
+								: [
+										VALIDATOR_MINLENGTH(6),
+										VALIDATOR_PASSWORD(),
+										VALIDATOR_PASSWORDS_COHERESION(
+											formState.inputs.password2
+												? formState.inputs.password2
+														.value
+												: ''
+										),
+								  ]
 						}
 						errorText="Please enter a valid passsword (at least 6 characters)."
 						onInput={inputHandler}
 						validatePassword={isLoginMode ? false : true}
+						changeFormData={setFormData}
 						isPassword
 					/>
 					<Input
@@ -149,6 +159,7 @@ const Auth = (props) => {
 						type="password"
 						placeholder="Password confirmation"
 						validators={[
+							VALIDATOR_MINLENGTH(6),
 							VALIDATOR_PASSWORDS_COHERESION(
 								formState.inputs.password.value
 							),
@@ -199,9 +210,8 @@ const Auth = (props) => {
 								<span>or</span>
 							</h1>
 						</span>
-						{/* GHOST className */}
 						<Button ghost onClick={switchModeHandler}>
-							SIGNUP
+							SIGNIN
 						</Button>
 					</div>
 					<div
