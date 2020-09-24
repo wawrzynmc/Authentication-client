@@ -169,7 +169,7 @@ const Auth = (props) => {
 						isPassword
 					/>
 					<Button type="submit" disabled={!formState.isValid}>
-						SINGUP
+						SINGUPaaa
 					</Button>
 				</form>
 			</div>
