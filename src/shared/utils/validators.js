@@ -63,14 +63,16 @@ export const VALIDATOR_EMAIL = () => ({
 	regex: emailRegex,
 });
 export const VALIDATOR_PASSWORD = () => ({ type: VALIDATOR_TYPE_PASSWORD });
-export const VALIDATOR_PASSWORDS_COHERESION = (password1) => ({
+export const VALIDATOR_PASSWORDS_COHERESION = (passwordToCompare) => ({
 	type: VALIDATOR_TYPE_PASSWORDS_COHERESION,
-	password1: password1,
+	passwordToCompare,
 });
 
 export const validate = (value, validators) => {
 	let isValid = true,
-		metaData = {};
+		metaData = {
+			passwordStrength: 0,
+		};
 
 	for (const validator of validators) {
 		if (validator.type === VALIDATOR_TYPE_REQUIRE) {
@@ -96,9 +98,10 @@ export const validate = (value, validators) => {
 		}
 		if (validator.type === VALIDATOR_TYPE_PASSWORDS_COHERESION) {
 			console.log('password2', value);
-			console.log('password1', validator.password1);
-			isValid = validator.password1 === value;
+			console.log('password1', validator.passwordToCompare);
+			isValid = validator.passwordToCompare === value;
 		}
+		console.log(`Password: ${value} is ${isValid}`);
 	}
 
 	return {
