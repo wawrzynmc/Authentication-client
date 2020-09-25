@@ -68,44 +68,82 @@ export const VALIDATOR_PASSWORDS_COHERESION = (passwordToCompare) => ({
 	passwordToCompare,
 });
 
-export const validate = (value, validators) => {
+export const validate = (id, value, validators) => {
 	let isValid = true,
 		metaData = {
 			passwordStrength: 0,
-		};
+		},
+		errorMsg = '',
+		caseBoolean;
 
 	for (const validator of validators) {
-		if (validator.type === VALIDATOR_TYPE_REQUIRE) {
-			isValid = isValid && value.trim().length > 0;
-		}
-		if (validator.type === VALIDATOR_TYPE_MINLENGTH) {
-			isValid = isValid && value.trim().length >= validator.val;
-		}
-		if (validator.type === VALIDATOR_TYPE_MAXLENGTH) {
-			isValid = isValid && value.trim().length <= validator.val;
-		}
-		if (validator.type === VALIDATOR_TYPE_MIN) {
-			isValid = isValid && +value >= validator.val;
-		}
-		if (validator.type === VALIDATOR_TYPE_MAX) {
-			isValid = isValid && +value <= validator.val;
-		}
-		if (validator.type === VALIDATOR_TYPE_EMAIL) {
-			isValid = isValid && validator.regex.test(value);
+		console.log(`validators: ${validators}`);
+		// * special cases
+		if (validator.type === VALIDATOR_TYPE_PASSWORDS_COHERESION) {
+			caseBoolean = validator.passwordToCompare === value;
+			isValid = isValid && caseBoolean;
+
+			if (!caseBoolean) {
+				errorMsg = `Passwords have to match.`;
+			}
 		}
 		if (validator.type === VALIDATOR_TYPE_PASSWORD) {
 			metaData.passwordStrength = analyzePassword(value);
 		}
-		if (validator.type === VALIDATOR_TYPE_PASSWORDS_COHERESION) {
-			console.log('password2', value);
-			console.log('password1', validator.passwordToCompare);
-			isValid = validator.passwordToCompare === value;
+		if (validator.type === VALIDATOR_TYPE_EMAIL) {
+			caseBoolean = validator.regex.test(value);
+			isValid = isValid && caseBoolean;
+
+			if (!caseBoolean) {
+				errorMsg = `Must be a valid email.`;
+			}
 		}
-		console.log(`Password: ${value} is ${isValid}`);
+		// * casual cases
+		if (validator.type === VALIDATOR_TYPE_REQUIRE) {
+			caseBoolean = value.trim().length > 0;
+			isValid = isValid && caseBoolean;
+
+			if (!caseBoolean) {
+				errorMsg = `${id} is required.`;
+			}
+		}
+		if (validator.type === VALIDATOR_TYPE_MINLENGTH) {
+			caseBoolean = value.trim().length >= validator.val;
+			isValid = isValid && caseBoolean;
+
+			if (!caseBoolean) {
+				errorMsg = `${id} length must be greater than or equal to ${validator.val}.`;
+			}
+		}
+		if (validator.type === VALIDATOR_TYPE_MAXLENGTH) {
+			caseBoolean = value.trim().length <= validator.val;
+			isValid = isValid && caseBoolean;
+
+			if (!caseBoolean) {
+				errorMsg = `${id} length must be lower than or equal to ${validator.val}.`;
+			}
+		}
+		if (validator.type === VALIDATOR_TYPE_MIN) {
+			caseBoolean = +value >= validator.val;
+			isValid = isValid && caseBoolean;
+
+			if (!caseBoolean) {
+				errorMsg = `${id} value must be greater than or equal to ${validator.val}.`;
+			}
+		}
+		if (validator.type === VALIDATOR_TYPE_MAX) {
+			caseBoolean = +value <= validator.val;
+			isValid = isValid && caseBoolean;
+
+			if (!caseBoolean) {
+				errorMsg = `${id} value must be lower than or equal to ${validator.val}.`;
+			}
+		}
 	}
 
 	return {
 		isValid,
 		metaData,
+		errorMsg,
 	};
 };

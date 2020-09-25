@@ -7,6 +7,14 @@ import Card from '../../shared/components/UIElements/Card/Card';
 import Lock from '../../shared/components/UIElements/Lock/Lock';
 import Passwords from '../../shared/components/FormElements/Input/Passwords/Passwords';
 
+import {
+	VALIDATOR_EMAIL,
+	VALIDATOR_MINLENGTH,
+	VALIDATOR_REQUIRE,
+	VALIDATOR_PASSWORD,
+	VALIDATOR_PASSWORDS_COHERESION,
+} from '../../shared/utils/validators';
+
 import classes from './Main.module.scss';
 
 const Main = (props) => {
@@ -52,7 +60,7 @@ const Main = (props) => {
 		// 		/>
 		// 	</Card>
 		// </React.Fragment>
-		<Passwords />
+		<Passwords validators={[VALIDATOR_MINLENGTH(6)]} />
 	);
 };
 

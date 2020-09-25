@@ -1,38 +1,31 @@
 import React, { useReducer, useEffect, useState, useRef } from 'react';
 
 import { validate } from '../../../../utils/validators';
-import {
-	VALIDATOR_PASSWORD,
-	VALIDATOR_PASSWORDS_COHERESION,
-	VALIDATOR_MINLENGTH,
-} from '../../../../utils/validators';
+import { capitalizeString } from '../../../../utils/utils';
+import { VALIDATOR_PASSWORDS_COHERESION } from '../../../../utils/validators';
 import PasswordMeter from './PasswordMeter/PasswordMeter';
 
 import classes from './Passwords.module.scss';
-
-/* case 'CHANGE':
-			return {
-				...state,
-				value: action.val,
-				...validate(action.val, action.validators),
-            }; */
 
 // create Reducer
 const inputReducer = (state, action) => {
 	switch (action.type) {
 		case 'CHANGE':
-			const { isValid, metaData } = validate(
+			const { isValid, metaData, errorMsg } = validate(
+				capitalizeString(action.id1),
 				action.val,
 				action.validators
 			);
+			console.log(errorMsg)
 			// below statement is required due to don't change the order of {password1:{}, password2:{}} in object
 			if (action.id1 === Object.keys(state)[0]) {
 				return {
 					[action.id1]: {
 						...state[action.id1],
 						value: action.val,
-						isValid: isValid,
 						passwordStrength: metaData.passwordStrength,
+						isValid,
+						errorMsg,
 					},
 					[action.id2]: {
 						...state[action.id2],
@@ -48,12 +41,12 @@ const inputReducer = (state, action) => {
 					[action.id1]: {
 						...state[action.id1],
 						value: action.val,
-						isValid: isValid,
 						passwordStrength: metaData.passwordStrength,
+						isValid,
+						errorMsg,
 					},
 				};
 			}
-
 		case 'TOUCH':
 			return {
 				...state,
@@ -90,13 +83,13 @@ const Input = (props) => {
 			isValid: props.password1initialValid || false,
 			inputType: 'password',
 			passwordStrength: 0,
+			errorMsg: 'Must be valid password.',
 			metaData: {
 				id: props.password1Id || 'password1',
 				placeholder: props.password1Placeholder || 'Password',
 				label: props.password1Label || 'Password',
 				validatePassword: props.password1Validate || true,
 				reference: password1Ref,
-				// validators: VALIDATOR_MINLENGTH(6), VALIDATOR_PASSWORDS_COHERESION()
 			},
 		},
 		[props.password2Id || 'password2']: {
@@ -105,6 +98,7 @@ const Input = (props) => {
 			isValid: props.password2initialValid || false,
 			inputType: 'password',
 			passwordStrength: 0,
+			errorMsg: 'Must be valid password.',
 			metaData: {
 				id: props.password2Id || 'password2',
 				placeholder:
@@ -112,7 +106,6 @@ const Input = (props) => {
 				label: props.password2Label || 'Password confirmation',
 				validatePassword: props.password2Validate || false,
 				reference: password2Ref,
-				// validators: VALIDATOR_PASSWORDS_COHERESION()
 			},
 		},
 	});
@@ -140,31 +133,26 @@ const Input = (props) => {
 
 	// -- functions
 	const changeHandler = (event) => {
-		const validators = [VALIDATOR_MINLENGTH(6)];
+		const target = event.target;
 		const password1Id = password1Ref.current.id;
 		const password2Id = password2Ref.current.id;
 		const password1Value = password1Ref.current.value;
 		const password2Value = password2Ref.current.value;
+		const cohersionValArg =
+			target.id === password1Id ? password2Value : password1Value;
+		const id2 = event.target.id === password1Id ? password2Id : password1Id;
 
-		switch (event.target.id) {
-			case password1Id:
-				validators.push(
-					VALIDATOR_PASSWORD(),
-					VALIDATOR_PASSWORDS_COHERESION(password2Value)
-				);
-				break;
+		const validators = [VALIDATOR_PASSWORDS_COHERESION(cohersionValArg)];
 
-			case password2Id:
-				validators.push(VALIDATOR_PASSWORDS_COHERESION(password1Value));
-				break;
-			default:
-				break;
+		if (props.validators) {
+			validators.push(...props.validators);
 		}
+
 		dispatch({
 			type: 'CHANGE',
-			val: event.target.value,
-			id1: event.target.id,
-			id2: event.target.id === password1Id ? password2Id : password1Id,
+			val: target.value,
+			id1: target.id,
+			id2: id2,
 			validators: validators,
 		});
 	};
@@ -220,11 +208,9 @@ const Input = (props) => {
 						)}
 					</span>
 				)}
-				{!data.isValid && data.wasTouched && <p>Dupa!</p>}
+				{!data.isValid && data.wasTouched && <p>{data.errorMsg}</p>}
 				{data.metaData.validatePassword && data.value && (
-					<PasswordMeter
-						passwordStrength={data.passwordStrength}
-					/>
+					<PasswordMeter passwordStrength={data.passwordStrength} />
 				)}
 			</div>
 		);
