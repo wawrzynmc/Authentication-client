@@ -60,7 +60,9 @@ const Main = (props) => {
 		// 		/>
 		// 	</Card>
 		// </React.Fragment>
-		<Passwords validators={[VALIDATOR_MINLENGTH(6)]} />
+		<Passwords
+			validators={[VALIDATOR_MINLENGTH(6), VALIDATOR_PASSWORD()]}
+		/>
 	);
 };
 
