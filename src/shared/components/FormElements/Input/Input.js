@@ -1,7 +1,7 @@
 import React, { useReducer, useEffect, useState } from 'react';
 
 import { validate } from '../../../utils/validators';
-import PasswordMeter from './PasswordMeter/PasswordMeter';
+import PasswordMeter from './Passwords/PasswordMeter/PasswordMeter';
 
 import classes from './Input.module.scss';
 
