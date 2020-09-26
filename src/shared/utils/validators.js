@@ -75,7 +75,7 @@ export const validate = (id, value, validators) => {
 		},
 		errorMsg = '',
 		caseBoolean;
-
+	console.log(`validators: ${validators}`);
 	for (const validator of validators) {
 		console.log(`validators: ${validators}`);
 		// * special cases
@@ -112,7 +112,7 @@ export const validate = (id, value, validators) => {
 			isValid = isValid && caseBoolean;
 
 			if (!caseBoolean) {
-				errorMsg = `${id} length must be greater than or equal to ${validator.val}.`;
+				errorMsg = `${id} has to have at least ${validator.val} characters.`;
 			}
 		}
 		if (validator.type === VALIDATOR_TYPE_MAXLENGTH) {
@@ -120,7 +120,7 @@ export const validate = (id, value, validators) => {
 			isValid = isValid && caseBoolean;
 
 			if (!caseBoolean) {
-				errorMsg = `${id} length must be lower than or equal to ${validator.val}.`;
+				errorMsg = `${id} has to have at most ${validator.val} characters.`;
 			}
 		}
 		if (validator.type === VALIDATOR_TYPE_MIN) {

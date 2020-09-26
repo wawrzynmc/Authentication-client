@@ -1,6 +1,9 @@
+// * -- libraries imports
 import React, { useContext, useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 
+// * -- my own imports
+// ---- components
 import Button from '../../shared/components/FormElements/Button/Button';
 import Input from '../../shared/components/FormElements/Input/Input';
 import {
@@ -8,6 +11,7 @@ import {
 	Google as GoogleLogin,
 } from '../../shared/components/FormElements/Socials/Socials';
 
+// ---- functions
 import { useForm } from '../../shared/hooks/form-hook'; // custom hook
 import { useHttpClient } from '../../shared/hooks/http-hook'; // custom hook
 import {
@@ -20,8 +24,10 @@ import {
 
 import { AuthContext } from '../../shared/context/auth-context';
 
+// ---- styles 
 import classes from './Auth.module.scss';
 
+// * -- component
 const Auth = (props) => {
 	// -- variables
 	const [isLoginMode, setIsLoginMode] = useState(false);

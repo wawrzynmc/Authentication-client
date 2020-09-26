@@ -6,6 +6,7 @@ import { AuthContext } from '../../shared/context/auth-context';
 import Card from '../../shared/components/UIElements/Card/Card';
 import Lock from '../../shared/components/UIElements/Lock/Lock';
 import Passwords from '../../shared/components/FormElements/Input/Passwords/Passwords';
+import SignupForm from '../../auth/components/SignupForm/SignupForm'
 
 import {
 	VALIDATOR_EMAIL,
@@ -60,10 +61,11 @@ const Main = (props) => {
 		// 		/>
 		// 	</Card>
 		// </React.Fragment>
-		<Passwords
-			validators={[VALIDATOR_MINLENGTH(6), VALIDATOR_PASSWORD()]}
-		/>
-	);
+		// <Passwords password1Validate validators={[VALIDATOR_MINLENGTH(6)]} />
+		<div>
+			<SignupForm/>
+		</div>
+		);
 };
 
 export default Main;

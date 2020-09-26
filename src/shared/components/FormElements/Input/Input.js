@@ -1,18 +1,36 @@
+// * -- libraries imports
 import React, { useReducer, useEffect, useState } from 'react';
 
-import { validate } from '../../../utils/validators';
-import PasswordMeter from './Passwords/PasswordMeter/PasswordMeter';
+// * -- my own imports
+// ---- components
 
+// ---- functions
+import { validate } from '../../../utils/validators';
+import { capitalizeString } from '../../../utils/utils';
+
+// ---- styles
 import classes from './Input.module.scss';
 
-// create Reducer
+/**
+ * Reducer
+ * * ACTIONS:
+ * 		@type: CHANGE
+ * 			@description: runs on every change of input value and performs validation
+ * 		@type: TOUCH
+ * 			@description: runs when field was touched and set input 'wasTouched' property to true
+ */
 const inputReducer = (state, action) => {
 	switch (action.type) {
 		case 'CHANGE':
+			console.log('inside CHANGE', action.validators);
 			return {
 				...state,
 				value: action.val,
-				...validate(action.val, action.validators),
+				...validate(
+					capitalizeString(action.id),
+					action.val,
+					action.validators
+				),
 			};
 		case 'TOUCH':
 			return {
@@ -33,6 +51,7 @@ const Input = (props) => {
 		wasTouched: false,
 		isValid: props.initialValid || false,
 		metaData: {},
+		errorMsg: 'Invalid input',
 	});
 
 	// useEffect to check validity of
@@ -45,8 +64,11 @@ const Input = (props) => {
 
 	// -- functions
 	const changeHandler = (event) => {
+		console.log('CHANGE');
+		console.log(props.validators);
 		dispatch({
 			type: 'CHANGE',
+			id: event.target.id,
 			val: event.target.value,
 			validators: props.validators,
 		});
@@ -86,7 +108,6 @@ const Input = (props) => {
 			/>
 		);
 
-	// -- return JSX
 	return (
 		<div
 			className={`${classes.FormControl} ${
@@ -97,27 +118,8 @@ const Input = (props) => {
 		>
 			<label htmlFor={props.id}>{props.label}</label>
 			{element}
-			{props.isPassword && inputState.value && (
-				<span
-					onClick={showPasswordToggle}
-					className={`
-						${classes.ShowPassword}
-					`}
-				>
-					{inputType === 'password' ? (
-						<i className="fas fa-eye"></i>
-					) : (
-						<i class="fas fa-eye-slash"></i>
-					)}
-				</span>
-			)}
 			{!inputState.isValid && inputState.wasTouched && (
-				<p>{props.errorText}</p>
-			)}
-			{props.isPassword && props.validatePassword && inputState.value && (
-				<PasswordMeter
-					passwordStrength={inputState.metaData.passwordStrength}
-				/>
+				<p>{inputState.errorMsg}</p>
 			)}
 		</div>
 	);
