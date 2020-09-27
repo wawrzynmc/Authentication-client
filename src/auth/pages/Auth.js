@@ -10,6 +10,7 @@ import {
 	Facebook as FacebookLogin,
 	Google as GoogleLogin,
 } from '../../shared/components/FormElements/Socials/Socials';
+import SignupForm from '../components/SignupForm/SignupForm';
 
 // ---- functions
 import { useForm } from '../../shared/hooks/form-hook'; // custom hook
@@ -24,7 +25,7 @@ import {
 
 import { AuthContext } from '../../shared/context/auth-context';
 
-// ---- styles 
+// ---- styles
 import classes from './Auth.module.scss';
 
 // * -- component
@@ -115,69 +116,7 @@ const Auth = (props) => {
 				<span className={classes.FormContainer__paragraph}>
 					or fill the form
 				</span>
-				<form className={classes.Form} action="#">
-					<Input
-						element="input"
-						id="name"
-						type="text"
-						placeholder="Name"
-						validators={[VALIDATOR_REQUIRE()]}
-						errorText="Please enter a name"
-						onInput={inputHandler}
-					/>
-					<Input
-						id="email"
-						element="input"
-						type="email"
-						placeholder="E-mail"
-						validators={[VALIDATOR_EMAIL()]}
-						errorText="Please enter a valid email address."
-						onInput={inputHandler}
-					/>
-					<Input
-						id="password"
-						element="input"
-						type="password"
-						placeholder="Password"
-						validators={
-							isLoginMode
-								? [VALIDATOR_MINLENGTH(6)]
-								: [
-										VALIDATOR_MINLENGTH(6),
-										VALIDATOR_PASSWORD(),
-										VALIDATOR_PASSWORDS_COHERESION(
-											formState.inputs.password2
-												? formState.inputs.password2
-														.value
-												: ''
-										),
-								  ]
-						}
-						errorText="Please enter a valid passsword (at least 6 characters)."
-						onInput={inputHandler}
-						validatePassword={isLoginMode ? false : true}
-						changeFormData={setFormData}
-						isPassword
-					/>
-					<Input
-						id="password2"
-						element="input"
-						type="password"
-						placeholder="Password confirmation"
-						validators={[
-							VALIDATOR_MINLENGTH(6),
-							VALIDATOR_PASSWORDS_COHERESION(
-								formState.inputs.password.value
-							),
-						]}
-						errorText="Passwords don't match."
-						onInput={inputHandler}
-						isPassword
-					/>
-					<Button type="submit" disabled={!formState.isValid}>
-						SINGUPaaa
-					</Button>
-				</form>
+				<SignupForm />
 			</div>
 			<div
 				className={`${classes.FormContainer} ${classes.FormContainer_signin}`}

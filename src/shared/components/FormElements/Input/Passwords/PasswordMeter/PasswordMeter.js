@@ -1,7 +1,18 @@
+// * -- libraries imports
 import React from 'react';
+import PropTypes from 'prop-types';
 
+// * -- my own imports
+// ---- styles
 import classes from './PasswordMeter.module.scss';
 
+/**
+ * Input Component
+ * * PARAMS:
+ *  	@param passwordStrength
+ * 			@type: string | number
+ * 			@description: strength of password
+ */
 const PasswordMeter = (props) => {
 	return (
 		<div className={classes.Meter}>
@@ -32,6 +43,11 @@ const PasswordMeter = (props) => {
 			></span>
 		</div>
 	);
+};
+
+// * -- prop types
+PasswordMeter.propTypes = {
+	passwordStrength: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 export default PasswordMeter;

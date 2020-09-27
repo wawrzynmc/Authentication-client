@@ -42,7 +42,11 @@ const inputReducer = (state, action) => {
 			return state;
 	}
 };
-
+/**
+ * TODO:
+ * 		* add regex for name, that could have only letters in name (without special characters etc.)
+ *
+ */
 // component
 const Input = (props) => {
 	const [inputType, setInputType] = useState(props.type);
