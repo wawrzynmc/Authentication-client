@@ -68,7 +68,6 @@ const Input = (props) => {
 
 	// -- functions
 	const changeHandler = (event) => {
-		console.log('CHANGE');
 		console.log(props.validators);
 		dispatch({
 			type: 'CHANGE',
@@ -79,7 +78,6 @@ const Input = (props) => {
 	};
 
 	const touchHandler = (event) => {
-		console.log('Touch');
 		dispatch({
 			type: 'TOUCH',
 		});
