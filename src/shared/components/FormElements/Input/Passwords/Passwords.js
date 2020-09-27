@@ -350,6 +350,7 @@ Passwords.defaultProps = {
 	password2initialValid: false,
 	withLabels: false,
 	initialErrorMsg: 'Must be valid password.',
+	validators: [],
 };
 
 export default Passwords;

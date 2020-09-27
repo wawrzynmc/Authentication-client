@@ -5,8 +5,7 @@ import Typewriter from 'typewriter-effect';
 import { AuthContext } from '../../shared/context/auth-context';
 import Card from '../../shared/components/UIElements/Card/Card';
 import Lock from '../../shared/components/UIElements/Lock/Lock';
-import Passwords from '../../shared/components/FormElements/Input/Passwords/Passwords';
-import SignupForm from '../../auth/components/SignupForm/SignupForm'
+import Password from '../../shared/components/FormElements/Input/Passwords/Password/Password';
 
 import {
 	VALIDATOR_EMAIL,
@@ -63,9 +62,13 @@ const Main = (props) => {
 		// </React.Fragment>
 		// <Passwords password1Validate validators={[VALIDATOR_MINLENGTH(6)]} />
 		<div>
-			<SignupForm/>
+			<Password
+				withLabel
+				validate
+				validators={[VALIDATOR_MINLENGTH(6)]}
+			/>
 		</div>
-		);
+	);
 };
 
 export default Main;

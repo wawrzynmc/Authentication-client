@@ -75,9 +75,8 @@ export const validate = (id, value, validators) => {
 		},
 		errorMsg = '',
 		caseBoolean;
-	console.log(`validators: ${validators}`);
+		
 	for (const validator of validators) {
-		console.log(`validators: ${validators}`);
 		// * special cases
 		if (validator.type === VALIDATOR_TYPE_PASSWORDS_COHERESION) {
 			caseBoolean = validator.passwordToCompare === value;
