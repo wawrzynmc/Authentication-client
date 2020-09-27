@@ -1,5 +1,6 @@
 // * -- libraries imports
 import React, { useReducer, useEffect, useState, useRef } from 'react';
+import PropTypes from 'prop-types';
 
 // * -- my own imports
 // ---- components
@@ -93,15 +94,19 @@ const inputReducer = (state, action) => {
  * * PARAMS:
  * 		* all params that include 'password1' in its name, have its equivalent for 'password2'
  *  	@param password1Id
+ * 			@type: string
  * 			@description: id of password1
  * 			@default = 'password1'
  * 		@param password1initialValue
+ * 			@type: string
  * 			@description: initial value of password1
  * 			@default ''
  * 		@param password1Placeholder
+ * 			@type: string
  * 			@description: placeholder for password1
  * 			@default: 'Password' (password1) / 'Password Confirmation' (password2)
  * 		@param password1Label
+ * 			@type: string
  * 			@description: label for password1
  * 			@default: 'Password' (password1) / 'Password Confirmation' (password2)
  * 		@param password1Validate
@@ -112,49 +117,55 @@ const inputReducer = (state, action) => {
  * 			@type: boolean
  * 			@description: defines if password1 is initially valid
  * 			@default: false
+ * 		@param withLabels
+ * 			@type: boolean
+ * 			@description: defines, if passwords with have label above them
+ * 			@default: undefined
+ * 		@param initialErrorMsg
+ * 			@type: string
+ * 			@description: initial error msg for field
+ * 			@default: 'Must be valid'
  * 		@param validators
- * 			@type: list
+ * 			@type: array of objects
  * 			@description: include validators for both password type inputs
  * 		@param onInput
  * 			@type: function
  * 			@description: runs every time when password: id, value, validity or reference to onInput changed
  *  TODO :
- * 		- think about name of field during validation error (at this time eq. password1 / password2)
  */
-const Input = (props) => {
+const Passwords = (props) => {
 	// create references for inputs
 	const password1Ref = useRef(null);
 	const password2Ref = useRef(null);
 
 	const [passwordsState, dispatch] = useReducer(inputReducer, {
 		[props.password1Id || 'password1']: {
-			value: props.password1initialValue || '',
+			value: props.password1initialValue,
 			wasTouched: false,
-			isValid: props.password1initialValid || false,
+			isValid: props.password1initialValid,
 			inputType: 'password',
 			passwordStrength: 0,
-			errorMsg: 'Must be valid password.',
+			errorMsg: props.initialErrorMsg,
 			metaData: {
-				id: props.password1Id || 'password1',
-				placeholder: props.password1Placeholder || 'Password',
-				label: props.password1Label || 'Password',
-				validate: props.password1Validate || false,
+				id: props.password1Id,
+				placeholder: props.password1Placeholder,
+				label: props.password1Label,
+				validate: props.password1Validate,
 				reference: password1Ref,
 			},
 		},
 		[props.password2Id || 'password2']: {
-			value: props.password2initialValue || '',
+			value: props.password2initialValue,
 			wasTouched: false,
-			isValid: props.password2initialValid || false,
+			isValid: props.password2initialValid,
 			inputType: 'password',
 			passwordStrength: 0,
-			errorMsg: 'Must be valid password.',
+			errorMsg: props.initialErrorMsg,
 			metaData: {
-				id: props.password2Id || 'password2',
-				placeholder:
-					props.password2Placeholder || 'Password confirmation',
-				label: props.password2Label || 'Password confirmation',
-				validate: props.password2Validate || false,
+				id: props.password2Id,
+				placeholder: props.password2Placeholder,
+				label: props.password2Label,
+				validate: props.password2Validate,
 				reference: password2Ref,
 			},
 		},
@@ -210,7 +221,7 @@ const Input = (props) => {
 		// set up validators (cohersion validators is always provided)
 		const validators = [VALIDATOR_PASSWORDS_COHERESION(cohersionValArg)];
 
-		// check if password1 / 2 has to have password meter
+		// check if password1 / 2 has to be validate
 		if (target.id === password1Id) {
 			if (passwordsState[password1Id].metaData.validate) {
 				validators.push(VALIDATOR_PASSWORD());
@@ -259,7 +270,9 @@ const Input = (props) => {
 				}`}
 				key={data.metaData.id}
 			>
-				<label htmlFor={data.id}></label>
+				{props.withLabels && (
+					<label htmlFor={data.id}>{data.metaData.label}</label>
+				)}
 				<input
 					id={data.metaData.id}
 					type={data.inputType}
@@ -273,13 +286,13 @@ const Input = (props) => {
 					<span
 						onClick={() => changeTypeHandler(data.metaData.id)}
 						className={`
-							${classes.ShowPassword}
+							${classes.FormControl__ShowPassword}
 						`}
 					>
 						{data.inputType === 'password' ? (
 							<i className="fas fa-eye"></i>
 						) : (
-							<i class="fas fa-eye-slash"></i>
+							<i className="fas fa-eye-slash"></i>
 						)}
 					</span>
 				)}
@@ -294,4 +307,49 @@ const Input = (props) => {
 	return <React.Fragment>{passwordsInputs}</React.Fragment>;
 };
 
-export default Input;
+// * -- prop types
+Passwords.propTypes = {
+	password1Id: PropTypes.string,
+	password2Id: PropTypes.string,
+	password1initialValue: PropTypes.string,
+	password2initialValue: PropTypes.string,
+	password1Placeholder: PropTypes.string,
+	password2Placeholder: PropTypes.string,
+	password1Label: PropTypes.string,
+	password2Label: PropTypes.string,
+	password1Validate: PropTypes.bool,
+	password2Validate: PropTypes.bool,
+	password1initialValid: PropTypes.bool,
+	password2initialValid: PropTypes.bool,
+	withLabels: PropTypes.bool,
+	initialErrorMsg: PropTypes.string,
+	validators: PropTypes.arrayOf(
+		PropTypes.shape({
+			type: PropTypes.string.isRequired,
+			val: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+			regex: PropTypes.string,
+			passwordToCompare: PropTypes.string,
+		})
+	),
+	onInput: PropTypes.func,
+};
+
+// * -- default props
+Passwords.defaultProps = {
+	password1Id: 'password1',
+	password2Id: 'password2',
+	password1initialValue: '',
+	password2initialValue: '',
+	password1Placeholder: 'Password',
+	password2Placeholder: 'Password confirmation',
+	password1Label: 'Password',
+	password2Label: 'Password confirmation',
+	password1Validate: false,
+	password2Validate: false,
+	password1initialValid: false,
+	password2initialValid: false,
+	withLabels: false,
+	initialErrorMsg: 'Must be valid password.',
+};
+
+export default Passwords;
