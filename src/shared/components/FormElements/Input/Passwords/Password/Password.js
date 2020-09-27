@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 // * -- my own imports
@@ -53,13 +53,52 @@ const inputReducer = (state, action) => {
 			return state;
 	}
 };
-/**
- * TODO:
- * 		* add regex for name, that could have only letters in name (without special characters etc.)
- *
- */
 
+/**
+ * Password Component
+ * * PARAMS:
+ *  	@param id
+ * 			@type: string
+ * 			@description: id of password1
+ * 			@default = 'password1'
+ * 		@param initialValue
+ * 			@type: string
+ * 			@description: initial value of password1
+ * 			@default ''
+ * 		@param placeholder
+ * 			@type: string
+ * 			@description: placeholder for password1
+ * 			@default: 'Password' (password1) / 'Password Confirmation' (password2)
+ * 		@param label
+ * 			@type: string
+ * 			@description: label for password1
+ * 			@default: 'Password' (password1) / 'Password Confirmation' (password2)
+ * 		@param withLabel
+ * 			@type: boolean
+ * 			@description: defines, if passwords with have label above them
+ * 			@default: false
+ * 		@param validate
+ * 			@type: boolean
+ * 			@description: defines if password1 should have its strength validate
+ * 			@default: false
+ *  	@param initialValid
+ * 			@type: boolean
+ * 			@description: defines if password1 is initially valid
+ * 			@default: false
+ * 		@param initialErrorMsg
+ * 			@type: string
+ * 			@description: initial error msg for field
+ * 			@default: 'Must be valid'
+ * 		@param validators
+ * 			@type: array of objects
+ * 			@description: include validators for both password type inputs
+ * 		@param onInput
+ * 			@type: function
+ * 			@description: runs every time when password: id, value, validity or reference to onInput changed
+ *  TODO :
+ */
 const Password = (props) => {
+	const { id, onInput } = props;
 	const [inputState, dispatch] = useReducer(inputReducer, {
 		value: props.initialValue,
 		wasTouched: false,
@@ -68,6 +107,11 @@ const Password = (props) => {
 		passwordStrength: 0,
 		errorMsg: props.initialErrorMsg,
 	});
+	const { value, isValid } = inputState;
+
+	useEffect(() => {
+		onInput(id, value, isValid);
+	}, [id, onInput, value, isValid]);
 
 	const changeHandler = (event) => {
 		let validators = [...props.validators];
@@ -171,6 +215,7 @@ Password.defaultProps = {
 	initialValid: false,
 	initialErrorMsg: 'Must be valid password.',
 	validators: [],
+	onInput: (id, value, isValid) => console.log(id, value, isValid),
 };
 
 export default Password;

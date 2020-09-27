@@ -90,7 +90,7 @@ const inputReducer = (state, action) => {
 };
 
 /**
- * Input Component
+ * Passwords Component
  * * PARAMS:
  * 		* all params that include 'password1' in its name, have its equivalent for 'password2'
  *  	@param password1Id
@@ -120,7 +120,7 @@ const inputReducer = (state, action) => {
  * 		@param withLabels
  * 			@type: boolean
  * 			@description: defines, if passwords with have label above them
- * 			@default: undefined
+ * 			@default: false
  * 		@param initialErrorMsg
  * 			@type: string
  * 			@description: initial error msg for field
@@ -170,8 +170,6 @@ const Passwords = (props) => {
 			},
 		},
 	});
-
-	console.log('state', passwordsState);
 
 	const { onInput } = props;
 	const {
@@ -351,6 +349,7 @@ Passwords.defaultProps = {
 	withLabels: false,
 	initialErrorMsg: 'Must be valid password.',
 	validators: [],
+	onInput: (id, value, isValid) => console.log(id, value, isValid),
 };
 
 export default Passwords;

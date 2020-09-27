@@ -50,12 +50,12 @@ const SignupForm = (props) => {
 	return (
 		<form className={classes.Form} action="#">
 			<Input
-				element="input"
 				id="name"
+				element="input"
 				type="text"
 				placeholder="Name"
 				validators={[VALIDATOR_MINLENGTH(6)]}
-				errorText="Please enter a name"
+				initialErrorMsg="Please enter a name."
 				onInput={inputHandler}
 			/>
 			<Input
@@ -64,7 +64,7 @@ const SignupForm = (props) => {
 				type="email"
 				placeholder="E-mail"
 				validators={[VALIDATOR_EMAIL()]}
-				errorText="Please enter a valid email address."
+				initialErrorMsg="Please enter a valid email address."
 				onInput={inputHandler}
 			/>
 			<Passwords
@@ -73,7 +73,7 @@ const SignupForm = (props) => {
 				onInput={inputHandler}
 			/>
 			<Button type="submit" disabled={!formState.isValid}>
-				SINGUP
+				signup
 			</Button>
 		</form>
 	);

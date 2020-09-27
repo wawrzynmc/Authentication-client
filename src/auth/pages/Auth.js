@@ -5,24 +5,15 @@ import { useHistory } from 'react-router-dom';
 // * -- my own imports
 // ---- components
 import Button from '../../shared/components/FormElements/Button/Button';
-import Input from '../../shared/components/FormElements/Input/Input';
+
 import {
 	Facebook as FacebookLogin,
 	Google as GoogleLogin,
 } from '../../shared/components/FormElements/Socials/Socials';
 import SignupForm from '../components/SignupForm/SignupForm';
+import SigninForm from '../components/SigninForm/SigninForm';
 
 // ---- functions
-import { useForm } from '../../shared/hooks/form-hook'; // custom hook
-import { useHttpClient } from '../../shared/hooks/http-hook'; // custom hook
-import {
-	VALIDATOR_EMAIL,
-	VALIDATOR_MINLENGTH,
-	VALIDATOR_REQUIRE,
-	VALIDATOR_PASSWORD,
-	VALIDATOR_PASSWORDS_COHERESION,
-} from '../../shared/utils/validators';
-
 import { AuthContext } from '../../shared/context/auth-context';
 
 // ---- styles
@@ -34,66 +25,10 @@ const Auth = (props) => {
 	const [isLoginMode, setIsLoginMode] = useState(false);
 	const auth = useContext(AuthContext);
 
-	// call for my won hook for managing http request
-	const { isLoading, error, sendRequest, clearError } = useHttpClient();
-
-	// call for my own hook
-	const [formState, inputHandler, setFormData] = useForm(
-		{
-			email: {
-				value: '',
-				isValid: false,
-			},
-			password: {
-				value: '',
-				isValid: false,
-			},
-		},
-		false
-	);
-
 	// -- functions
 	const switchModeHandler = () => {
-		if (!isLoginMode) {
-			// switch from SINGUP to LOGIN
-			setFormData(
-				{
-					...formState.inputs,
-					name: undefined,
-					password2: undefined,
-				},
-				formState.inputs.email.isValid &&
-					formState.inputs.password.isValid
-			);
-		} else {
-			// switch from LOGIN to SINGUP
-			setFormData(
-				{
-					...formState.inputs,
-					name: {
-						value: '',
-						isValid: false,
-					},
-					email: {
-						value: '',
-						isValid: false,
-					},
-					password: {
-						value: '',
-						isValid: false,
-					},
-					password2: {
-						value: '',
-						isValid: false,
-					},
-				},
-				false
-			);
-		}
 		setIsLoginMode((prevMode) => !prevMode);
 	};
-
-	// console.log('form', formState.inputs.password2);
 
 	return (
 		<div
@@ -119,24 +54,20 @@ const Auth = (props) => {
 				<SignupForm />
 			</div>
 			<div
-				className={`${classes.FormContainer} ${classes.FormContainer_signin}`}
+				className={`
+					${classes.FormContainer} 
+					${classes.FormContainer_signin}
+				`}
 			>
-				<form action="#">
-					<h1 className={classes.FormContainer__Title}>Sign in</h1>
-					<div className={classes.FormContainer__Socials}>
-						<FacebookLogin />
-						<GoogleLogin />
-					</div>
-					<span className={classes.FormContainer__paragraph}>
-						or fill the form
-					</span>
-					<input type="email" placeholder="Email" />
-					<input type="password" placeholder="Password" />
-					<a href="#">Forgot your password?</a>
-					<Button type="submit" disabled={!formState.isValid}>
-						SINGUP
-					</Button>
-				</form>
+				<h1 className={classes.FormContainer__Title}>Sign in</h1>
+				<div className={classes.FormContainer__Socials}>
+					<FacebookLogin />
+					<GoogleLogin />
+				</div>
+				<span className={classes.FormContainer__paragraph}>
+					or fill the form
+				</span>
+				<SigninForm />
 			</div>
 			<div className={classes.OverlayContainer}>
 				<div className={classes.OverlayContainer__Overlay}>
@@ -174,7 +105,6 @@ const Auth = (props) => {
 								<span>or</span>
 							</h1>
 						</span>
-						{/* GHOST className */}
 						<Button ghost onClick={switchModeHandler}>
 							SIGNUP
 						</Button>
@@ -184,20 +114,5 @@ const Auth = (props) => {
 		</div>
 	);
 };
-
-// return (
-// <Form
-// rightPanelActive={!setIsLoginMode}
-// togglePannels={togglePanelsHandler}
-// />
-// <Lock lockClick={toggleLockStateHandler} closed={lockIsClosed} />
-// <div>
-//     {/* <h1>LOGIN PAGE</h1>
-//     <hr/>
-//     <form onSubmit={authSubmitHandler}>
-//         <button>LOGIN</button>
-//     </form> */}
-// </div>
-// );
 
 export default Auth;

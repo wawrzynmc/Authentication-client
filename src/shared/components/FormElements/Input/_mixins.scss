@@ -3,7 +3,7 @@ $focus-input-bgc: #ebebeb;
 $invalid-input-bgc: #ffd1d1;
 
 @mixin form-control {
-	margin: 1rem 0;
+	margin: 1.3rem 0;
 	position: relative;
 
 	label {
@@ -19,7 +19,7 @@ $invalid-input-bgc: #ffd1d1;
 		font: inherit;
 		border: 1px solid #ccc;
 		background: $normal-input-bgc;
-		padding: 0.3rem 3rem 0.3rem 0.3rem;
+		padding: 0.4rem 3rem 0.4rem 0.3rem;
 
 		&:focus {
 			outline: none;
