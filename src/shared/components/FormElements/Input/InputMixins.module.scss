@@ -1,0 +1,44 @@
+$normal-input-bgc: #f8f8f8;
+$focus-input-bgc: #ebebeb;
+$invalid-input-bgc: #ffd1d1;
+
+@mixin form-control {
+	margin: 1rem 0;
+	position: relative;
+
+	label {
+		display: block;
+		font-weight: bold;
+		margin-bottom: 0.5rem;
+	}
+
+	input,
+	textarea {
+		display: block;
+		width: 100%;
+		font: inherit;
+		border: 1px solid #ccc;
+		background: $normal-input-bgc;
+		padding: 0.3rem 3rem 0.3rem 0.3rem;
+
+		&:focus {
+			outline: none;
+			background: $focus-input-bgc;
+			border-color: #510077;
+		}
+	}
+}
+
+@mixin form-control--invalid {
+	label,
+	p {
+		font-size: 1rem;
+		color: red;
+	}
+
+	input,
+	textarea {
+		border-color: red;
+		background: $invalid-input-bgc;
+	}
+}

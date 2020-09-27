@@ -3,28 +3,17 @@ import React from 'react';
 
 // * -- my own imports
 // ---- components
-import Input from '../../../shared/components/FormElements/Input/Input';
-import Button from '../../../shared/components/FormElements/Button/Button';
-import Passwords from '../../../shared/components/FormElements/Input/Passwords/Passwords';
 
 // ---- functions
-import { useForm } from '../../../shared/hooks/form-hook';
-import { useHttpClient } from '../../../shared/hooks/http-hook';
 import {
 	VALIDATOR_MINLENGTH,
 	VALIDATOR_EMAIL,
 } from '../../../shared/utils/validators';
 
 // ---- styles
-import classes from './SignupForm.module.scss';
+import classes from './SigninForm.module.scss';
 
-/**
- * Signup Component
- * * PARAMS:
- * ! WARNINGS:
- *      ! name of fileds in formState has to match with ids of inputs
- */
-const SignupForm = (props) => {
+const SigninForm = (props) => {
 	const { isLoading, error, sendRequest, clearError } = useHttpClient();
 	const [formState, inputHandler, setFormData] = useForm(
 		{
@@ -50,15 +39,6 @@ const SignupForm = (props) => {
 	return (
 		<form className={classes.Form} action="#">
 			<Input
-				element="input"
-				id="name"
-				type="text"
-				placeholder="Name"
-				validators={[VALIDATOR_MINLENGTH(6)]}
-				errorText="Please enter a name"
-				onInput={inputHandler}
-			/>
-			<Input
 				id="email"
 				element="input"
 				type="email"
@@ -67,16 +47,11 @@ const SignupForm = (props) => {
 				errorText="Please enter a valid email address."
 				onInput={inputHandler}
 			/>
-			<Passwords
-				password1Validate
-				validators={[VALIDATOR_MINLENGTH(6)]}
-				onInput={inputHandler}
-			/>
 			<Button type="submit" disabled={!formState.isValid}>
-				SINGUP
+				singin
 			</Button>
 		</form>
 	);
 };
 
-export default SignupForm;
+export default SigninForm;
