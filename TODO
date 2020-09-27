@@ -5,6 +5,7 @@ Todo:
     ✔ @high Use ESLint @done(20-09-16 19:54)
     ☐ @low move Logo from Navigation to UIElements
     ☐ @high add components to stories
+    ☐ ATOMIC DESIGN
  
   Navigation:
     ☐ @high implement language change (multilanguage page)

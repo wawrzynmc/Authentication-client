@@ -42,3 +42,17 @@ $invalid-input-bgc: #ffd1d1;
 		background: $invalid-input-bgc;
 	}
 }
+
+@mixin show-password {
+	position: absolute;
+	right: 3px;
+	top: 4px;
+	width: 30px;
+	text-align: center;
+	cursor: pointer;
+	font-weight: 600;
+
+	i {
+		font-size: 1.4rem;
+	}
+}

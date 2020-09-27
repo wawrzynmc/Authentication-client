@@ -1,4 +1,4 @@
-@import './InputMixins.module.scss';
+@import './_mixins.scss';
 
 .FormControl {
 	@include form-control;
