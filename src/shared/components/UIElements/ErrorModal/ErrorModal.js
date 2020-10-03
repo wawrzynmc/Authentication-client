@@ -10,6 +10,7 @@ const ErrorModal = (props) => {
 			header="An Error Occurred"
 			show={!!props.error}
 			footer={<Button onClick={props.onClear}>Okay</Button>}
+			backdropStyle={{ zIndex: 300 }}
 		>
 			<p>{props.error}</p>
 		</Modal>

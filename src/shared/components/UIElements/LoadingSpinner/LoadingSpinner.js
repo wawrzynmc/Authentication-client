@@ -7,7 +7,7 @@ const LoadingSpinner = (props) => {
 		<div
 			className={`${props.asOverlay && classes.LoadingSpinner__overlay}`}
 		>
-			<div className={classes.LoadingSpinner__dualRing}></div>
+			<div className={classes.LoadingSpinner_dualRing}></div>
 		</div>
 	);
 };

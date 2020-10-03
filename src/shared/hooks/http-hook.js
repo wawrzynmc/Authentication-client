@@ -30,7 +30,7 @@ export const useHttpClient = () => {
 					// .ok exists on 200 like status codes
 					throw new Error(responseData.message);
 				}
-
+				setTimeout(() => console.log('Timout', 3000));
 				setIsLoading(false);
 				return responseData;
 			} catch (err) {
