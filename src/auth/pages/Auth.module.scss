@@ -1,5 +1,7 @@
 @import '../../assets/styles/variables.module.scss';
 
+$transition-time: 0.6s;
+
 .Container {
 	position: relative;
 
@@ -30,7 +32,7 @@
 			opacity: 1;
 			z-index: 10;
 			transform: translate(0, 50%);
-			animation: show 0.4s;
+			animation: show 1s;
 
 			@media screen and (min-width: 768px) {
 				transform: translate(100%, 0);
@@ -80,7 +82,7 @@
 	height: 65%;
 	width: 100%;
 
-	transition: all 0.6s ease-in-out;
+	transition: all 0.4s ease-in;
 
 	@media screen and (min-width: 768px) {
 		top: 0;
@@ -117,10 +119,6 @@
 	}
 }
 
-.Form {
-	width: 80%;
-}
-
 .OverlayContainer {
 	position: absolute;
 	top: 70%;
@@ -131,7 +129,7 @@
 
 	overflow: hidden;
 	z-index: 10;
-	transition: transform 0.6s ease-in-out;
+	transition: transform $transition-time ease-in-out;
 
 	@media screen and (min-width: 768px) {
 		top: 0;
@@ -149,7 +147,7 @@
 		background: linear-gradient(to right, #d34163, #f73978);
 		color: #ffffff;
 		transform: translateX(0);
-		transition: transform 0.6s ease-in-out;
+		transition: transform $transition-time ease-in-out;
 
 		@media screen and (min-width: 768px) {
 			left: -100%;
@@ -174,7 +172,7 @@
 
 		text-align: center;
 		transform: translateX(0);
-		transition: transform 0.6s ease-in-out;
+		transition: transform $transition-time ease-in-out;
 
 		@media screen and (min-width: 768px) {
 			top: 0;

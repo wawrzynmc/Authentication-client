@@ -9,7 +9,6 @@ const Layout = (props) => {
 	const [sideDrawerIsVisible, setSideDrawerIsVisible] = useState(false);
 
 	const closeSideDrawerHandler = () => {
-		console.log('dasda');
 		setSideDrawerIsVisible(false);
 	};
 

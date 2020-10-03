@@ -1,18 +1,36 @@
+// * -- libraries imports
 import React, { useReducer, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
+// * -- my own imports
+// ---- components
+
+// ---- functions
 import { validate } from '../../../utils/validators';
-import PasswordMeter from './PasswordMeter/PasswordMeter';
+import { capitalizeString } from '../../../utils/utils';
 
+// ---- styles
 import classes from './Input.module.scss';
 
-// create Reducer
+/**
+ * Reducer
+ * * ACTIONS:
+ * 		@type: CHANGE
+ * 			@description: runs on every change of input value and performs validation
+ * 		@type: TOUCH
+ * 			@description: runs when field was touched and set input 'wasTouched' property to true
+ */
 const inputReducer = (state, action) => {
 	switch (action.type) {
 		case 'CHANGE':
 			return {
 				...state,
 				value: action.val,
-				...validate(action.val, action.validators),
+				...validate(
+					capitalizeString(action.id),
+					action.val,
+					action.validators
+				),
 			};
 		case 'TOUCH':
 			return {
@@ -24,15 +42,65 @@ const inputReducer = (state, action) => {
 			return state;
 	}
 };
-
-// component
+/**
+ * Input Component
+ * * PARAMS:
+ * 		* all params that include 'input' in its name, have its equivalent for 'password2'
+ *  	@param id
+ * 			@type: string
+ * 			@description: id of input
+ * 			@required
+ *  	@param element
+ * 			@type: string
+ * 			@description: type of input (textarea / input)
+ * 			@required
+ *  	@param type
+ * 			@type: string
+ * 			@description: type of input
+ * 			@required
+ *  	@param rows
+ * 			@type: number
+ * 			@description: number of rows for textarea
+ * 			@default: 3
+ * 		@param initialValue
+ * 			@type: string
+ * 			@description: initial value of input
+ * 			@default ''
+ * 		@param placeholder
+ * 			@type: string
+ * 			@description: placeholder for input
+ * 			@default: ''
+ * 		@param label
+ * 			@type: string
+ * 			@description: label for input
+ * 			@default: ''
+ *		@param withLabel
+ * 			@type: boolean
+ * 			@description: defines, if input with have label above them
+ * 			@default: false
+ *  	@param initialValid
+ * 			@type: boolean
+ * 			@description: defines if input is initially valid
+ * 			@default: false
+ * 		@param initialErrorMsg
+ * 			@type: string
+ * 			@description: initial error msg for field
+ * 			@default: 'Must be valid'
+ * 		@param validators
+ * 			@type: array of objects
+ * 			@description: include validators for input
+ * 		@param onInput
+ * 			@type: function
+ * 			@description: runs every time when password: id, value, validity or reference to onInput changed
+ *  TODO :
+ * 		* add regex for name, that could have only letters in name (without special characters etc.)
+ */
 const Input = (props) => {
-	const [inputType, setInputType] = useState(props.type);
 	const [inputState, dispatch] = useReducer(inputReducer, {
-		value: props.initialValue || '',
+		value: props.initialValue,
 		wasTouched: false,
-		isValid: props.initialValid || false,
-		metaData: {},
+		isValid: props.initialValid,
+		errorMsg: props.initialErrorMsg,
 	});
 
 	// useEffect to check validity of
@@ -47,30 +115,23 @@ const Input = (props) => {
 	const changeHandler = (event) => {
 		dispatch({
 			type: 'CHANGE',
+			id: event.target.id,
 			val: event.target.value,
 			validators: props.validators,
 		});
 	};
 
 	const touchHandler = (event) => {
-		console.log('Touch');
 		dispatch({
 			type: 'TOUCH',
 		});
 	};
 
-	const showPasswordToggle = (event) => {
-		setInputType((prevState) => {
-			return prevState === 'password' ? 'text' : 'password';
-		});
-	};
-
-	// -- variables
 	const element =
 		props.element === 'input' ? (
 			<input
 				id={props.id}
-				type={inputType}
+				type={props.type}
 				placeholder={props.placeholder}
 				onChange={changeHandler}
 				onBlur={touchHandler}
@@ -79,14 +140,13 @@ const Input = (props) => {
 		) : (
 			<textarea
 				id={props.id}
-				rows={props.rows || 3}
+				rows={props.rows}
 				onChange={changeHandler}
 				onBlur={touchHandler}
 				value={inputState.value}
 			/>
 		);
 
-	// -- return JSX
 	return (
 		<div
 			className={`${classes.FormControl} ${
@@ -95,32 +155,49 @@ const Input = (props) => {
 				classes.FormControl_invalid
 			}`}
 		>
-			<label htmlFor={props.id}>{props.label}</label>
+			{props.withLabel && <label htmlFor={props.id}>{props.label}</label>}
 			{element}
-			{props.isPassword && inputState.value && (
-				<span
-					onClick={showPasswordToggle}
-					className={`
-						${classes.ShowPassword}
-					`}
-				>
-					{inputType === 'password' ? (
-						<i className="fas fa-eye"></i>
-					) : (
-						<i class="fas fa-eye-slash"></i>
-					)}
-				</span>
-			)}
 			{!inputState.isValid && inputState.wasTouched && (
-				<p>{props.errorText}</p>
-			)}
-			{props.isPassword && props.validatePassword && inputState.value && (
-				<PasswordMeter
-					passwordStrength={inputState.metaData.passwordStrength}
-				/>
+				<p>{inputState.errorMsg}</p>
 			)}
 		</div>
 	);
+};
+
+// * -- prop types
+Input.propTypes = {
+	id: PropTypes.string.isRequired,
+	element: PropTypes.oneOf(['input', 'textarea']).isRequired,
+	type: PropTypes.oneOf(['email', 'number', 'text', 'tel', 'url']).isRequired,
+	rows: PropTypes.number,
+	initialValue: PropTypes.string,
+	placeholder: PropTypes.string,
+	label: PropTypes.string,
+	withLabel: PropTypes.bool,
+	initialValid: PropTypes.bool,
+	initialErrorMsg: PropTypes.string,
+	validators: PropTypes.arrayOf(
+		PropTypes.shape({
+			type: PropTypes.string.isRequired,
+			val: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+			regex: PropTypes.any,
+			passwordToCompare: PropTypes.string,
+		})
+	),
+	onInput: PropTypes.func,
+};
+
+// * -- default props
+Input.defaultProps = {
+	initialValue: '',
+	rows: 3,
+	placeholder: '',
+	label: '',
+	withLabel: false,
+	initialValid: false,
+	initialErrorMsg: 'Must be valid.',
+	validators: [],
+	onInput: (id, value, isValid) => console.log(id, value, isValid),
 };
 
 export default Input;

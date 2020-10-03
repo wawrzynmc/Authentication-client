@@ -44,11 +44,13 @@ const Main = (props) => {
 						}}
 					/>
 				</div>
-				<Lock
-					logo
-					lockClick={toggleLockStateHandler}
-					closed={lockIsClosed}
-				/>
+				<div>
+					<Lock
+						logo
+						lockClick={toggleLockStateHandler}
+						closed={lockIsClosed}
+					/>
+				</div>
 			</Card>
 		</React.Fragment>
 	);
