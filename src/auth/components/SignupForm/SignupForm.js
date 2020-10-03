@@ -6,12 +6,14 @@ import React from 'react';
 import Input from '../../../shared/components/FormElements/Input/Input';
 import Button from '../../../shared/components/FormElements/Button/Button';
 import Passwords from '../../../shared/components/FormElements/Input/Passwords/Passwords';
+import LoadingSpinner from '../../../shared/components/UIElements/LoadingSpinner/LoadingSpinner';
 
 // ---- functions
 import { useForm } from '../../../shared/hooks/form-hook';
 import { useHttpClient } from '../../../shared/hooks/http-hook';
 import {
 	VALIDATOR_MINLENGTH,
+	VALIDATOR_MAXLENGTH,
 	VALIDATOR_EMAIL,
 } from '../../../shared/utils/validators';
 
@@ -47,35 +49,61 @@ const SignupForm = (props) => {
 		},
 		false
 	);
+
+	const authSubmitHandler = async (event) => {
+		event.preventDefault();
+		const { name, email, password1, password2 } = formState.inputs;
+
+		try {
+			const responseData = await sendRequest(
+				`${process.env.REACT_APP_SERVER_API_URL}/account/signup`,
+				'POST',
+				JSON.stringify({
+					name: name.value,
+					email: email.value,
+					password1: password1.value,
+					password2: password2.value,
+				}),
+				{ 'Content-Type': 'application/json' }
+			);
+		} catch (err) {}
+	};
+
 	return (
-		<form className={classes.Form} action="#">
-			<Input
-				id="name"
-				element="input"
-				type="text"
-				placeholder="Name"
-				validators={[VALIDATOR_MINLENGTH(6)]}
-				initialErrorMsg="Please enter a name."
-				onInput={inputHandler}
-			/>
-			<Input
-				id="email"
-				element="input"
-				type="email"
-				placeholder="E-mail"
-				validators={[VALIDATOR_EMAIL()]}
-				initialErrorMsg="Please enter a valid email address."
-				onInput={inputHandler}
-			/>
-			<Passwords
-				password1Validate
-				validators={[VALIDATOR_MINLENGTH(6)]}
-				onInput={inputHandler}
-			/>
-			<Button type="submit" disabled={!formState.isValid}>
-				signup
-			</Button>
-		</form>
+		<React.Fragment>
+			{isLoading && <LoadingSpinner asOverlay />}
+			<form className={classes.Form} onSubmit={authSubmitHandler}>
+				<Input
+					id="name"
+					element="input"
+					type="text"
+					placeholder="Name"
+					validators={[
+						VALIDATOR_MINLENGTH(4),
+						VALIDATOR_MAXLENGTH(32),
+					]}
+					initialErrorMsg="Please enter a name."
+					onInput={inputHandler}
+				/>
+				<Input
+					id="email"
+					element="input"
+					type="email"
+					placeholder="E-mail"
+					validators={[VALIDATOR_EMAIL()]}
+					initialErrorMsg="Please enter a valid email address."
+					onInput={inputHandler}
+				/>
+				<Passwords
+					password1Validate
+					validators={[VALIDATOR_MINLENGTH(6)]}
+					onInput={inputHandler}
+				/>
+				<Button type="submit" disabled={!formState.isValid}>
+					signup
+				</Button>
+			</form>
+		</React.Fragment>
 	);
 };
 

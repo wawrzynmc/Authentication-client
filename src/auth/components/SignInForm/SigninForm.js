@@ -39,8 +39,26 @@ const SigninForm = (props) => {
 		},
 		false
 	);
+
+	const authSubmitHandler = async (event) => {
+		event.preventDefault();
+		const { email, password } = formState.inputs;
+		try {
+			const responseData = await sendRequest(
+				`${process.env.REACT_APP_SERVER_API_URL}/account/signin`,
+				'POST',
+				JSON.stringify({
+					email: email.value,
+					password: password.value,
+				}),
+				{ 'Content-Type': 'application/json' }
+			);
+			// auth.login(responseData.userId, responseData.token);
+		} catch (err) {}
+	};
+
 	return (
-		<form className={classes.Form} action="#">
+		<form className={classes.Form} onSubmit={authSubmitHandler}>
 			<Input
 				id="email"
 				element="input"
