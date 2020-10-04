@@ -5,8 +5,8 @@ import classes from './EmailSent.module.scss';
 
 const EmailSent = (props) => {
 	return (
-		<SuccessModal show={props.show}>
-			<p>Activation email has been sent!</p>
+		<SuccessModal {...props}>
+			<p>{props.msg}</p>
 			<div className={classes.Content}>
 				<i
 					className={`${classes.Content__envelope} ${classes.Content__envelopeOpened} far fa-envelope-open`}

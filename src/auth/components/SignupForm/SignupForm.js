@@ -29,7 +29,14 @@ import classes from './SignupForm.module.scss';
  *      ! name of fileds in formState has to match with ids of inputs
  */
 const SignupForm = (props) => {
-	const { isLoading, error, sendRequest, clearError } = useHttpClient();
+	const {
+		isLoading,
+		msg,
+		sendRequest,
+		clearMsg,
+		requestSent,
+		clearRequestSent,
+	} = useHttpClient();
 	const [formState, inputHandler, setFormData] = useForm(
 		{
 			name: {
@@ -73,8 +80,12 @@ const SignupForm = (props) => {
 
 	return (
 		<React.Fragment>
-			<EmailSent show />
-			<ErrorModal error={error} onClear={clearError} />
+			<EmailSent
+				msg={msg}
+				show={requestSent}
+				onClear={clearRequestSent}
+			/>
+			<ErrorModal error={msg} onClear={clearMsg} />
 			{isLoading && <LoadingSpinner asOverlay />}
 			<form className={classes.Form} onSubmit={authSubmitHandler}>
 				<Input
