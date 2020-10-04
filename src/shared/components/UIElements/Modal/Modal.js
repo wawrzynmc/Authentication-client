@@ -21,13 +21,17 @@ const ModalOverlay = (props) => {
 			>
 				<span>
 					<i
-						className={`${props.iconClass} ${classes.Modal__icon}`}
+						className={`${props.iconClass} ${classes.Modal__icon} 
+						${props.type === 'success' ? classes.Modal__iconSuccess : null}
+						${props.type === 'error' ? classes.Modal__iconError : null}`}
 					></i>
 				</span>
 				<h2>{props.header}</h2>
 				<span>
 					<i
-						className={`${props.iconClass} ${classes.Modal__icon}`}
+						className={`${props.iconClass} ${classes.Modal__icon} 
+						${props.type === 'success' ? classes.Modal__iconSuccess : null}
+						${props.type === 'error' ? classes.Modal__iconError : null}`}
 					></i>
 				</span>
 			</header>
@@ -42,6 +46,7 @@ const ModalOverlay = (props) => {
 					className={`${classes.Modal__content} ${props.contentClassName}`}
 				>
 					{props.children}
+					<span className={classes.Modal__horizontalLine}></span>
 				</div>
 				<footer
 					className={`${classes.Modal__footer} ${props.footerClassName}`}

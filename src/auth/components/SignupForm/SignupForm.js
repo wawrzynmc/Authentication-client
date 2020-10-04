@@ -8,6 +8,7 @@ import Button from '../../../shared/components/FormElements/Button/Button';
 import Passwords from '../../../shared/components/FormElements/Input/Passwords/Passwords';
 import LoadingSpinner from '../../../shared/components/UIElements/LoadingSpinner/LoadingSpinner';
 import ErrorModal from '../../../shared/components/UIElements/Modal/ErrorModal/ErrorModal';
+import EmailSent from '../../../shared/components/UIElements/Modal/SuccessModal/EmailSent/EmailSent';
 
 // ---- functions
 import { useForm } from '../../../shared/hooks/form-hook';
@@ -72,6 +73,7 @@ const SignupForm = (props) => {
 
 	return (
 		<React.Fragment>
+			<EmailSent show />
 			<ErrorModal error={error} onClear={clearError} />
 			{isLoading && <LoadingSpinner asOverlay />}
 			<form className={classes.Form} onSubmit={authSubmitHandler}>

@@ -3,7 +3,7 @@ import React from 'react';
 import Modal from '../Modal';
 import Button from '../../../FormElements/Button/Button';
 
-const Success = (props) => {
+const SuccessModal = (props) => {
 	return (
 		<Modal
 			onCancel={props.onClear}
@@ -12,10 +12,11 @@ const Success = (props) => {
 			show={props.show}
 			footer={<Button onClick={props.onClear}>Confirm</Button>}
 			backdropStyle={{ zIndex: 300 }}
+			type="success"
 		>
-			<p>{props.error}</p>
+			{props.children}
 		</Modal>
 	);
 };
 
-export default Success;
+export default SuccessModal;

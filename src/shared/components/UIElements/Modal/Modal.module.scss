@@ -35,7 +35,14 @@
 
 	&__icon {
 		font-size: 2rem;
-		color: #830000;
+
+		&Success {
+			color: $success-color;
+		}
+
+		&Error {
+			color: $error-color;
+		}
 	}
 
 	&__content {
@@ -44,8 +51,16 @@
 		text-align: center;
 	}
 
+	&__horizontalLine {
+		border-bottom: 1px solid rgb(58, 57, 57);
+		display: block;
+		height: 2px;
+		width: 90%;
+		margin: 0 auto;
+	}
+
 	&__footer {
-		padding: 1rem 0.5rem;
+		padding: 0 0.5rem;
 	}
 
 	&_enter {
