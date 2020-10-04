@@ -15,11 +15,13 @@
 	border-radius: 10px;
 
 	@media (min-width: 768px) {
-		left: calc(50% - 20rem);
-		width: 40rem;
+		width: 40%;
 	}
 
 	&__header {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
 		width: 100%;
 		padding: 1rem 0.5rem;
 		background: $header-bgc-color;
@@ -31,8 +33,15 @@
 		}
 	}
 
+	&__icon {
+		font-size: 2rem;
+		color: #830000;
+	}
+
 	&__content {
-		padding: 1rem 0.5rem;
+		padding: 1rem;
+		font-size: 1.2rem;
+		text-align: center;
 	}
 
 	&__footer {
