@@ -17,6 +17,7 @@ import {
 	VALIDATOR_MINLENGTH,
 	VALIDATOR_MAXLENGTH,
 	VALIDATOR_EMAIL,
+	VALIDATOR_ONLY_LETTERS,
 } from '../../../shared/utils/validators';
 
 // ---- styles
@@ -100,6 +101,7 @@ const SignupForm = (props) => {
 					validators={[
 						VALIDATOR_MINLENGTH(4),
 						VALIDATOR_MAXLENGTH(32),
+						VALIDATOR_ONLY_LETTERS(),
 					]}
 					initialErrorMsg="Please enter a name."
 					onInput={inputHandler}

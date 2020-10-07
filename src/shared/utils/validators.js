@@ -5,6 +5,7 @@ const VALIDATOR_TYPE_MAXLENGTH = 'MAXLENGTH';
 const VALIDATOR_TYPE_MIN = 'MIN';
 const VALIDATOR_TYPE_MAX = 'MAX';
 const VALIDATOR_TYPE_EMAIL = 'EMAIL';
+const VALIDATOR_TYPE_ONLY_LETTERS = 'ONLY_LETTERS';
 const VALIDATOR_TYPE_PASSWORD = 'PASSWORD';
 const VALIDATOR_TYPE_FILE = 'FILE';
 const VALIDATOR_TYPE_PASSWORDS_COHERESION = 'PASSWORD_COHERESION';
@@ -13,6 +14,8 @@ const VALIDATOR_TYPE_PASSWORDS_COHERESION = 'PASSWORD_COHERESION';
 const emailRegex = new RegExp(
 	"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$"
 );
+
+const onlyLettersRegex = new RegExp('^[A-Za-z]+$');
 
 /* 
 	- at least six or more characters 
@@ -67,6 +70,10 @@ export const VALIDATOR_PASSWORDS_COHERESION = (passwordToCompare) => ({
 	type: VALIDATOR_TYPE_PASSWORDS_COHERESION,
 	passwordToCompare,
 });
+export const VALIDATOR_ONLY_LETTERS = () => ({
+	type: VALIDATOR_TYPE_ONLY_LETTERS,
+	regex: onlyLettersRegex,
+});
 
 export const validate = (id, value, validators) => {
 	let isValid = true,
@@ -75,7 +82,7 @@ export const validate = (id, value, validators) => {
 		},
 		errorMsg = '',
 		caseBoolean;
-		
+
 	for (const validator of validators) {
 		// * special cases
 		if (validator.type === VALIDATOR_TYPE_PASSWORDS_COHERESION) {
@@ -136,6 +143,15 @@ export const validate = (id, value, validators) => {
 
 			if (!caseBoolean) {
 				errorMsg = `${id} value must be lower than or equal to ${validator.val}.`;
+			}
+		}
+
+		if (validator.type === VALIDATOR_TYPE_ONLY_LETTERS) {
+			caseBoolean = validator.regex.test(value);
+			isValid = isValid && caseBoolean;
+
+			if (!caseBoolean) {
+				errorMsg = `Only alphabetical characters allowed.`;
 			}
 		}
 	}
