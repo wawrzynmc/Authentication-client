@@ -64,7 +64,7 @@ const SignupForm = (props) => {
 		const { name, email, password1, password2 } = formState.inputs;
 
 		try {
-			const responseData = await sendRequest(
+			await sendRequest(
 				`${process.env.REACT_APP_SERVER_API_URL}/account/signup`,
 				'POST',
 				JSON.stringify({
@@ -85,7 +85,11 @@ const SignupForm = (props) => {
 				show={requestSent}
 				onClear={clearRequestSent}
 			/>
-			<ErrorModal error={msg} onClear={clearMsg} />
+			<ErrorModal
+				error={msg}
+				onClear={clearMsg}
+				show={!requestSent && !!msg}
+			/>
 			{isLoading && <LoadingSpinner asOverlay />}
 			<form className={classes.Form} onSubmit={authSubmitHandler}>
 				<Input

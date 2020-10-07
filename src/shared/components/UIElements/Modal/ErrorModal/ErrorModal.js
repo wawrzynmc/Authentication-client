@@ -10,7 +10,7 @@ const ErrorModal = (props) => {
 			header="An Error Occurred"
 			iconClass="fas fa-exclamation-triangle"
 			type="error"
-			show={!!props.error}
+			show={props.show}
 			footer={<Button onClick={props.onClear}>Confirm</Button>}
 			backdropStyle={{ zIndex: 300 }}
 		>
