@@ -11,23 +11,13 @@ import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner/Lo
 import Card from '../../shared/components/UIElements/Card/Card';
 import Button from '../../shared/components/FormElements/Button/Button';
 import TextBetweenLines from '../../shared/components/UIElements/Text/TextBetweenLines/TextBetweenLines';
-
-// ---- functions / hooks
-import { useHttpClient } from '../../shared/hooks/http-hook';
+import ActivationForm from '../components/ActivationForm/ActivationForm';
 
 // ---- styles
 import classes from './Activate.module.scss';
 
 const Activate = (props) => {
 	// * -- variables
-	const {
-		isLoading,
-		msg,
-		sendRequest,
-		clearMsg,
-		requestSent,
-		clearRequestSent,
-	} = useHttpClient();
 	const [tokenData, setTokenData] = useState({
 		name: null,
 	});
@@ -43,24 +33,28 @@ const Activate = (props) => {
 			setTokenData({ name: 'unknown user' });
 		}
 	}, [incomingToken]);
-
-	const activateSubmitHandler = async (event) => {
-		event.preventDefault();
-
-		try {
-			await sendRequest(
-				`${process.env.REACT_APP_SERVER_API_URL}/account/activate`,
-				'POST',
-				{
-					'Content-Type': 'application/json',
-					Authorization: `Bearer ${incomingToken}`,
-				}
-			);
-		} catch (err) {}
-	};
-
 	return (
 		<React.Fragment>
+			<Card>
+				<h1 className={classes.Header}>Welcome {tokenData.name}</h1>
+				<ActivationForm token={incomingToken} />
+				<TextBetweenLines>or</TextBetweenLines>
+				<Button
+					inverse
+					// type="button"
+					to={{ pathname: '/auth', search: '?action=signup' }}
+				>
+					Signup
+				</Button>
+			</Card>
+		</React.Fragment>
+	);
+};
+
+export default Activate;
+
+/* 
+<React.Fragment>
 			<SuccessModal
 				msg={msg}
 				show={requestSent}
@@ -74,7 +68,10 @@ const Activate = (props) => {
 			{isLoading && <LoadingSpinner />}
 			<Card>
 				<h1 className={classes.Header}>Welcome {tokenData.name}!</h1>
-				<form className={classes.Form} onSubmit={activateSubmitHandler}>
+				<form
+					className={classes.Form}
+					onSubmit={activateAccountHandler}
+				>
 					<div>
 						<Button type="submit">Activate your account</Button>
 					</div>
@@ -91,7 +88,5 @@ const Activate = (props) => {
 				</form>
 			</Card>
 		</React.Fragment>
-	);
-};
 
-export default Activate;
+*/

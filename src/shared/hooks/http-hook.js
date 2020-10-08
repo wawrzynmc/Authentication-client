@@ -4,6 +4,7 @@ export const useHttpClient = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [msg, setMsg] = useState();
 	const [requestSent, setRequestSent] = useState(false);
+	const [status, setStatus] = useState();
 
 	const activeHttpRequests = useRef([]);
 
@@ -27,15 +28,21 @@ export const useHttpClient = () => {
 					(reqCtrl) => reqCtrl !== httpAbortCtrl
 				);
 
+				// console.log(responseData.status);
+
 				if (!response.ok) {
 					// .ok exists on 200 like status codes
-					throw new Error(responseData.message);
+					const error = new Error(responseData.message);
+					error.status = responseData.status;
+					throw error;
 				}
 				setIsLoading(false);
 				setRequestSent(true);
 				setMsg(responseData.message);
+				setStatus(responseData.status);
 			} catch (err) {
 				setMsg(err.message);
+				setStatus(err.status);
 				setIsLoading(false);
 				setRequestSent(false);
 				throw err;
@@ -69,5 +76,6 @@ export const useHttpClient = () => {
 		clearMsg,
 		requestSent,
 		clearRequestSent,
+		status,
 	};
 };
