@@ -1,10 +1,14 @@
 // * -- libraries imports
-import React, { useEffect, useState, useParams } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import jwt from 'jsonwebtoken';
 
 // * -- my own imports
 // ---- components
-
+import ErrorModal from '../../shared/components/UIElements/Modal/ErrorModal/ErrorModal';
+import SuccessModal from '../../shared/components/UIElements/Modal/SuccessModal/SuccessModal';
+import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner/LoadingSpinner';
+import Card from '../../shared/components/UIElements/Card/Card';
 // ---- functions / hooks
 import { useHttpClient } from '../../shared/hooks/http-hook';
 
@@ -12,22 +16,32 @@ const Activate = (props) => {
 	// * -- variables
 	const {
 		isLoading,
-		msg,
+		msg: httpMsg,
 		sendRequest,
-		clearMsg,
+		clearMsg: clearHttpMsg,
 		requestSent,
 		clearRequestSent,
 	} = useHttpClient();
 	const [tokenData, setTokenData] = useState({
 		name: null,
 	});
+	const [internalError, setInternalError] = useState(null);
 	const incomingToken = useParams().token;
 
 	// * - -functions
 	useEffect(() => {
-		let { name } = jwt.decode(incomingToken);
-		setTokenData({ name: name });
-	}, [incomingToken, setTokenData]);
+		try {
+			let { name } = jwt.decode(incomingToken);
+			setTokenData({ name: name });
+		} catch (err) {
+			setInternalError('Invalid token. This is pretty disturbing 🤔');
+		}
+	}, [incomingToken]);
+
+	const clearMsgs = () => {
+		clearHttpMsg();
+		setInternalError(null);
+	};
 
 	const activateSubmitHandler = async (event) => {
 		event.preventDefault();
@@ -44,7 +58,22 @@ const Activate = (props) => {
 		} catch (err) {}
 	};
 
-	return <h1>Activate me</h1>;
+	return (
+		<React.Fragment>
+			<SuccessModal
+				msg={httpMsg}
+				show={requestSent}
+				onCancel={clearRequestSent}
+			/>
+			<ErrorModal
+				error={httpMsg || internalError}
+				onClear={clearMsgs}
+				show={(!requestSent && !!httpMsg) || !!internalError}
+			/>
+			{isLoading && <LoadingSpinner />}
+			<Card>Activate your account {tokenData.name}</Card>
+		</React.Fragment>
+	);
 };
 
 export default Activate;

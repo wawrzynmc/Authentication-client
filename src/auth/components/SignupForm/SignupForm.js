@@ -10,7 +10,7 @@ import LoadingSpinner from '../../../shared/components/UIElements/LoadingSpinner
 import ErrorModal from '../../../shared/components/UIElements/Modal/ErrorModal/ErrorModal';
 import EmailSent from '../../../shared/components/UIElements/Modal/SuccessModal/EmailSent/EmailSent';
 
-// ---- functions
+// ---- functions / hooks
 import { useForm } from '../../../shared/hooks/form-hook';
 import { useHttpClient } from '../../../shared/hooks/http-hook';
 import {
