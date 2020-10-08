@@ -1,0 +1,28 @@
+.TextBetweenLines {
+	font-size: 1.2rem;
+	position: relative;
+	text-align: center;
+	font-weight: 600;
+
+	&:before {
+		content: '';
+		display: block;
+		width: 100px;
+		height: 1px;
+		background-color: rgb(246, 246, 246);
+		position: absolute;
+		left: 5%;
+		top: 50%;
+	}
+
+	&:after {
+		content: '';
+		display: block;
+		width: 100px;
+		height: 1px;
+		background-color: rgb(246, 246, 246);
+		position: absolute;
+		right: 5%;
+		top: 50%;
+	}
+}

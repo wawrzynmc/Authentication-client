@@ -5,13 +5,13 @@ import { useHistory } from 'react-router-dom';
 // * -- my own imports
 // ---- components
 import Button from '../../shared/components/FormElements/Button/Button';
-
 import {
 	Facebook as FacebookLogin,
 	Google as GoogleLogin,
 } from '../../shared/components/FormElements/Socials/Socials';
 import SignupForm from '../components/SignupForm/SignupForm';
 import SigninForm from '../components/SigninForm/SigninForm';
+import TextBetweenLines from '../../shared/components/UIElements/Text/TextBetweenLines/TextBetweenLines'
 
 // ---- functions
 import { AuthContext } from '../../shared/context/auth-context';
@@ -82,9 +82,7 @@ const Auth = (props) => {
 								Enter your personal details, <br />
 								log in and have fun!
 							</p>
-							<h1>
-								<span>or</span>
-							</h1>
+							<TextBetweenLines>or</TextBetweenLines>
 						</span>
 						<Button ghost onClick={switchModeHandler}>
 							SIGNIN
@@ -101,9 +99,7 @@ const Auth = (props) => {
 								Enter your personal details, <br />
 								create an account and start the journey!
 							</p>
-							<h1>
-								<span>or</span>
-							</h1>
+							<TextBetweenLines>or</TextBetweenLines>
 						</span>
 						<Button ghost onClick={switchModeHandler}>
 							SIGNUP

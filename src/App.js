@@ -58,7 +58,7 @@ function App() {
 				<Route path="/account/reset-password/:token" exact>
 					Password reset
 				</Route>
-				<Route path="/account/forgot-password/" exact>
+				<Route path="/account/forgot-password" exact>
 					Forgot password
 				</Route>
 				{/* <Route path="*" component={() => 'PAGE NOT FOUND'} /> */}
