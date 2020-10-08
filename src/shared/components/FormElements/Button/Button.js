@@ -11,6 +11,7 @@ const Button = (props) => {
 		${props.ghost && classes.Button_ghost}
 		${props.small && classes.Button_small}
 		${props.big && classes.Button_big}
+		${props.to && classes.Button_href}
 	`;
 
 	if (props.href) {
@@ -22,7 +23,7 @@ const Button = (props) => {
 	}
 	if (props.to) {
 		return (
-			<Link to={props.to} exact={props.exact} className={attachedClasses}>
+			<Link to={props.to} className={attachedClasses}>
 				{props.children}
 			</Link>
 		);

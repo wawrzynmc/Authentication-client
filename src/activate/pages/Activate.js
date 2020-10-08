@@ -10,10 +10,13 @@ import SuccessModal from '../../shared/components/UIElements/Modal/SuccessModal/
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner/LoadingSpinner';
 import Card from '../../shared/components/UIElements/Card/Card';
 import Button from '../../shared/components/FormElements/Button/Button';
-import TextBetweenLines from '../../shared/components/UIElements/Text/TextBetweenLines/TextBetweenLines'
+import TextBetweenLines from '../../shared/components/UIElements/Text/TextBetweenLines/TextBetweenLines';
 
 // ---- functions / hooks
 import { useHttpClient } from '../../shared/hooks/http-hook';
+
+// ---- styles
+import classes from './Activate.module.scss';
 
 const Activate = (props) => {
 	// * -- variables
@@ -70,11 +73,20 @@ const Activate = (props) => {
 			/>
 			{isLoading && <LoadingSpinner />}
 			<Card>
-				<h1>Welcome {tokenData.name}!</h1>
-				<form onSubmit={activateSubmitHandler}>
-					<TextBetweenLines>or</TextBetweenLines>
+				<h1 className={classes.Header}>Welcome {tokenData.name}!</h1>
+				<form className={classes.Form} onSubmit={activateSubmitHandler}>
 					<div>
 						<Button type="submit">Activate your account</Button>
+					</div>
+					<TextBetweenLines>or</TextBetweenLines>
+					<div>
+						<Button
+							inverse
+							// type="button"
+							to={{ pathname: '/auth', search: '?action=signup' }}
+						>
+							Signup
+						</Button>
 					</div>
 				</form>
 			</Card>

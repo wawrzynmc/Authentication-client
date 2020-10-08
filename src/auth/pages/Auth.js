@@ -1,6 +1,6 @@
 // * -- libraries imports
-import React, { useContext, useState, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useContext, useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 // * -- my own imports
 // ---- components
@@ -11,7 +11,7 @@ import {
 } from '../../shared/components/FormElements/Socials/Socials';
 import SignupForm from '../components/SignupForm/SignupForm';
 import SigninForm from '../components/SigninForm/SigninForm';
-import TextBetweenLines from '../../shared/components/UIElements/Text/TextBetweenLines/TextBetweenLines'
+import TextBetweenLines from '../../shared/components/UIElements/Text/TextBetweenLines/TextBetweenLines';
 
 // ---- functions
 import { AuthContext } from '../../shared/context/auth-context';
@@ -24,8 +24,17 @@ const Auth = (props) => {
 	// -- variables
 	const [isLoginMode, setIsLoginMode] = useState(false);
 	const auth = useContext(AuthContext);
+	const searchParams = useLocation().search;
 
 	// -- functions
+	// ---- change to specific form due to searchParams
+	useEffect(() => {
+		const query = new URLSearchParams(searchParams);
+		query.get('action') === 'signup'
+			? setIsLoginMode(false)
+			: setIsLoginMode(true);
+	}, [setIsLoginMode, searchParams]);
+
 	const switchModeHandler = () => {
 		setIsLoginMode((prevMode) => !prevMode);
 	};
