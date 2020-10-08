@@ -1,3 +1,4 @@
+// * -- libraries imports
 import React, { Suspense } from 'react';
 import {
 	BrowserRouter as Router,
@@ -6,10 +7,15 @@ import {
 	Switch,
 } from 'react-router-dom';
 
+// * -- my own imports
+// ---- components
 import Layout from './hoc/Layout/Layout';
 import ProtectedRoute from './shared/components/ProtectedRoute/ProtectedRoute';
 import Main from './main/pages/Main';
 import Auth from './auth/pages/Auth';
+import Activate from './activate/pages/Activate';
+
+// ---- functions / hooks
 import { AuthContext } from './shared/context/auth-context';
 import { useAuth } from './shared/hooks/auth-hook';
 
@@ -45,6 +51,15 @@ function App() {
 				</Route>
 				<Route path="/auth" exact>
 					<Auth />
+				</Route>
+				<Route path="/account/activate/:token" exact>
+					<Activate />
+				</Route>
+				<Route path="/account/reset-password/:token" exact>
+					Password reset
+				</Route>
+				<Route path="/account/forgot-password/" exact>
+					Forgot password
 				</Route>
 				{/* <Route path="*" component={() => 'PAGE NOT FOUND'} /> */}
 				<Redirect to="/auth" />
