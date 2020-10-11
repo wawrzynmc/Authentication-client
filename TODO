@@ -9,12 +9,15 @@ Todo:
  
   Navigation:
     ☐ @high implement language change (multilanguage page)
-    ☐ @low check main navigatio animation (first time works fine, but next don't)
-    ☐ @low Implement the same animation as in desktop nav in mobile nav
+    ✔ @low check main navigatio animation (first time works fine, but next don't) @done(20-10-11 21:45)
+    ✔ @low Implement the same animation as in desktop nav in mobile nav @done(20-10-11 21:45)
     ☐ @high Responsive design
 
   Authentication:
-    ☐ algorithm of passwords validations doesn't work correctly 
+    ✔ algorithm of passwords validations doesn't work correctly @done(20-10-11 21:45)
+
+  Hooks:
+    ☐ @low http-hook - useReducer to manage states 
 
   
 

@@ -17,6 +17,11 @@ const NavigationItems = (props) => {
 		attachedClasses.push(classes.Mobile);
 	}
 
+	const logoutHandler = (event) => {
+		auth.logout();
+		props.closeSideDrawer();
+	};
+
 	return (
 		<nav className={classes.Navigation}>
 			<ul className={attachedClasses.join(' ')}>
@@ -67,6 +72,12 @@ const NavigationItems = (props) => {
 						closeSideDrawer={props.closeSideDrawer}
 					>
 						Protected User
+					</NavigationItem>
+				)}
+
+				{auth.isLoggedIn && (
+					<NavigationItem closeSideDrawer={logoutHandler}>
+						Logout
 					</NavigationItem>
 				)}
 			</ul>

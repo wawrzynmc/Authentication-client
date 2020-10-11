@@ -13,6 +13,7 @@ import Layout from './hoc/Layout/Layout';
 import Main from './main/pages/Main';
 import Auth from './auth/pages/Auth';
 import Activate from './activate/pages/Activate';
+import LoadingSpinner from './shared/components/UIElements/LoadingSpinner/LoadingSpinner';
 
 // ---- functions / hooks
 import { AuthContext } from './shared/context/auth-context';
@@ -79,9 +80,14 @@ function App() {
 			}}
 		>
 			<Router>
-				<Layout mainPageAddress={mainPageAddress}>
-					<Suspense fallback={<p>Loading...</p>}>{routes}</Suspense>
-				</Layout>
+				{duringAutologin && <LoadingSpinner asOverlay />}
+				{!duringAutologin && (
+					<Layout mainPageAddress={mainPageAddress}>
+						<Suspense fallback={<p>Loading...</p>}>
+							{routes}
+						</Suspense>
+					</Layout>
+				)}
 			</Router>
 		</AuthContext.Provider>
 	);
