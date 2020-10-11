@@ -37,7 +37,15 @@ const inputReducer = (state, action) => {
 				...state,
 				wasTouched: true,
 			};
-
+		case 'RESET': {
+			return {
+				...state,
+				value: '',
+				wasTouched: false,
+				isValid: action.initialValid,
+				errorMsg: action.initialErrorMsg,
+			};
+		}
 		default:
 			return state;
 	}
@@ -104,12 +112,21 @@ const Input = (props) => {
 	});
 
 	// useEffect to check validity of
-	const { id, onInput } = props;
+	const { id, onInput, reset } = props;
 	const { value, isValid } = inputState;
 
 	useEffect(() => {
 		onInput(id, value, isValid);
 	}, [id, onInput, value, isValid]);
+
+	useEffect(() => {
+		dispatch({
+			type: 'RESET',
+			isValid: props.initialValid,
+			initialErrorMsg: props.initialErrorMsg,
+		});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [reset]);
 
 	// -- functions
 	const changeHandler = (event) => {

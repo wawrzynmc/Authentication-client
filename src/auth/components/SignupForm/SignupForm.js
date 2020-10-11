@@ -1,5 +1,5 @@
 // * -- libraries imports
-import React from 'react';
+import React, { useState } from 'react';
 
 // * -- my own imports
 // ---- components
@@ -30,6 +30,7 @@ import classes from './SignupForm.module.scss';
  *      ! name of fileds in formState has to match with ids of inputs
  */
 const SignupForm = (props) => {
+	const [reset, setReset] = useState(false);
 	const {
 		isLoading,
 		msg,
@@ -38,7 +39,7 @@ const SignupForm = (props) => {
 		requestSent,
 		clearRequestSent,
 	} = useHttpClient();
-	const [formState, inputHandler, setFormData] = useForm(
+	const [formState, inputHandler, setFormData, clearFormData] = useForm(
 		{
 			name: {
 				value: '',
@@ -62,6 +63,8 @@ const SignupForm = (props) => {
 
 	const authSubmitHandler = async (event) => {
 		event.preventDefault();
+		// console.log(event.target);
+		event.target.reset();
 		const { name, email, password1, password2 } = formState.inputs;
 
 		try {
@@ -76,7 +79,19 @@ const SignupForm = (props) => {
 				}),
 				{ 'Content-Type': 'application/json' }
 			);
+
+			// event.target.reset();
 		} catch (err) {}
+	};
+
+	const resetHandler = () => {
+		console.log('dada');
+		// console.log(document.querySelectorAll('input'));
+		clearFormData();
+		setReset((prevState) => !prevState);
+		// Array.from(document.querySelectorAll('input')).forEach(
+		// 	(input) => (input.value = '')
+		// );
 	};
 
 	return (
@@ -92,7 +107,11 @@ const SignupForm = (props) => {
 				show={!requestSent && !!msg}
 			/>
 			{isLoading && <LoadingSpinner asOverlay />}
-			<form className={classes.Form} onSubmit={authSubmitHandler}>
+			<form
+				className={classes.Form}
+				onSubmit={authSubmitHandler}
+				onReset={resetHandler}
+			>
 				<Input
 					id="name"
 					element="input"
@@ -105,6 +124,8 @@ const SignupForm = (props) => {
 					]}
 					initialErrorMsg="Please enter a name."
 					onInput={inputHandler}
+					initialValue={formState.inputs.name.value}
+					reset={reset}
 				/>
 				<Input
 					id="email"
@@ -114,15 +135,18 @@ const SignupForm = (props) => {
 					validators={[VALIDATOR_EMAIL()]}
 					initialErrorMsg="Please enter a valid email address."
 					onInput={inputHandler}
+					reset={reset}
 				/>
 				<Passwords
 					password1Validate
 					validators={[VALIDATOR_MINLENGTH(6)]}
 					onInput={inputHandler}
+					reset={reset}
 				/>
 				<Button type="submit" disabled={!formState.isValid}>
 					signup
 				</Button>
+				<input type="reset" value="Reset" />
 			</form>
 		</React.Fragment>
 	);

@@ -31,6 +31,16 @@ const formReducer = (state, action) => {
 				inputs: action.inputs,
 				isValid: action.formIsValid,
 			};
+		case 'CLEAR_DATA':
+			const clearedInputs = {};
+			Object.keys(state.inputs).forEach(
+				(input) =>
+					(clearedInputs[input] = { value: '', isValid: false })
+			);
+			return {
+				inputs: clearedInputs,
+				isValid: false,
+			};
 		default:
 			return state;
 	}
@@ -59,5 +69,11 @@ export const useForm = (initialInputs, initialFormValidity) => {
 		});
 	}, []);
 
-	return [formState, inputHandler, setfFormData];
+	const clearFormData = useCallback(() => {
+		dispatch({
+			type: 'CLEAR_DATA',
+		});
+	}, []);
+
+	return [formState, inputHandler, setfFormData, clearFormData];
 };

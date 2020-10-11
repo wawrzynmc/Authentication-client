@@ -84,6 +84,25 @@ const inputReducer = (state, action) => {
 							: 'password',
 				},
 			};
+		case 'RESET':
+			const password1Data = action.password1;
+			const password2Data = action.password2;
+			return {
+				[password1Data.id]: {
+					...state[password1Data.id],
+					value: password1Data.initialValue,
+					isValid: password1Data.initialValid,
+					wasTouched: false,
+					passwordStrength: 0,
+				},
+				[password2Data.id]: {
+					...state[password2Data.id],
+					value: password2Data.initialValue,
+					isValid: password2Data.initialValid,
+					wasTouched: false,
+					passwordStrength: 0,
+				},
+			};
 		default:
 			return state;
 	}
@@ -202,6 +221,24 @@ const Passwords = (props) => {
 		password2Data.value,
 		password2Data.isValid,
 	]);
+
+	// reset
+	useEffect(() => {
+		dispatch({
+			type: 'RESET',
+			password1: {
+				id: props.password1Id,
+				initialValid: props.password1initialValid,
+				initialValue: props.password1initialValue,
+			},
+			password2: {
+				id: props.password2Id,
+				initialValid: props.password2initialValid,
+				initialValue: props.password2initialValue,
+			},
+		});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [props.reset]);
 
 	// passwords onInput
 
