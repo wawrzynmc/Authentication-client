@@ -5,12 +5,7 @@ import jwt from 'jsonwebtoken';
 
 // * -- my own imports
 // ---- components
-import ErrorModal from '../../shared/components/UIElements/Modal/ErrorModal/ErrorModal';
-import SuccessModal from '../../shared/components/UIElements/Modal/SuccessModal/SuccessModal';
-import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner/LoadingSpinner';
 import Card from '../../shared/components/UIElements/Card/Card';
-import Button from '../../shared/components/FormElements/Button/Button';
-import TextBetweenLines from '../../shared/components/UIElements/Text/TextBetweenLines/TextBetweenLines';
 import ActivationForm from '../components/ActivationForm/ActivationForm';
 
 // ---- styles
@@ -38,14 +33,6 @@ const Activate = (props) => {
 			<Card>
 				<h1 className={classes.Header}>Welcome {tokenData.name}</h1>
 				<ActivationForm token={incomingToken} />
-				<TextBetweenLines>or</TextBetweenLines>
-				<Button
-					inverse
-					// type="button"
-					to={{ pathname: '/auth', search: '?action=signup' }}
-				>
-					Signup
-				</Button>
 			</Card>
 		</React.Fragment>
 	);

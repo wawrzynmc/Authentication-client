@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 // ---- components
 import Input from '../../../shared/components/FormElements/Input/Input';
 import Button from '../../../shared/components/FormElements/Button/Button';
+import TextBetweenLines from '../../../shared/components/UIElements/Text/TextBetweenLines/TextBetweenLines';
 import LoadingSpinner from '../../../shared/components/UIElements/LoadingSpinner/LoadingSpinner';
 import ErrorModal from '../../../shared/components/UIElements/Modal/ErrorModal/ErrorModal';
 import EmailSent from '../../../shared/components/UIElements/Modal/SuccessModal/EmailSent/EmailSent';
@@ -25,6 +26,7 @@ import classes from './ActivationForm.module.scss';
  *      ! name of fileds in formState has to match with ids of inputs
  */
 const ActivationForm = (props) => {
+	const [isRedirectToSignup, setIsRedirectToSignup] = useState(true);
 	const [activationFailed, setActivationFailed] = useState(false);
 	const {
 		isLoading,
@@ -59,9 +61,11 @@ const ActivationForm = (props) => {
 				await sendRequest(
 					`${process.env.REACT_APP_SERVER_API_URL}/account/activate`,
 					'POST',
+					JSON.stringify({
+						token: props.token,
+					}),
 					{
 						'Content-Type': 'application/json',
-						Authorization: `Bearer ${props.token}`,
 					}
 				);
 				// !autologin
@@ -70,10 +74,31 @@ const ActivationForm = (props) => {
 					search: '?action=login',
 				});
 			} catch (err) {
-				changeModeHandler();
+				if (err.status === 401) {
+					changeModeHandler();
+				} else {
+					setFormData({}, false);
+					setIsRedirectToSignup(false);
+				}
 			}
 		} else {
-			// send request to /sendActivationEmail with email
+			try {
+				await sendRequest(
+					`${process.env.REACT_APP_SERVER_API_URL}/account/send-activation-email`,
+					'POST',
+					JSON.stringify({
+						email: formState.inputs.email.value,
+					}),
+					{
+						'Content-Type': 'application/json',
+					}
+				);
+			} catch (err) {
+				if (err.status === 403) {
+					setFormData({ ...formState.inputs }, false);
+					setIsRedirectToSignup(false);
+				}
+			}
 		}
 	};
 
@@ -91,7 +116,7 @@ const ActivationForm = (props) => {
 			/>
 			{isLoading && <LoadingSpinner asOverlay />}
 			<form className={classes.Form} onSubmit={activationSubmitHandler}>
-				{activationFailed && status === 403 && (
+				{activationFailed && (
 					<Input
 						id="email"
 						element="input"
@@ -108,6 +133,18 @@ const ActivationForm = (props) => {
 						: 'Activate your account'}
 				</Button>
 			</form>
+			<TextBetweenLines>or</TextBetweenLines>
+			<Button
+				inverse
+				to={{
+					pathname: '/auth',
+					search: `?action=${
+						isRedirectToSignup ? 'signup' : 'signin'
+					}`,
+				}}
+			>
+				{isRedirectToSignup ? 'signup' : 'signin'}
+			</Button>
 		</React.Fragment>
 	);
 };
