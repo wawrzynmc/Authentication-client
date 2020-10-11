@@ -1,5 +1,5 @@
 // * -- libraries imports
-import React, { useReducer, useEffect, useState } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 // * -- my own imports
@@ -197,7 +197,7 @@ Input.defaultProps = {
 	initialValid: false,
 	initialErrorMsg: 'Must be valid.',
 	validators: [],
-	onInput: (id, value, isValid) => console.log(id, value, isValid),
+	onInput: (id, value, isValid) => {},
 };
 
 export default Input;

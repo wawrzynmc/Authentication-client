@@ -10,7 +10,6 @@ import {
 // * -- my own imports
 // ---- components
 import Layout from './hoc/Layout/Layout';
-import ProtectedRoute from './shared/components/ProtectedRoute/ProtectedRoute';
 import Main from './main/pages/Main';
 import Auth from './auth/pages/Auth';
 import Activate from './activate/pages/Activate';

@@ -1,5 +1,5 @@
 // * -- libraries imports
-import React, { useReducer, useEffect, useState, useRef } from 'react';
+import React, { useReducer, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 // * -- my own imports
@@ -349,7 +349,7 @@ Passwords.defaultProps = {
 	withLabels: false,
 	initialErrorMsg: 'Must be valid password.',
 	validators: [],
-	onInput: (id, value, isValid) => console.log(id, value, isValid),
+	onInput: (id, value, isValid) => {},
 };
 
 export default Passwords;

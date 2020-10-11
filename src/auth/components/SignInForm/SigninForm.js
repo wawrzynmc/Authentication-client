@@ -10,10 +10,7 @@ import Button from '../../../shared/components/FormElements/Button/Button';
 // ---- functions
 import { useForm } from '../../../shared/hooks/form-hook';
 import { useHttpClient } from '../../../shared/hooks/http-hook';
-import {
-	VALIDATOR_MINLENGTH,
-	VALIDATOR_EMAIL,
-} from '../../../shared/utils/validators';
+import { VALIDATOR_EMAIL } from '../../../shared/utils/validators';
 
 // ---- styles
 import classes from './SigninForm.module.scss';

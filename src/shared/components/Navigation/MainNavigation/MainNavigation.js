@@ -7,11 +7,8 @@ import Logo from '../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
 
 import classes from './MainNavigation.module.scss';
-import NavigationItem from '../NavigationItems/NavigationItem/NavigationItem';
 
 const MainNavigation = (props) => {
-	console.log('Rendering Main Navigation');
-
 	return (
 		<MainHeader>
 			<Logo navigation />

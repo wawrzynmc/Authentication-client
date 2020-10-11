@@ -35,7 +35,6 @@ const ActivationForm = (props) => {
 		clearMsg,
 		requestSent,
 		clearRequestSent,
-		status,
 	} = useHttpClient();
 	const [formState, inputHandler, setFormData] = useForm({}, true);
 	let history = useHistory();
