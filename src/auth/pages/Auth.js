@@ -1,10 +1,11 @@
 // * -- libraries imports
 import React, { useContext, useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 
 // * -- my own imports
 // ---- components
 import Button from '../../shared/components/FormElements/Button/Button';
+import SuccessModal from '../../shared/components/UIElements/Modal/SuccessModal/SuccessModal';
 import {
 	Facebook as FacebookLogin,
 	Google as GoogleLogin,
@@ -24,7 +25,9 @@ const Auth = (props) => {
 	// -- variables
 	const [isLoginMode, setIsLoginMode] = useState(false);
 	const auth = useContext(AuthContext);
-	const searchParams = useLocation().search;
+	const location = useLocation();
+	const searchParams = location.search;
+	const history = useHistory();
 
 	// -- functions
 	// ---- change to specific form due to searchParams
@@ -39,84 +42,109 @@ const Auth = (props) => {
 		setIsLoginMode((prevMode) => !prevMode);
 	};
 
+	const confirmActivationHandler = () => {
+		const locationState = { ...location.state };
+
+		delete locationState.activation;
+		history.replace({ state: locationState });
+	};
+
 	return (
-		<div
-			className={`
+		<React.Fragment>
+			<SuccessModal
+				show={location.state && location.state.activation}
+				onClear={confirmActivationHandler}
+			>
+				Account has been successfully activated
+			</SuccessModal>
+			<div
+				className={`
 				${classes.Container} 
 				${!isLoginMode && classes.Container_secondPanelActive}
 			`}
-		>
-			<div
-				className={`
+			>
+				<div
+					className={`
 					${classes.FormContainer} 
 					${classes.FormContainer_signup}
 				`}
-			>
-				<h1 className={classes.FormContainer__Title}>Create Account</h1>
-				<div className={classes.FormContainer__Socials}>
-					<FacebookLogin />
-					<GoogleLogin />
+				>
+					<h1 className={classes.FormContainer__Title}>
+						Create Account
+					</h1>
+					<div className={classes.FormContainer__Socials}>
+						<FacebookLogin />
+						<GoogleLogin />
+					</div>
+					<span className={classes.FormContainer__paragraph}>
+						or fill the form
+					</span>
+					<SignupForm />
 				</div>
-				<span className={classes.FormContainer__paragraph}>
-					or fill the form
-				</span>
-				<SignupForm />
-			</div>
-			<div
-				className={`
+				<div
+					className={`
 					${classes.FormContainer} 
 					${classes.FormContainer_signin}
 				`}
-			>
-				<h1 className={classes.FormContainer__Title}>Sign in</h1>
-				<div className={classes.FormContainer__Socials}>
-					<FacebookLogin />
-					<GoogleLogin />
-				</div>
-				<span className={classes.FormContainer__paragraph}>
-					or fill the form
-				</span>
-				<SigninForm />
-			</div>
-			<div className={classes.OverlayContainer}>
-				<div className={classes.OverlayContainer__Overlay}>
-					<div
-						className={`${classes.OverlayContainer__Panel} ${classes.OverlayContainer__Panel_first}`}
-					>
-						<h1 className={classes.OverlayContainer__Title}>
-							Welcome Back
-						</h1>
-						<span className={classes.OverlayContainer__Information}>
-							<p>
-								Enter your personal details, <br />
-								log in and have fun!
-							</p>
-							<TextBetweenLines>or</TextBetweenLines>
-						</span>
-						<Button ghost onClick={switchModeHandler}>
-							SIGNIN
-						</Button>
+				>
+					<h1 className={classes.FormContainer__Title}>Sign in</h1>
+					<div className={classes.FormContainer__Socials}>
+						<FacebookLogin />
+						<GoogleLogin />
 					</div>
-					<div
-						className={`${classes.OverlayContainer__Panel} ${classes.OverlayContainer__Panel_second}`}
-					>
-						<h1 className={classes.OverlayContainer__Title}>
-							First Time Here?
-						</h1>
-						<span className={classes.OverlayContainer__Information}>
-							<p>
-								Enter your personal details, <br />
-								create an account and start the journey!
-							</p>
-							<TextBetweenLines>or</TextBetweenLines>
-						</span>
-						<Button ghost onClick={switchModeHandler}>
-							SIGNUP
-						</Button>
+					<span className={classes.FormContainer__paragraph}>
+						or fill the form
+					</span>
+					<SigninForm />
+				</div>
+				<div className={classes.OverlayContainer}>
+					<div className={classes.OverlayContainer__Overlay}>
+						<div
+							className={`${classes.OverlayContainer__Panel} ${classes.OverlayContainer__Panel_first}`}
+						>
+							<h1 className={classes.OverlayContainer__Title}>
+								Welcome Back
+							</h1>
+							<span
+								className={
+									classes.OverlayContainer__Information
+								}
+							>
+								<p>
+									Enter your personal details, <br />
+									log in and have fun!
+								</p>
+								<TextBetweenLines>or</TextBetweenLines>
+							</span>
+							<Button ghost onClick={switchModeHandler}>
+								SIGNIN
+							</Button>
+						</div>
+						<div
+							className={`${classes.OverlayContainer__Panel} ${classes.OverlayContainer__Panel_second}`}
+						>
+							<h1 className={classes.OverlayContainer__Title}>
+								First Time Here?
+							</h1>
+							<span
+								className={
+									classes.OverlayContainer__Information
+								}
+							>
+								<p>
+									Enter your personal details, <br />
+									create an account and start the journey!
+								</p>
+								<TextBetweenLines>or</TextBetweenLines>
+							</span>
+							<Button ghost onClick={switchModeHandler}>
+								SIGNUP
+							</Button>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</React.Fragment>
 	);
 };
 

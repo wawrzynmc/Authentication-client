@@ -85,13 +85,8 @@ const SignupForm = (props) => {
 	};
 
 	const resetHandler = () => {
-		console.log('dada');
-		// console.log(document.querySelectorAll('input'));
 		clearFormData();
 		setReset((prevState) => !prevState);
-		// Array.from(document.querySelectorAll('input')).forEach(
-		// 	(input) => (input.value = '')
-		// );
 	};
 
 	return (
@@ -146,7 +141,6 @@ const SignupForm = (props) => {
 				<Button type="submit" disabled={!formState.isValid}>
 					signup
 				</Button>
-				<input type="reset" value="Reset" />
 			</form>
 		</React.Fragment>
 	);

@@ -23,12 +23,9 @@ export const useHttpClient = () => {
 				});
 
 				const responseData = await response.json();
-
 				activeHttpRequests.current = activeHttpRequests.current.filter(
 					(reqCtrl) => reqCtrl !== httpAbortCtrl
 				);
-
-				// console.log(responseData.status);
 
 				if (!response.ok) {
 					// .ok exists on 200 like status codes
@@ -40,6 +37,7 @@ export const useHttpClient = () => {
 				setRequestSent(true);
 				setMsg(responseData.message);
 				setStatus(responseData.status);
+				return responseData;
 			} catch (err) {
 				setMsg(err.message);
 				setStatus(err.status);

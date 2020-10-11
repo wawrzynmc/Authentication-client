@@ -67,10 +67,12 @@ const ActivationForm = (props) => {
 						'Content-Type': 'application/json',
 					}
 				);
-				// !autologin
-				history.replace({
+				history.push({
 					pathname: '/auth',
 					search: '?action=login',
+					state: {
+						activation: true,
+					},
 				});
 			} catch (err) {
 				if (err.status === 401) {

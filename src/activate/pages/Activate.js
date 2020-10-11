@@ -23,7 +23,7 @@ const Activate = (props) => {
 	useEffect(() => {
 		try {
 			let { name } = jwt.decode(incomingToken);
-			setTokenData({ name: name });
+			setTokenData({ name });
 		} catch (err) {
 			setTokenData({ name: 'unknown user' });
 		}

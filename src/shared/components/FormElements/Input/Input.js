@@ -181,6 +181,19 @@ const Input = (props) => {
 	);
 };
 
+// * -- default props
+Input.defaultProps = {
+	initialValue: '',
+	rows: 3,
+	placeholder: '',
+	label: '',
+	withLabel: false,
+	initialValid: false,
+	initialErrorMsg: 'Must be valid.',
+	validators: [],
+	onInput: (id, value, isValid) => {},
+};
+
 // * -- prop types
 Input.propTypes = {
 	id: PropTypes.string.isRequired,
@@ -202,19 +215,6 @@ Input.propTypes = {
 		})
 	),
 	onInput: PropTypes.func,
-};
-
-// * -- default props
-Input.defaultProps = {
-	initialValue: '',
-	rows: 3,
-	placeholder: '',
-	label: '',
-	withLabel: false,
-	initialValid: false,
-	initialErrorMsg: 'Must be valid.',
-	validators: [],
-	onInput: (id, value, isValid) => {},
 };
 
 export default Input;

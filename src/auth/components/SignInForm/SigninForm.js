@@ -1,5 +1,5 @@
 // * -- libraries imports
-import React from 'react';
+import React, { useContext } from 'react';
 
 // * -- my own imports
 // ---- components
@@ -10,6 +10,7 @@ import Button from '../../../shared/components/FormElements/Button/Button';
 // ---- functions
 import { useForm } from '../../../shared/hooks/form-hook';
 import { useHttpClient } from '../../../shared/hooks/http-hook';
+import { AuthContext } from '../../../shared/context/auth-context';
 import { VALIDATOR_EMAIL } from '../../../shared/utils/validators';
 
 // ---- styles
@@ -22,6 +23,7 @@ import classes from './SigninForm.module.scss';
  *      ! name of fileds in formState has to match with ids of inputs
  */
 const SigninForm = (props) => {
+	const auth = useContext(AuthContext);
 	const { isLoading, error, sendRequest, clearError } = useHttpClient();
 	const [formState, inputHandler, setFormData] = useForm(
 		{
@@ -50,7 +52,8 @@ const SigninForm = (props) => {
 				}),
 				{ 'Content-Type': 'application/json' }
 			);
-			// auth.login(responseData.userId, responseData.token);
+			console.log(responseData);
+			auth.login(responseData.userId, responseData.token);
 		} catch (err) {}
 	};
 
