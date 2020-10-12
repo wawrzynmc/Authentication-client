@@ -117,7 +117,7 @@ const Auth = (props) => {
 								<TextBetweenLines>or</TextBetweenLines>
 							</span>
 							<Button ghost onClick={switchModeHandler}>
-								SIGNIN
+								SIGNUP
 							</Button>
 						</div>
 						<div
@@ -138,7 +138,7 @@ const Auth = (props) => {
 								<TextBetweenLines>or</TextBetweenLines>
 							</span>
 							<Button ghost onClick={switchModeHandler}>
-								SIGNUP
+								SIGNIN
 							</Button>
 						</div>
 					</div>

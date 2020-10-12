@@ -1,11 +1,14 @@
 // * -- libraries imports
-import React, { useContext } from 'react';
+import React, { useContext, useCallback } from 'react';
 
 // * -- my own imports
 // ---- components
 import Input from '../../../shared/components/FormElements/Input/Input';
 import Password from '../../../shared/components/FormElements/Input/Passwords/Password/Password';
 import Button from '../../../shared/components/FormElements/Button/Button';
+import LoadingSpinner from '../../../shared/components/UIElements/LoadingSpinner/LoadingSpinner';
+import ErrorModal from '../../../shared/components/UIElements/Modal/ErrorModal/ErrorModal';
+import EmailSent from '../../../shared/components/UIElements/Modal/SuccessModal/EmailSent/EmailSent';
 
 // ---- functions
 import { useForm } from '../../../shared/hooks/form-hook';
@@ -23,8 +26,17 @@ import classes from './SigninForm.module.scss';
  *      ! name of fileds in formState has to match with ids of inputs
  */
 const SigninForm = (props) => {
+	console.log('Render SignIn Form');
 	const auth = useContext(AuthContext);
-	const { isLoading, error, sendRequest, clearError } = useHttpClient();
+	const {
+		isLoading,
+		msg,
+		sendRequest,
+		clearMsg,
+		requestSent,
+		clearRequestSent,
+		status,
+	} = useHttpClient();
 	const [formState, inputHandler, setFormData] = useForm(
 		{
 			email: {
@@ -52,27 +64,33 @@ const SigninForm = (props) => {
 				}),
 				{ 'Content-Type': 'application/json' }
 			);
-			console.log(responseData);
 			auth.login(responseData.userId, responseData.token);
 		} catch (err) {}
 	};
-
+	console.log(status);
 	return (
-		<form className={classes.Form} onSubmit={authSubmitHandler}>
-			<Input
-				id="email"
-				element="input"
-				type="email"
-				placeholder="E-mail"
-				validators={[VALIDATOR_EMAIL()]}
-				initialErrorMsg="Please enter a valid email address."
-				onInput={inputHandler}
+		<React.Fragment>
+			<ErrorModal
+				error={msg}
+				onClear={clearMsg}
+				show={!requestSent && !!msg}
 			/>
-			<Password id="password" onInput={inputHandler} />
-			<Button type="submit" disabled={!formState.isValid}>
-				singin
-			</Button>
-		</form>
+			<form className={classes.Form} onSubmit={authSubmitHandler}>
+				<Input
+					id="email"
+					element="input"
+					type="email"
+					placeholder="E-mail"
+					validators={[VALIDATOR_EMAIL()]}
+					initialErrorMsg="Please enter a valid email address."
+					onInput={inputHandler}
+				/>
+				<Password id="password" onInput={inputHandler} />
+				<Button type="submit" disabled={!formState.isValid}>
+					singin
+				</Button>
+			</form>
+		</React.Fragment>
 	);
 };
 

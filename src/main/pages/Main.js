@@ -17,7 +17,7 @@ const Main = (props) => {
 			return !prevState;
 		});
 		setTimeout(() => {
-			history.push('/auth');
+			history.push({ pathname: '/auth', search: '?action=signup' });
 		}, 500);
 	};
 

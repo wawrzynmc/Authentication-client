@@ -1,6 +1,7 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 
 export const useHttpClient = () => {
+	console.log('useHttpClient');
 	const [isLoading, setIsLoading] = useState(false);
 	const [msg, setMsg] = useState();
 	const [requestSent, setRequestSent] = useState(false);
@@ -10,6 +11,7 @@ export const useHttpClient = () => {
 
 	const sendRequest = useCallback(
 		async (url, method = 'GET', body = null, headers = {}) => {
+			console.log('useHttpClient - sendRequest');
 			setIsLoading(true);
 			const httpAbortCtrl = new AbortController(); // prevent error if you send request and change the page
 			activeHttpRequests.current.push(httpAbortCtrl);
@@ -49,14 +51,12 @@ export const useHttpClient = () => {
 		[]
 	);
 
-	const clearMsg = () => {
-		setMsg(null);
-	};
+	const clearMsg = useCallback(() => setMsg(null), []);
 
-	const clearRequestSent = () => {
+	const clearRequestSent = useCallback(() => {
 		clearMsg();
 		setRequestSent(false);
-	};
+	}, [clearMsg]);
 
 	useEffect(() => {
 		// run on unmount component, or before next execution of useEffect function
