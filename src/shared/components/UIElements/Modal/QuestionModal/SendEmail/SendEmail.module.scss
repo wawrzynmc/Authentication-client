@@ -1,0 +1,9 @@
+@import '../../../../../../assets/styles/variables.module.scss';
+
+.text {
+	font-weight: bold;
+
+	&_warning {
+		color: $error-color;
+	}
+}

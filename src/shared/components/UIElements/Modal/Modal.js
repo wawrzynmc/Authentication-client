@@ -23,7 +23,8 @@ const ModalOverlay = (props) => {
 					<i
 						className={`${props.iconClass} ${classes.Modal__icon} 
 						${props.type === 'success' ? classes.Modal__iconSuccess : null}
-						${props.type === 'error' ? classes.Modal__iconError : null}`}
+						${props.type === 'error' ? classes.Modal__iconError : null}
+						${props.type === 'question' ? classes.Modal__iconQuestion : null}`}
 					></i>
 				</span>
 				<h2>{props.header}</h2>
@@ -31,7 +32,8 @@ const ModalOverlay = (props) => {
 					<i
 						className={`${props.iconClass} ${classes.Modal__icon} 
 						${props.type === 'success' ? classes.Modal__iconSuccess : null}
-						${props.type === 'error' ? classes.Modal__iconError : null}`}
+						${props.type === 'error' ? classes.Modal__iconError : null}
+						${props.type === 'question' ? classes.Modal__iconQuestion : null}`}
 					></i>
 				</span>
 			</header>

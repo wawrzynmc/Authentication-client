@@ -16,14 +16,18 @@ const Button = (props) => {
 
 	if (props.href) {
 		return (
-			<a className={attachedClasses} href={props.href}>
+			<a
+				className={attachedClasses}
+				href={props.href}
+				style={props.style}
+			>
 				{props.children}
 			</a>
 		);
 	}
 	if (props.to) {
 		return (
-			<Link to={props.to} className={attachedClasses}>
+			<Link to={props.to} className={attachedClasses} style={props.style}>
 				{props.children}
 			</Link>
 		);
@@ -34,6 +38,7 @@ const Button = (props) => {
 			type={props.type}
 			onClick={props.onClick}
 			disabled={props.disabled}
+			style={props.style}
 		>
 			{props.children}
 		</button>

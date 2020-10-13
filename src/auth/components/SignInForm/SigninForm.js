@@ -67,7 +67,6 @@ const SigninForm = (props) => {
 			auth.login(responseData.userId, responseData.token);
 		} catch (err) {}
 	};
-	console.log(status);
 	return (
 		<React.Fragment>
 			<ErrorModal
@@ -94,4 +93,4 @@ const SigninForm = (props) => {
 	);
 };
 
-export default SigninForm;
+export default React.memo(SigninForm);

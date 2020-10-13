@@ -8,6 +8,7 @@ import Button from '../../../shared/components/FormElements/Button/Button';
 import Passwords from '../../../shared/components/FormElements/Input/Passwords/Passwords';
 import LoadingSpinner from '../../../shared/components/UIElements/LoadingSpinner/LoadingSpinner';
 import ErrorModal from '../../../shared/components/UIElements/Modal/ErrorModal/ErrorModal';
+import SendEmail from '../../../shared/components/UIElements/Modal/QuestionModal/SendEmail/SendEmail';
 import EmailSent from '../../../shared/components/UIElements/Modal/SuccessModal/EmailSent/EmailSent';
 
 // ---- functions / hooks
@@ -38,6 +39,7 @@ const SignupForm = (props) => {
 		clearMsg,
 		requestSent,
 		clearRequestSent,
+		status,
 	} = useHttpClient();
 	const [formState, inputHandler, setFormData, clearFormData] = useForm(
 		{
@@ -63,8 +65,6 @@ const SignupForm = (props) => {
 
 	const authSubmitHandler = async (event) => {
 		event.preventDefault();
-		// console.log(event.target);
-		event.target.reset();
 		const { name, email, password1, password2 } = formState.inputs;
 
 		try {
@@ -79,8 +79,21 @@ const SignupForm = (props) => {
 				}),
 				{ 'Content-Type': 'application/json' }
 			);
+		} catch (err) {}
+	};
 
-			// event.target.reset();
+	const sendActivationEmailHandler = async (event) => {
+		const { email } = formState.inputs;
+
+		try {
+			await sendRequest(
+				`${process.env.REACT_APP_SERVER_API_URL}/account/send-activation-email`,
+				'POST',
+				JSON.stringify({
+					email: email.value,
+				}),
+				{ 'Content-Type': 'application/json' }
+			);
 		} catch (err) {}
 	};
 
@@ -91,15 +104,21 @@ const SignupForm = (props) => {
 
 	return (
 		<React.Fragment>
+			<SendEmail
+				show={!!msg && status === 401}
+				onClear={clearRequestSent}
+				onSend={sendActivationEmailHandler}
+				email={formState.inputs.email.value}
+			/>
 			<EmailSent
-				msg={msg}
 				show={requestSent}
+				msg={msg}
 				onClear={clearRequestSent}
 			/>
 			<ErrorModal
+				show={!requestSent && status !== 401 && !!msg}
 				error={msg}
 				onClear={clearMsg}
-				show={!requestSent && !!msg}
 			/>
 			{isLoading && <LoadingSpinner asOverlay />}
 			<form

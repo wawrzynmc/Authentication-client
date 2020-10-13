@@ -43,6 +43,10 @@
 		&Error {
 			color: $error-color;
 		}
+
+		&Question {
+			color: $question-color;
+		}
 	}
 
 	&__content {
@@ -61,6 +65,9 @@
 
 	&__footer {
 		padding: 0 0.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 	}
 
 	&_enter {
