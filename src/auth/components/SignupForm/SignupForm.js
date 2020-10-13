@@ -80,11 +80,11 @@ const SignupForm = (props) => {
 				{ 'Content-Type': 'application/json' }
 			);
 		} catch (err) {}
+		resetForm();
 	};
 
 	const sendActivationEmailHandler = async (event) => {
 		const { email } = formState.inputs;
-
 		try {
 			await sendRequest(
 				`${process.env.REACT_APP_SERVER_API_URL}/account/send-activation-email`,
@@ -97,7 +97,7 @@ const SignupForm = (props) => {
 		} catch (err) {}
 	};
 
-	const resetHandler = () => {
+	const resetForm = () => {
 		clearFormData();
 		setReset((prevState) => !prevState);
 	};
@@ -121,11 +121,7 @@ const SignupForm = (props) => {
 				onClear={clearMsg}
 			/>
 			{isLoading && <LoadingSpinner asOverlay />}
-			<form
-				className={classes.Form}
-				onSubmit={authSubmitHandler}
-				onReset={resetHandler}
-			>
+			<form className={classes.Form} onSubmit={authSubmitHandler}>
 				<Input
 					id="name"
 					element="input"

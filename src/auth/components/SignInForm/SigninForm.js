@@ -20,10 +20,9 @@ import { VALIDATOR_EMAIL } from '../../../shared/utils/validators';
 import classes from './SigninForm.module.scss';
 
 /**
- * Signup Component
- * * PARAMS:
- * ! WARNINGS:
- *      ! name of fileds in formState has to match with ids of inputs
+ * Signin Component
+ * @type {Component}
+ * @category Auth
  */
 const SigninForm = (props) => {
 	console.log('Render SignIn Form');

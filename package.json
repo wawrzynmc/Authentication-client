@@ -27,7 +27,8 @@
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
 		"storybook": "start-storybook -p 6006 -s public",
-		"build-storybook": "build-storybook -s public"
+		"build-storybook": "build-storybook -s public",
+		"docs": "jsdoc -c jsdoc.json"
 	},
 	"eslintConfig": {
 		"extends": "react-app"
@@ -58,6 +59,7 @@
 		"@storybook/react": "^6.0.22",
 		"babel-eslint": "^10.1.0",
 		"babel-loader": "^8.1.0",
+		"better-docs": "^2.3.2",
 		"eslint": "^6.8.0",
 		"eslint-config-prettier": "^6.11.0",
 		"eslint-config-react-app": "^5.2.1",
@@ -67,6 +69,7 @@
 		"eslint-plugin-prettier": "^3.1.4",
 		"eslint-plugin-react": "^7.20.6",
 		"eslint-plugin-react-hooks": "^2.5.1",
+		"jsdoc": "^3.6.6",
 		"prettier": "^2.1.2",
 		"react-is": "^16.13.1"
 	}

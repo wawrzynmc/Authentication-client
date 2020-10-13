@@ -1,3 +1,5 @@
+/** @namespace Input */
+
 // * -- libraries imports
 import React, { useReducer, useEffect } from 'react';
 import PropTypes from 'prop-types';
@@ -12,13 +14,23 @@ import { capitalizeString } from '../../../utils/utils';
 // ---- styles
 import classes from './Input.module.scss';
 
+// /**
+//  * Reducer
+//  * * ACTIONS:
+//  * 		@type: CHANGE
+//  * 			@description: runs on every change of input value and performs validation
+//  * 		@type: TOUCH
+//  * 			@description: runs when field was touched and set input 'wasTouched' property to true
+//  * 		@type: RESET
+//  * 			@description: runs when value of 'reset' property has changed. That action reset field and its state
+//  */
+
 /**
- * Reducer
- * * ACTIONS:
- * 		@type: CHANGE
- * 			@description: runs on every change of input value and performs validation
- * 		@type: TOUCH
- * 			@description: runs when field was touched and set input 'wasTouched' property to true
+ * It will receive all the data use for the device
+ * @function inputReducer
+ * @memberof Input
+ * @param {object} state: contain initial and final state of data
+ * @param {object} action: return the action object
  */
 const inputReducer = (state, action) => {
 	switch (action.type) {
@@ -51,57 +63,10 @@ const inputReducer = (state, action) => {
 	}
 };
 /**
- * Input Component
- * * PARAMS:
- * 		* all params that include 'input' in its name, have its equivalent for 'password2'
- *  	@param id
- * 			@type: string
- * 			@description: id of input
- * 			@required
- *  	@param element
- * 			@type: string
- * 			@description: type of input (textarea / input)
- * 			@required
- *  	@param type
- * 			@type: string
- * 			@description: type of input
- * 			@required
- *  	@param rows
- * 			@type: number
- * 			@description: number of rows for textarea
- * 			@default: 3
- * 		@param initialValue
- * 			@type: string
- * 			@description: initial value of input
- * 			@default ''
- * 		@param placeholder
- * 			@type: string
- * 			@description: placeholder for input
- * 			@default: ''
- * 		@param label
- * 			@type: string
- * 			@description: label for input
- * 			@default: ''
- *		@param withLabel
- * 			@type: boolean
- * 			@description: defines, if input with have label above them
- * 			@default: false
- *  	@param initialValid
- * 			@type: boolean
- * 			@description: defines if input is initially valid
- * 			@default: false
- * 		@param initialErrorMsg
- * 			@type: string
- * 			@description: initial error msg for field
- * 			@default: 'Must be valid'
- * 		@param validators
- * 			@type: array of objects
- * 			@description: include validators for input
- * 		@param onInput
- * 			@type: function
- * 			@description: runs every time when password: id, value, validity or reference to onInput changed
- *  TODO :
- * 		* add regex for name, that could have only letters in name (without special characters etc.)
+ * Render Input component
+ * @category FormElements
+ * @component
+ * @memberof Input
  */
 const Input = (props) => {
 	const [inputState, dispatch] = useReducer(inputReducer, {
@@ -128,7 +93,11 @@ const Input = (props) => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [reset]);
 
-	// -- functions
+	/**
+	 * @public
+	 * @param {object} event event object
+	 * @summary Call for inputReducer with CHANGE action
+	 * */
 	const changeHandler = (event) => {
 		dispatch({
 			type: 'CHANGE',
@@ -138,6 +107,11 @@ const Input = (props) => {
 		});
 	};
 
+	/**
+	 * @public
+	 * @param {object} event event object
+	 * @description: Call for inputReducer with CHANGE action
+	 * */
 	const touchHandler = (event) => {
 		dispatch({
 			type: 'TOUCH',
@@ -196,16 +170,29 @@ Input.defaultProps = {
 
 // * -- prop types
 Input.propTypes = {
+	/** Input id*/
 	id: PropTypes.string.isRequired,
+	/** Tag of input*/
 	element: PropTypes.oneOf(['input', 'textarea']).isRequired,
+	/** Type of input*/
 	type: PropTypes.oneOf(['email', 'number', 'text', 'tel', 'url']).isRequired,
+	/** Number of rows for textarea*/
 	rows: PropTypes.number,
+	/** Initial value of input*/
 	initialValue: PropTypes.string,
+	/** Placeholder for input*/
 	placeholder: PropTypes.string,
+	/** Label for input*/
 	label: PropTypes.string,
+	/** Defines, if input with have label above them*/
 	withLabel: PropTypes.bool,
+	/** Defines if input is initially valid*/
 	initialValid: PropTypes.bool,
+	/** Initial error message for field*/
 	initialErrorMsg: PropTypes.string,
+	/** If value has changed, then reset of input begins*/
+	reset: PropTypes.bool,
+	/** Validators for input */
 	validators: PropTypes.arrayOf(
 		PropTypes.shape({
 			type: PropTypes.string.isRequired,
@@ -214,6 +201,7 @@ Input.propTypes = {
 			passwordToCompare: PropTypes.string,
 		})
 	),
+	/** Function that fires when input has changed*/
 	onInput: PropTypes.func,
 };
 

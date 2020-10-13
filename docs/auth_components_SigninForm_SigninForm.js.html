@@ -1,0 +1,211 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> auth/components/SigninForm/SigninForm.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Namespaces</h3><ul><li><a href="Input.html">Input</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ActivationForm">ActivationForm</a></li><li><a href="global.html#inputReducer">inputReducer</a></li><li><a href="global.html#Password">Password</a></li><li><a href="global.html#PasswordMeter">PasswordMeter</a></li><li><a href="global.html#Passwords">Passwords</a></li><li><a href="global.html#SignupForm">SignupForm</a></li></ul></div><div class="category"><h2>Auth</h2><h3>Global</h3><ul><li><a href="global.html#SigninForm">SigninForm</a></li></ul></div><div class="category"><h2>FormElements</h2><h3>Components</h3><ul><li><a href="Input.Input.html">Input</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>auth/components/SigninForm/SigninForm.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// * -- libraries imports
+import React, { useContext, useCallback } from 'react';
+
+// * -- my own imports
+// ---- components
+import Input from '../../../shared/components/FormElements/Input/Input';
+import Password from '../../../shared/components/FormElements/Input/Passwords/Password/Password';
+import Button from '../../../shared/components/FormElements/Button/Button';
+import LoadingSpinner from '../../../shared/components/UIElements/LoadingSpinner/LoadingSpinner';
+import ErrorModal from '../../../shared/components/UIElements/Modal/ErrorModal/ErrorModal';
+import EmailSent from '../../../shared/components/UIElements/Modal/SuccessModal/EmailSent/EmailSent';
+
+// ---- functions
+import { useForm } from '../../../shared/hooks/form-hook';
+import { useHttpClient } from '../../../shared/hooks/http-hook';
+import { AuthContext } from '../../../shared/context/auth-context';
+import { VALIDATOR_EMAIL } from '../../../shared/utils/validators';
+
+// ---- styles
+import classes from './SigninForm.module.scss';
+
+/**
+ * Signin Component
+ * @type {Component}
+ * @category Auth
+ */
+const SigninForm = (props) => {
+	console.log('Render SignIn Form');
+	const auth = useContext(AuthContext);
+	const {
+		isLoading,
+		msg,
+		sendRequest,
+		clearMsg,
+		requestSent,
+		clearRequestSent,
+		status,
+	} = useHttpClient();
+	const [formState, inputHandler, setFormData] = useForm(
+		{
+			email: {
+				value: '',
+				isValid: false,
+			},
+			password: {
+				value: '',
+				isValid: false,
+			},
+		},
+		false
+	);
+
+	const authSubmitHandler = async (event) => {
+		event.preventDefault();
+		const { email, password } = formState.inputs;
+		try {
+			const responseData = await sendRequest(
+				`${process.env.REACT_APP_SERVER_API_URL}/account/signin`,
+				'POST',
+				JSON.stringify({
+					email: email.value,
+					password: password.value,
+				}),
+				{ 'Content-Type': 'application/json' }
+			);
+			auth.login(responseData.userId, responseData.token);
+		} catch (err) {}
+	};
+	return (
+		&lt;React.Fragment>
+			&lt;ErrorModal
+				error={msg}
+				onClear={clearMsg}
+				show={!requestSent &amp;&amp; !!msg}
+			/>
+			&lt;form className={classes.Form} onSubmit={authSubmitHandler}>
+				&lt;Input
+					id="email"
+					element="input"
+					type="email"
+					placeholder="E-mail"
+					validators={[VALIDATOR_EMAIL()]}
+					initialErrorMsg="Please enter a valid email address."
+					onInput={inputHandler}
+				/>
+				&lt;Password id="password" onInput={inputHandler} />
+				&lt;Button type="submit" disabled={!formState.isValid}>
+					singin
+				&lt;/Button>
+			&lt;/form>
+		&lt;/React.Fragment>
+	);
+};
+
+export default React.memo(SigninForm);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+</body>
+</html>

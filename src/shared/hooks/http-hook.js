@@ -1,7 +1,6 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 
 export const useHttpClient = () => {
-	console.log('useHttpClient');
 	const [isLoading, setIsLoading] = useState(false);
 	const [msg, setMsg] = useState();
 	const [requestSent, setRequestSent] = useState(false);
