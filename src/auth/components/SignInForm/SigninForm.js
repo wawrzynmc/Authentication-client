@@ -1,5 +1,5 @@
 // * -- libraries imports
-import React, { useContext, useCallback } from 'react';
+import React, { useContext, useCallback, useState } from 'react';
 
 // * -- my own imports
 // ---- components
@@ -8,6 +8,7 @@ import Password from '../../../shared/components/FormElements/Input/Passwords/Pa
 import Button from '../../../shared/components/FormElements/Button/Button';
 import LoadingSpinner from '../../../shared/components/UIElements/LoadingSpinner/LoadingSpinner';
 import ErrorModal from '../../../shared/components/UIElements/Modal/ErrorModal/ErrorModal';
+import SendEmail from '../../../shared/components/UIElements/Modal/QuestionModal/SendEmail/SendEmail';
 import EmailSent from '../../../shared/components/UIElements/Modal/SuccessModal/EmailSent/EmailSent';
 
 // ---- functions
@@ -26,6 +27,7 @@ import classes from './SigninForm.module.scss';
  */
 const SigninForm = (props) => {
 	console.log('Render SignIn Form');
+	const [reset, setReset] = useState(false);
 	const auth = useContext(AuthContext);
 	const {
 		isLoading,
@@ -36,7 +38,7 @@ const SigninForm = (props) => {
 		clearRequestSent,
 		status,
 	} = useHttpClient();
-	const [formState, inputHandler, setFormData] = useForm(
+	const [formState, inputHandler, setFormData, clearFormData] = useForm(
 		{
 			email: {
 				value: '',
@@ -66,12 +68,46 @@ const SigninForm = (props) => {
 			auth.login(responseData.userId, responseData.token);
 		} catch (err) {}
 	};
+
+	const sendActivationEmailHandler = async (event) => {
+		clearRequestSent(); // close modal
+
+		const { email } = formState.inputs;
+		try {
+			await sendRequest(
+				`${process.env.REACT_APP_SERVER_API_URL}/account/send-activation-email`,
+				'POST',
+				JSON.stringify({
+					email: email.value,
+				}),
+				{ 'Content-Type': 'application/json' }
+			);
+			resetForm();
+		} catch (err) {}
+	};
+
+	const resetForm = () => {
+		clearFormData();
+		setReset((prevState) => !prevState);
+	};
+
 	return (
 		<React.Fragment>
+			<SendEmail
+				show={!!msg && status === 401}
+				onClear={clearRequestSent}
+				onSend={sendActivationEmailHandler}
+				email={formState.inputs.email.value}
+			/>
+			<EmailSent
+				show={requestSent}
+				msg={msg}
+				onClear={clearRequestSent}
+			/>
 			<ErrorModal
 				error={msg}
 				onClear={clearMsg}
-				show={!requestSent && !!msg}
+				show={!requestSent && status !== 401 && !!msg}
 			/>
 			<form className={classes.Form} onSubmit={authSubmitHandler}>
 				<Input
@@ -82,8 +118,9 @@ const SigninForm = (props) => {
 					validators={[VALIDATOR_EMAIL()]}
 					initialErrorMsg="Please enter a valid email address."
 					onInput={inputHandler}
+					reset={reset}
 				/>
-				<Password id="password" onInput={inputHandler} />
+				<Password id="password" onInput={inputHandler} reset={reset} />
 				<Button type="submit" disabled={!formState.isValid}>
 					singin
 				</Button>

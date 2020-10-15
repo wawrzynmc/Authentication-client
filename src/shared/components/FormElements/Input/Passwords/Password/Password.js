@@ -51,6 +51,16 @@ const inputReducer = (state, action) => {
 				...state,
 				inputType: state.inputType === 'password' ? 'text' : 'password',
 			};
+		// runs when value of 'reset' property has changed. That action reset field and its state
+		case 'RESET': {
+			return {
+				...state,
+				value: '',
+				wasTouched: false,
+				isValid: action.initialValid,
+				errorMsg: action.initialErrorMsg,
+			};
+		}
 		default:
 			return state;
 	}
@@ -63,7 +73,7 @@ const inputReducer = (state, action) => {
  * @memberof Password
  */
 const Password = (props) => {
-	const { id, onInput } = props;
+	const { id, onInput, reset } = props;
 	const [inputState, dispatch] = useReducer(inputReducer, {
 		value: props.initialValue,
 		wasTouched: false,
@@ -77,6 +87,15 @@ const Password = (props) => {
 	useEffect(() => {
 		onInput(id, value, isValid);
 	}, [id, onInput, value, isValid]);
+
+	useEffect(() => {
+		dispatch({
+			type: 'RESET',
+			isValid: props.initialValid,
+			initialErrorMsg: props.initialErrorMsg,
+		});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [reset]);
 
 	const changeHandler = (event) => {
 		let validators = [...props.validators];
@@ -166,6 +185,8 @@ Password.propTypes = {
 	initialValid: PropTypes.bool,
 	/** Initial error msg for field */
 	initialErrorMsg: PropTypes.string,
+	/** If value has changed, then reset of input begins*/
+	reset: PropTypes.bool,
 	/** Validators for input */
 	validators: PropTypes.arrayOf(
 		PropTypes.shape({

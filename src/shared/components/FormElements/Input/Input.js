@@ -15,7 +15,7 @@ import { capitalizeString } from '../../../utils/utils';
 import classes from './Input.module.scss';
 
 /**
- * Receive data associated with component that contains action type
+ * Receive data associated with component i.a. action type
  * @function inputReducer
  * @memberof Input
  * @param {object} state: contain initial and final state of data

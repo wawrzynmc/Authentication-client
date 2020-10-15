@@ -79,11 +79,13 @@ const SignupForm = (props) => {
 				}),
 				{ 'Content-Type': 'application/json' }
 			);
+			resetForm();
 		} catch (err) {}
-		resetForm();
 	};
 
 	const sendActivationEmailHandler = async (event) => {
+		clearRequestSent(); // close modal
+
 		const { email } = formState.inputs;
 		try {
 			await sendRequest(
@@ -94,6 +96,7 @@ const SignupForm = (props) => {
 				}),
 				{ 'Content-Type': 'application/json' }
 			);
+			resetForm();
 		} catch (err) {}
 	};
 
