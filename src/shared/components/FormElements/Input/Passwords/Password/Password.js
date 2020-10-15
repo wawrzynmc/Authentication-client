@@ -1,3 +1,6 @@
+/** @namespace Password */
+
+// * -- libraries imports
 import React, { useReducer, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
@@ -14,17 +17,15 @@ import { VALIDATOR_PASSWORD } from '../../../../../utils/validators';
 import classes from './Password.module.scss';
 
 /**
- * Reducer
- * * ACTIONS:
- * 		@type: CHANGE
- * 			@description: runs on every change of input value and performs validation
- * 		@type: TOUCH
- * 			@description: runs when field was touched and set input 'wasTouched' property to true
- * 		@type: CHANGE_TYPE
- * 			@description: runs when type of input changed (password <-> text)
+ * Receive data associated with component i.a. action type
+ * @function inputReducer
+ * @memberof Password
+ * @param {object} state: contain initial and final state of data
+ * @param {object} action: return the action object
  */
 const inputReducer = (state, action) => {
 	switch (action.type) {
+		// runs on every change of input value and performs validation
 		case 'CHANGE':
 			const { isValid, metaData, errorMsg } = validate(
 				capitalizeString(action.id),
@@ -38,12 +39,13 @@ const inputReducer = (state, action) => {
 				errorMsg: errorMsg,
 				passwordStrength: metaData.passwordStrength,
 			};
+		// runs when field was touched and set input 'wasTouched' property to true
 		case 'TOUCH':
 			return {
 				...state,
 				wasTouched: true,
 			};
-
+		// runs when type of input changed (password <-> text)
 		case 'CHANGE_TYPE':
 			return {
 				...state,
@@ -55,47 +57,10 @@ const inputReducer = (state, action) => {
 };
 
 /**
- * Password Component
- * * PARAMS:
- *  	@param id
- * 			@type: string
- * 			@description: id of password1
- * 			@default = 'password1'
- * 		@param initialValue
- * 			@type: string
- * 			@description: initial value of password1
- * 			@default ''
- * 		@param placeholder
- * 			@type: string
- * 			@description: placeholder for password1
- * 			@default: 'Password' (password1) / 'Password Confirmation' (password2)
- * 		@param label
- * 			@type: string
- * 			@description: label for password1
- * 			@default: 'Password' (password1) / 'Password Confirmation' (password2)
- * 		@param withLabel
- * 			@type: boolean
- * 			@description: defines, if passwords with have label above them
- * 			@default: false
- * 		@param validate
- * 			@type: boolean
- * 			@description: defines if password1 should have its strength validate
- * 			@default: false
- *  	@param initialValid
- * 			@type: boolean
- * 			@description: defines if password1 is initially valid
- * 			@default: false
- * 		@param initialErrorMsg
- * 			@type: string
- * 			@description: initial error msg for field
- * 			@default: 'Must be valid'
- * 		@param validators
- * 			@type: array of objects
- * 			@description: include validators for both password type inputs
- * 		@param onInput
- * 			@type: function
- * 			@description: runs every time when password: id, value, validity or reference to onInput changed
- *  TODO :
+ * Render Password component
+ * @category FormElements
+ * @component
+ * @memberof Password
  */
 const Password = (props) => {
 	const { id, onInput } = props;
@@ -185,14 +150,23 @@ const Password = (props) => {
 
 // * -- prop types
 Password.propTypes = {
+	/** Input id*/
 	id: PropTypes.string,
+	/** Initial value of input*/
 	initialValue: PropTypes.string,
+	/** Placeholder for input*/
 	placeholder: PropTypes.string,
+	/** Label for input*/
 	label: PropTypes.string,
+	/** Defines, if input with have label above them*/
 	withLabel: PropTypes.bool,
+	/** Defines if password should have its strength validate */
 	validate: PropTypes.bool,
+	/** Defines if password is initially valid */
 	initialValid: PropTypes.bool,
+	/** Initial error msg for field */
 	initialErrorMsg: PropTypes.string,
+	/** Validators for input */
 	validators: PropTypes.arrayOf(
 		PropTypes.shape({
 			type: PropTypes.string.isRequired,
@@ -201,6 +175,7 @@ Password.propTypes = {
 			passwordToCompare: PropTypes.string,
 		})
 	),
+	/** Function that fires when input has changed*/
 	onInput: PropTypes.func,
 };
 
@@ -215,7 +190,10 @@ Password.defaultProps = {
 	initialValid: false,
 	initialErrorMsg: 'Must be valid password.',
 	validators: [],
-	onInput: (id, value, isValid) => console.log(id, value, isValid),
+	onInput: (id, value, isValid) => {
+		// eslint-disable-next-line no-console
+		console.log(id, value, isValid);
+	},
 };
 
 export default Password;

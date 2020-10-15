@@ -68,7 +68,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Namespaces</h3><ul><li><a href="Input.html">Input</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ActivationForm">ActivationForm</a></li><li><a href="global.html#inputReducer">inputReducer</a></li><li><a href="global.html#Password">Password</a></li><li><a href="global.html#PasswordMeter">PasswordMeter</a></li><li><a href="global.html#Passwords">Passwords</a></li><li><a href="global.html#SignupForm">SignupForm</a></li></ul></div><div class="category"><h2>Auth</h2><h3>Global</h3><ul><li><a href="global.html#SigninForm">SigninForm</a></li></ul></div><div class="category"><h2>FormElements</h2><h3>Components</h3><ul><li><a href="Input.Input.html">Input</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Namespaces</h3><ul><li><a href="Input.html">Input</a></li><li><a href="Password.html">Password</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ActivationForm">ActivationForm</a></li><li><a href="global.html#inputReducer">inputReducer</a></li><li><a href="global.html#PasswordMeter">PasswordMeter</a></li><li><a href="global.html#Passwords">Passwords</a></li><li><a href="global.html#SignupForm">SignupForm</a></li></ul></div><div class="category"><h2>Auth</h2><h3>Global</h3><ul><li><a href="global.html#SigninForm">SigninForm</a></li></ul></div><div class="category"><h2>FormElements</h2><h3>Components</h3><ul><li><a href="Input.Input.html">Input</a></li><li><a href="Password.Password.html">Password</a></li></ul></div>
                 
             </nav>
         </div>
@@ -101,17 +101,6 @@ import { capitalizeString } from '../../../utils/utils';
 // ---- styles
 import classes from './Input.module.scss';
 
-// /**
-//  * Reducer
-//  * * ACTIONS:
-//  * 		@type: CHANGE
-//  * 			@description: runs on every change of input value and performs validation
-//  * 		@type: TOUCH
-//  * 			@description: runs when field was touched and set input 'wasTouched' property to true
-//  * 		@type: RESET
-//  * 			@description: runs when value of 'reset' property has changed. That action reset field and its state
-//  */
-
 /**
  * It will receive all the data use for the device
  * @function inputReducer
@@ -121,6 +110,7 @@ import classes from './Input.module.scss';
  */
 const inputReducer = (state, action) => {
 	switch (action.type) {
+		// runs on every change of input value and performs validation
 		case 'CHANGE':
 			return {
 				...state,
@@ -131,11 +121,13 @@ const inputReducer = (state, action) => {
 					action.validators
 				),
 			};
+		// runs when field was touched and set input 'wasTouched' property to true
 		case 'TOUCH':
 			return {
 				...state,
 				wasTouched: true,
 			};
+		// runs when value of 'reset' property has changed. That action reset field and its state
 		case 'RESET': {
 			return {
 				...state,
@@ -183,7 +175,7 @@ const Input = (props) => {
 	/**
 	 * @public
 	 * @param {object} event event object
-	 * @summary: Call for inputReducer with CHANGE action
+	 * @summary Call for inputReducer with CHANGE action
 	 * */
 	const changeHandler = (event) => {
 		dispatch({
@@ -252,7 +244,10 @@ Input.defaultProps = {
 	initialValid: false,
 	initialErrorMsg: 'Must be valid.',
 	validators: [],
-	onInput: (id, value, isValid) => {},
+	onInput: (id, value, isValid) => {
+		// eslint-disable-next-line no-console
+		console.log(id, value, isValid);
+	},
 };
 
 // * -- prop types

@@ -14,19 +14,8 @@ import { capitalizeString } from '../../../utils/utils';
 // ---- styles
 import classes from './Input.module.scss';
 
-// /**
-//  * Reducer
-//  * * ACTIONS:
-//  * 		@type: CHANGE
-//  * 			@description: runs on every change of input value and performs validation
-//  * 		@type: TOUCH
-//  * 			@description: runs when field was touched and set input 'wasTouched' property to true
-//  * 		@type: RESET
-//  * 			@description: runs when value of 'reset' property has changed. That action reset field and its state
-//  */
-
 /**
- * It will receive all the data use for the device
+ * Receive data associated with component that contains action type
  * @function inputReducer
  * @memberof Input
  * @param {object} state: contain initial and final state of data
@@ -34,6 +23,7 @@ import classes from './Input.module.scss';
  */
 const inputReducer = (state, action) => {
 	switch (action.type) {
+		// runs on every change of input value and performs validation
 		case 'CHANGE':
 			return {
 				...state,
@@ -44,11 +34,13 @@ const inputReducer = (state, action) => {
 					action.validators
 				),
 			};
+		// runs when field was touched and set input 'wasTouched' property to true
 		case 'TOUCH':
 			return {
 				...state,
 				wasTouched: true,
 			};
+		// runs when value of 'reset' property has changed. That action reset field and its state
 		case 'RESET': {
 			return {
 				...state,
@@ -155,18 +147,6 @@ const Input = (props) => {
 	);
 };
 
-// * -- default props
-Input.defaultProps = {
-	initialValue: '',
-	rows: 3,
-	placeholder: '',
-	label: '',
-	withLabel: false,
-	initialValid: false,
-	initialErrorMsg: 'Must be valid.',
-	validators: [],
-	onInput: (id, value, isValid) => {},
-};
 
 // * -- prop types
 Input.propTypes = {
@@ -203,6 +183,22 @@ Input.propTypes = {
 	),
 	/** Function that fires when input has changed*/
 	onInput: PropTypes.func,
+};
+
+// * -- default props
+Input.defaultProps = {
+	initialValue: '',
+	rows: 3,
+	placeholder: '',
+	label: '',
+	withLabel: false,
+	initialValid: false,
+	initialErrorMsg: 'Must be valid.',
+	validators: [],
+	onInput: (id, value, isValid) => {
+		// eslint-disable-next-line no-console
+		console.log(id, value, isValid);
+	},
 };
 
 export default Input;

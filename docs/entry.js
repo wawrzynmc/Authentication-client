@@ -24,3 +24,6 @@
 
   import Component0 from '../src/shared/components/FormElements/Input/Input.js';
 reactComponents['Input'] = Component0;
+
+import Component1 from '../src/shared/components/FormElements/Input/Passwords/Password/Password.js';
+reactComponents['Password'] = Component1;
