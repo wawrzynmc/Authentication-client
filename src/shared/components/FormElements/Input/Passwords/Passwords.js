@@ -1,3 +1,5 @@
+/** @namespace Passwords */
+
 // * -- libraries imports
 import React, { useReducer, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
@@ -18,17 +20,15 @@ import {
 import classes from './Passwords.module.scss';
 
 /**
- * Reducer
- * * ACTIONS:
- * 		@type: CHANGE
- * 			@description: runs on every change of input value and performs validation
- * 		@type: TOUCH
- * 			@description: runs when field was touched and set input 'wasTouched' property to true
- * 		@type: CHANGE_TYPE
- * 			@description: runs when type of input changed (password <-> text)
+ * Receive data associated with component i.a. action type
+ * @function inputReducer
+ * @memberof Passwords
+ * @param {object} state contain initial and final state of data
+ * @param {object} action return the action object
  */
 const inputReducer = (state, action) => {
 	switch (action.type) {
+		// runs on every change of input value and performs validation
 		case 'CHANGE':
 			const { isValid, metaData, errorMsg } = validate(
 				capitalizeString(action.id1),
@@ -65,6 +65,7 @@ const inputReducer = (state, action) => {
 					},
 				};
 			}
+		// runs when field was touched and set input 'wasTouched' property to true
 		case 'TOUCH':
 			return {
 				...state,
@@ -73,6 +74,7 @@ const inputReducer = (state, action) => {
 					wasTouched: true,
 				},
 			};
+		// runs when type of input changed (password <-> text)
 		case 'CHANGE_TYPE':
 			return {
 				...state,
@@ -84,6 +86,7 @@ const inputReducer = (state, action) => {
 							: 'password',
 				},
 			};
+		// runs when value of 'reset' property has changed. That action reset field and its state
 		case 'RESET':
 			const password1Data = action.password1;
 			const password2Data = action.password2;
@@ -109,48 +112,10 @@ const inputReducer = (state, action) => {
 };
 
 /**
- * Passwords Component
- * * PARAMS:
- * 		* all params that include 'password1' in its name, have its equivalent for 'password2'
- *  	@param password1Id
- * 			@type: string
- * 			@description: id of password1
- * 			@default = 'password1'
- * 		@param password1initialValue
- * 			@type: string
- * 			@description: initial value of password1
- * 			@default ''
- * 		@param password1Placeholder
- * 			@type: string
- * 			@description: placeholder for password1
- * 			@default: 'Password' (password1) / 'Password Confirmation' (password2)
- * 		@param password1Label
- * 			@type: string
- * 			@description: label for password1
- * 			@default: 'Password' (password1) / 'Password Confirmation' (password2)
- * 		@param password1Validate
- * 			@type: boolean
- * 			@description: defines if password1 should have its strength validate
- * 			@default: false
- *  	@param password1initialValid
- * 			@type: boolean
- * 			@description: defines if password1 is initially valid
- * 			@default: false
- * 		@param withLabels
- * 			@type: boolean
- * 			@description: defines, if passwords with have label above them
- * 			@default: false
- * 		@param initialErrorMsg
- * 			@type: string
- * 			@description: initial error msg for field
- * 			@default: 'Must be valid'
- * 		@param validators
- * 			@type: array of objects
- * 			@description: include validators for both password type inputs
- * 		@param onInput
- * 			@type: function
- * 			@description: runs every time when password: id, value, validity or reference to onInput changed
- *  TODO :
+ * Render Passwords component
+ * @category FormElements
+ * @component
+ * @memberof Passwords
  */
 const Passwords = (props) => {
 	// create references for inputs
@@ -344,28 +309,46 @@ const Passwords = (props) => {
 
 // * -- prop types
 Passwords.propTypes = {
+	/** password1 id */
 	password1Id: PropTypes.string,
+	/** password2 id */
 	password2Id: PropTypes.string,
+	/** password1 initial value */
 	password1initialValue: PropTypes.string,
+	/** password2 initial value */
 	password2initialValue: PropTypes.string,
+	/** password1 placeholder */
 	password1Placeholder: PropTypes.string,
+	/** password2 placeholder */
 	password2Placeholder: PropTypes.string,
+	/** label for password1 */
 	password1Label: PropTypes.string,
+	/** label for password2 */
 	password2Label: PropTypes.string,
+	/** defines if password1 should have its strength validate */
 	password1Validate: PropTypes.bool,
+	/** defines if password2 should have its strength validate */
 	password2Validate: PropTypes.bool,
+	/** defines if password1 is initially valid */
 	password1initialValid: PropTypes.bool,
+	/** defines if password1 is initially valid */
 	password2initialValid: PropTypes.bool,
+	/** defines, if passwords with have label above them */
 	withLabels: PropTypes.bool,
+	/** initial error msg for field */
 	initialErrorMsg: PropTypes.string,
+	/** If value has changed, then reset of input begins */
+	reset: PropTypes.bool,
+	/** Validators for passwords */
 	validators: PropTypes.arrayOf(
 		PropTypes.shape({
 			type: PropTypes.string.isRequired,
+			passwordToCompare: PropTypes.string,
 			val: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 			regex: PropTypes.string,
-			passwordToCompare: PropTypes.string,
 		})
 	),
+	/** Function that fires when input has changed */
 	onInput: PropTypes.func,
 };
 

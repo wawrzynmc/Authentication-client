@@ -30,3 +30,6 @@ reactComponents['Password'] = Component1;
 
 import Component2 from '../src/shared/components/FormElements/Input/Passwords/PasswordMeter/PasswordMeter.js';
 reactComponents['PasswordMeter'] = Component2;
+
+import Component3 from '../src/shared/components/FormElements/Input/Passwords/Passwords.js';
+reactComponents['Passwords'] = Component3;
