@@ -27,3 +27,6 @@ reactComponents['Input'] = Component0;
 
 import Component1 from '../src/shared/components/FormElements/Input/Passwords/Password/Password.js';
 reactComponents['Password'] = Component1;
+
+import Component2 from '../src/shared/components/FormElements/Input/Passwords/PasswordMeter/PasswordMeter.js';
+reactComponents['PasswordMeter'] = Component2;

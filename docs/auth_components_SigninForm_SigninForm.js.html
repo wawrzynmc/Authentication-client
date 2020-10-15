@@ -68,7 +68,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Namespaces</h3><ul><li><a href="Input.html">Input</a></li><li><a href="Password.html">Password</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ActivationForm">ActivationForm</a></li><li><a href="global.html#inputReducer">inputReducer</a></li><li><a href="global.html#PasswordMeter">PasswordMeter</a></li><li><a href="global.html#Passwords">Passwords</a></li><li><a href="global.html#SignupForm">SignupForm</a></li></ul></div><div class="category"><h2>Auth</h2><h3>Global</h3><ul><li><a href="global.html#SigninForm">SigninForm</a></li></ul></div><div class="category"><h2>FormElements</h2><h3>Components</h3><ul><li><a href="Input.Input.html">Input</a></li><li><a href="Password.Password.html">Password</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Namespaces</h3><ul><li><a href="Input.html">Input</a></li><li><a href="Password.html">Password</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ActivationForm">ActivationForm</a></li><li><a href="global.html#inputReducer">inputReducer</a></li><li><a href="global.html#Passwords">Passwords</a></li><li><a href="global.html#SignupForm">SignupForm</a></li></ul></div><div class="category"><h2>Auth</h2><h3>Global</h3><ul><li><a href="global.html#SigninForm">SigninForm</a></li></ul></div><div class="category"><h2>FormElements</h2><h3>Components</h3><ul><li><a href="Input.Input.html">Input</a></li><li><a href="Password.Password.html">Password</a></li><li><a href="PasswordMeter.html">PasswordMeter</a></li></ul></div>
                 
             </nav>
         </div>
@@ -86,7 +86,7 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>// * -- libraries imports
-import React, { useContext, useCallback } from 'react';
+import React, { useContext, useCallback, useState } from 'react';
 
 // * -- my own imports
 // ---- components
@@ -95,6 +95,7 @@ import Password from '../../../shared/components/FormElements/Input/Passwords/Pa
 import Button from '../../../shared/components/FormElements/Button/Button';
 import LoadingSpinner from '../../../shared/components/UIElements/LoadingSpinner/LoadingSpinner';
 import ErrorModal from '../../../shared/components/UIElements/Modal/ErrorModal/ErrorModal';
+import SendEmail from '../../../shared/components/UIElements/Modal/QuestionModal/SendEmail/SendEmail';
 import EmailSent from '../../../shared/components/UIElements/Modal/SuccessModal/EmailSent/EmailSent';
 
 // ---- functions
@@ -113,6 +114,7 @@ import classes from './SigninForm.module.scss';
  */
 const SigninForm = (props) => {
 	console.log('Render SignIn Form');
+	const [reset, setReset] = useState(false);
 	const auth = useContext(AuthContext);
 	const {
 		isLoading,
@@ -123,7 +125,7 @@ const SigninForm = (props) => {
 		clearRequestSent,
 		status,
 	} = useHttpClient();
-	const [formState, inputHandler, setFormData] = useForm(
+	const [formState, inputHandler, setFormData, clearFormData] = useForm(
 		{
 			email: {
 				value: '',
@@ -153,12 +155,46 @@ const SigninForm = (props) => {
 			auth.login(responseData.userId, responseData.token);
 		} catch (err) {}
 	};
+
+	const sendActivationEmailHandler = async (event) => {
+		clearRequestSent(); // close modal
+
+		const { email } = formState.inputs;
+		try {
+			await sendRequest(
+				`${process.env.REACT_APP_SERVER_API_URL}/account/send-activation-email`,
+				'POST',
+				JSON.stringify({
+					email: email.value,
+				}),
+				{ 'Content-Type': 'application/json' }
+			);
+			resetForm();
+		} catch (err) {}
+	};
+
+	const resetForm = () => {
+		clearFormData();
+		setReset((prevState) => !prevState);
+	};
+
 	return (
 		&lt;React.Fragment>
+			&lt;SendEmail
+				show={!!msg &amp;&amp; status === 401}
+				onClear={clearRequestSent}
+				onSend={sendActivationEmailHandler}
+				email={formState.inputs.email.value}
+			/>
+			&lt;EmailSent
+				show={requestSent}
+				msg={msg}
+				onClear={clearRequestSent}
+			/>
 			&lt;ErrorModal
 				error={msg}
 				onClear={clearMsg}
-				show={!requestSent &amp;&amp; !!msg}
+				show={!requestSent &amp;&amp; status !== 401 &amp;&amp; !!msg}
 			/>
 			&lt;form className={classes.Form} onSubmit={authSubmitHandler}>
 				&lt;Input
@@ -169,8 +205,9 @@ const SigninForm = (props) => {
 					validators={[VALIDATOR_EMAIL()]}
 					initialErrorMsg="Please enter a valid email address."
 					onInput={inputHandler}
+					reset={reset}
 				/>
-				&lt;Password id="password" onInput={inputHandler} />
+				&lt;Password id="password" onInput={inputHandler} reset={reset} />
 				&lt;Button type="submit" disabled={!formState.isValid}>
 					singin
 				&lt;/Button>

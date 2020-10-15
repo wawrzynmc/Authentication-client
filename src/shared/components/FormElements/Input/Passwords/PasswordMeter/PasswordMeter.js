@@ -7,11 +7,9 @@ import PropTypes from 'prop-types';
 import classes from './PasswordMeter.module.scss';
 
 /**
- * Input Component
- * * PARAMS:
- *  	@param passwordStrength
- * 			@type: string | number
- * 			@description: strength of password
+ * Render PasswordMeter component
+ * @category FormElements
+ * @component
  */
 const PasswordMeter = (props) => {
 	return (
@@ -47,6 +45,7 @@ const PasswordMeter = (props) => {
 
 // * -- prop types
 PasswordMeter.propTypes = {
+	/** Defines password strength*/
 	passwordStrength: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
