@@ -38,10 +38,21 @@ const NavigationItems = (props) => {
 				{!auth.isLoggedIn && (
 					<NavigationItem
 						link="/auth"
+						search="?action=signin"
 						exact
 						closeSideDrawer={props.closeSideDrawer}
 					>
-						Authenticate
+						SIGNIN
+					</NavigationItem>
+				)}
+				{!auth.isLoggedIn && (
+					<NavigationItem
+						link="/auth"
+						search="?action=signup"
+						exact
+						closeSideDrawer={props.closeSideDrawer}
+					>
+						SIGNUP
 					</NavigationItem>
 				)}
 

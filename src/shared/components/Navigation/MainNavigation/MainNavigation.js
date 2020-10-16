@@ -1,13 +1,23 @@
+// * -- libraries imports
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
+// * -- my own imports
+// ---- components
 import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
 import MainHeader from '../MainHeader/MainHeader';
 import Logo from '../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
 
+// ---- styles
 import classes from './MainNavigation.module.scss';
 
+/**
+ * Render MainNavigation component
+ * @category Navigation
+ * @component
+ */
 const MainNavigation = (props) => {
 	return (
 		<MainHeader>
@@ -23,5 +33,4 @@ const MainNavigation = (props) => {
 		</MainHeader>
 	);
 };
-
 export default MainNavigation;

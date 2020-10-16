@@ -69,7 +69,7 @@ const ActivationForm = (props) => {
 				);
 				history.push({
 					pathname: '/auth',
-					search: '?action=login',
+					search: '?action=signin',
 					state: {
 						activation: true,
 						user: { ...responseData.user },

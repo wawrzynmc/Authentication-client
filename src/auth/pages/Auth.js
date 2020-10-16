@@ -23,7 +23,7 @@ import classes from './Auth.module.scss';
 // * -- component
 const Auth = (props) => {
 	// -- variables
-	const [isLoginMode, setIsLoginMode] = useState(false);
+	const [isLoginMode, setIsLoginMode] = useState(null);
 	const auth = useContext(AuthContext);
 	const location = useLocation();
 	const searchParams = location.search;
@@ -36,10 +36,17 @@ const Auth = (props) => {
 		query.get('action') === 'signup'
 			? setIsLoginMode(false)
 			: setIsLoginMode(true);
-	}, [setIsLoginMode, searchParams]);
+	}, [searchParams]);
 
 	const switchModeHandler = () => {
-		setIsLoginMode((prevMode) => !prevMode);
+		const query = new URLSearchParams(searchParams);
+		history.push({
+			pathname: '/auth',
+			search:
+				query.get('action') === 'signup'
+					? '?action=signin'
+					: '?action=signup',
+		});
 	};
 
 	const confirmActivationHandler = () => {
