@@ -57,7 +57,7 @@ const ActivationForm = (props) => {
 
 		if (!activationFailed) {
 			try {
-				await sendRequest(
+				const responseData = await sendRequest(
 					`${process.env.REACT_APP_SERVER_API_URL}/account/activate`,
 					'POST',
 					JSON.stringify({
@@ -72,6 +72,7 @@ const ActivationForm = (props) => {
 					search: '?action=login',
 					state: {
 						activation: true,
+						user: { ...responseData.user },
 					},
 				});
 			} catch (err) {
@@ -128,7 +129,11 @@ const ActivationForm = (props) => {
 						onInput={inputHandler}
 					/>
 				)}
-				<Button type="submit" disabled={!formState.isValid}>
+				<Button
+					type="submit"
+					disabled={!formState.isValid}
+					style={{ padding: '1rem 2.5rem' }}
+				>
 					{activationFailed
 						? 'Send activation email'
 						: 'Activate your account'}

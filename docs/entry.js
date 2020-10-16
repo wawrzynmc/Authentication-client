@@ -22,14 +22,17 @@
 
     import './styles/iframe.css';
 
-  import Component0 from '../src/shared/components/FormElements/Input/Input.js';
-reactComponents['Input'] = Component0;
+  import Component0 from '../src/shared/components/FormElements/Button/Button.js';
+reactComponents['Button'] = Component0;
 
-import Component1 from '../src/shared/components/FormElements/Input/Passwords/Password/Password.js';
-reactComponents['Password'] = Component1;
+import Component1 from '../src/shared/components/FormElements/Input/Input.js';
+reactComponents['Input'] = Component1;
 
-import Component2 from '../src/shared/components/FormElements/Input/Passwords/PasswordMeter/PasswordMeter.js';
-reactComponents['PasswordMeter'] = Component2;
+import Component2 from '../src/shared/components/FormElements/Input/Passwords/Password/Password.js';
+reactComponents['Password'] = Component2;
 
-import Component3 from '../src/shared/components/FormElements/Input/Passwords/Passwords.js';
-reactComponents['Passwords'] = Component3;
+import Component3 from '../src/shared/components/FormElements/Input/Passwords/PasswordMeter/PasswordMeter.js';
+reactComponents['PasswordMeter'] = Component3;
+
+import Component4 from '../src/shared/components/FormElements/Input/Passwords/Passwords.js';
+reactComponents['Passwords'] = Component4;

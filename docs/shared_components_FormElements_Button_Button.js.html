@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> shared/components/FormElements/Input/Passwords/PasswordMeter/PasswordMeter.js</title>
+  <title> shared/components/FormElements/Button/Button.js</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -76,7 +76,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>shared/components/FormElements/Input/Passwords/PasswordMeter/PasswordMeter.js</h1>
+                    <h1>shared/components/FormElements/Button/Button.js</h1>
                 </header>
                 
 
@@ -87,56 +87,102 @@
         <article>
             <pre class="prettyprint source linenums"><code>// * -- libraries imports
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // * -- my own imports
 // ---- styles
-import classes from './PasswordMeter.module.scss';
+import classes from './Button.module.scss';
 
 /**
- * Render PasswordMeter component
+ * Render Button component
  * @category FormElements
  * @component
  */
-const PasswordMeter = (props) => {
-	return (
-		&lt;div className={classes.Meter}>
-			&lt;span
-				className={`
-                    ${classes.Meter__type}
-                    ${classes.Meter__type_first} 
-					${+props.passwordStrength >= 0 &amp;&amp; classes.weak}
-					${+props.passwordStrength >= 1 &amp;&amp; classes.medium}
-					${+props.passwordStrength === 2 &amp;&amp; classes.strong}
-                `}
-			>&lt;/span>
-			&lt;span
-				className={`
-                    ${classes.Meter__type} 
-                    ${classes.Meter__type_second} 
-					${+props.passwordStrength >= 1 &amp;&amp; classes.medium}
-					${+props.passwordStrength === 2 &amp;&amp; classes.strong}
-                `}
-			>&lt;/span>
-			&lt;span
-				className={`
-                    ${classes.Meter__type}
-                    ${classes.Meter__type_third} 
-                    ${+props.passwordStrength === 2 &amp;&amp; classes.strong}
+const Button = (props) => {
+	let attachedClasses = `${classes.Button} 
+		${props.inverse &amp;&amp; classes.Button_inverse} 
+		${props.danger &amp;&amp; classes.Button_danger}
+		${props.information &amp;&amp; classes.Button_information}
+		${props.ghost &amp;&amp; classes.Button_ghost}
+		${props.small &amp;&amp; classes.Button_small}
+		${props.big &amp;&amp; classes.Button_big}
+		${props.to &amp;&amp; classes.Button_href}
+	`;
 
-                `}
-			>&lt;/span>
-		&lt;/div>
+	if (props.href) {
+		return (
+			&lt;a
+				className={attachedClasses}
+				href={props.href}
+				style={props.style}
+			>
+				{props.children}
+			&lt;/a>
+		);
+	}
+	if (props.to) {
+		return (
+			&lt;Link to={props.to} className={attachedClasses} style={props.style}>
+				{props.children}
+			&lt;/Link>
+		);
+	}
+	return (
+		&lt;button
+			className={attachedClasses}
+			type={props.type}
+			onClick={props.onClick}
+			disabled={props.disabled}
+			style={props.style}
+		>
+			{props.children}
+		&lt;/button>
 	);
 };
 
 // * -- prop types
-PasswordMeter.propTypes = {
-	/** Defines password strength*/
-	passwordStrength: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+Button.propTypes = {
+	/** Defines inverse style of button  */
+	inverse: PropTypes.bool,
+	/** Defines danger style of button  */
+	danger: PropTypes.bool,
+	/** Defines information style of button  */
+	information: PropTypes.bool,
+	/** Defines ghost style of button  */
+	ghost: PropTypes.bool,
+	/** Defines small style of button  */
+	small: PropTypes.bool,
+	/** Defines big style of button  */
+	big: PropTypes.bool,
+	/** Defines if button is disabled */
+	disabled: PropTypes.bool,
+	/** Defines to property of button that is used as redirection parameter  */
+	to: PropTypes.string,
+	/** Defines href parameter  */
+	href: PropTypes.string,
+	/** Button value */
+	children: PropTypes.string,
+	/** Button type*/
+	type: PropTypes.string,
+	/** Inline styles for component */
+	style: PropTypes.object,
+	/** Function that runs whenever button was clicked */
+	onClick: PropTypes.func,
 };
 
-export default PasswordMeter;
+// * -- default props
+Button.defaultProps = {
+	inverse: false,
+	danger: false,
+	information: false,
+	ghost: false,
+	small: false,
+	big: false,
+	disabled: false,
+};
+
+export default Button;
 </code></pre>
         </article>
     </section>
