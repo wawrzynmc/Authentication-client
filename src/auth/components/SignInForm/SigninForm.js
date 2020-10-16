@@ -65,7 +65,11 @@ const SigninForm = (props) => {
 				}),
 				{ 'Content-Type': 'application/json' }
 			);
-			auth.login(responseData.userId, responseData.token);
+			const {
+				token,
+				user: { id, role },
+			} = responseData;
+			auth.login(id, role, token);
 		} catch (err) {}
 	};
 
@@ -109,6 +113,7 @@ const SigninForm = (props) => {
 				onClear={clearMsg}
 				show={!requestSent && status !== 401 && !!msg}
 			/>
+			{isLoading && <LoadingSpinner asOverlay />}
 			<form className={classes.Form} onSubmit={authSubmitHandler}>
 				<Input
 					id="email"

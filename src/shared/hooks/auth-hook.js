@@ -6,12 +6,14 @@ export const useAuth = () => {
 	const [token, setToken] = useState();
 	const [tokenExpirationDate, setTokenExpirationDate] = useState();
 	const [userId, setUserId] = useState();
+	const [userRole, setUserRole] = useState();
 	const [duringAutologin, setDuringAutologin] = useState(true);
 
-	const login = useCallback((uid, token, expirationDate) => {
+	const login = useCallback((userId, userRole, token, expirationDate) => {
 		console.log('login');
 		setToken(token);
-		setUserId(uid);
+		setUserId(userId);
+		setUserRole(userRole);
 
 		const tokenExpirationDate =
 			expirationDate || new Date(new Date().getTime() + 1000 * 60 * 60); // 1h
@@ -20,7 +22,7 @@ export const useAuth = () => {
 		localStorage.setItem(
 			'userData',
 			JSON.stringify({
-				userId: uid,
+				userId: userId,
 				token: token,
 				expiration: tokenExpirationDate.toISOString(),
 			})
@@ -66,5 +68,5 @@ export const useAuth = () => {
 		}
 	}, [token, logout, tokenExpirationDate]);
 
-	return { token, login, logout, duringAutologin, userId };
+	return { token, login, logout, userRole, duringAutologin, userId };
 };

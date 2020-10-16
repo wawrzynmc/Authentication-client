@@ -8,6 +8,9 @@ import classes from './NavigationItems.module.scss';
 
 const NavigationItems = (props) => {
 	const auth = useContext(AuthContext);
+	const loggedIn = auth.isLoggedIn;
+	const loggedInUser = loggedIn && auth.userRole === 'user';
+	const loggedInAdmin = loggedInUser && auth.userRole === 'admin';
 
 	let attachedClasses = [classes.NavigationItems];
 
@@ -26,7 +29,7 @@ const NavigationItems = (props) => {
 		<nav className={classes.Navigation}>
 			<ul className={attachedClasses.join(' ')}>
 				{/* NOT LOGGED IN */}
-				{!auth.isLoggedIn && (
+				{!loggedIn && (
 					<NavigationItem
 						link="/"
 						exact
@@ -35,7 +38,7 @@ const NavigationItems = (props) => {
 						Main
 					</NavigationItem>
 				)}
-				{!auth.isLoggedIn && (
+				{!loggedIn && (
 					<NavigationItem
 						link="/auth"
 						search="?action=signin"
@@ -45,7 +48,7 @@ const NavigationItems = (props) => {
 						SIGNIN
 					</NavigationItem>
 				)}
-				{!auth.isLoggedIn && (
+				{!loggedIn && (
 					<NavigationItem
 						link="/auth"
 						search="?action=signup"
@@ -57,7 +60,7 @@ const NavigationItems = (props) => {
 				)}
 
 				{/* LOGGED IN */}
-				{auth.isLoggedIn && (
+				{loggedIn && (
 					<NavigationItem
 						link="/"
 						exact
@@ -66,7 +69,7 @@ const NavigationItems = (props) => {
 						Main
 					</NavigationItem>
 				)}
-				{auth.isLoggedIn && (
+				{loggedInAdmin && (
 					<NavigationItem
 						link="/protected/admin"
 						exact
@@ -76,7 +79,7 @@ const NavigationItems = (props) => {
 					</NavigationItem>
 				)}
 
-				{auth.isLoggedIn && (
+				{loggedInUser && (
 					<NavigationItem
 						link="/protected/user"
 						exact
@@ -86,7 +89,7 @@ const NavigationItems = (props) => {
 					</NavigationItem>
 				)}
 
-				{auth.isLoggedIn && (
+				{loggedIn && (
 					<NavigationItem closeSideDrawer={logoutHandler}>
 						Logout
 					</NavigationItem>

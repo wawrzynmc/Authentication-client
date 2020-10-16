@@ -20,7 +20,14 @@ import { AuthContext } from './shared/context/auth-context';
 import { useAuth } from './shared/hooks/auth-hook';
 
 function App() {
-	const { token, login, logout, duringAutologin, userId } = useAuth();
+	const {
+		token,
+		login,
+		logout,
+		duringAutologin,
+		userId,
+		userRole,
+	} = useAuth();
 	let routes;
 	let mainPageAddress;
 
@@ -75,6 +82,7 @@ function App() {
 				isLoggedIn: !!token,
 				token: token,
 				userId: userId,
+				userRole: userRole,
 				login: login,
 				logout: logout,
 			}}

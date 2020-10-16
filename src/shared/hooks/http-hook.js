@@ -34,12 +34,18 @@ export const useHttpClient = () => {
 					error.status = responseData.status;
 					throw error;
 				}
+
 				setIsLoading(false);
 				setRequestSent(true);
 				setMsg(responseData.message);
 				setStatus(responseData.status);
 				return responseData;
 			} catch (err) {
+				// no connection with server
+				if (err.status === undefined) {
+					err.message =
+						'Server is currently not responding. Please try again later.';
+				}
 				setMsg(err.message);
 				setStatus(err.status);
 				setIsLoading(false);
