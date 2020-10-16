@@ -10,7 +10,8 @@ const NavigationItems = (props) => {
 	const auth = useContext(AuthContext);
 	const loggedIn = auth.isLoggedIn;
 	const loggedInUser = loggedIn && auth.userRole === 'user';
-	const loggedInAdmin = loggedInUser && auth.userRole === 'admin';
+	const loggedInAdmin = loggedIn && auth.userRole === 'admin';
+	console.log(auth.userRole);
 
 	let attachedClasses = [classes.NavigationItems];
 

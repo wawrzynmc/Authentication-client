@@ -48,22 +48,17 @@ export const Google = (props) => {
 	const sendGoogleToken = async (tokenId) => {
 		try {
 			const response = await axios.post(
-				`${process.env.REACT_APP_API_URL}/login/google`,
+				`${process.env.REACT_APP_API_URL}/account/signin/google`,
 				{
 					idToken: tokenId,
 				}
 			);
-			console.log('after');
-			// informParent(response);
-		} catch (err) {
-			console.log(err);
-			// toast.error('GOOGLE SIGN IN ERROR');
-		}
+			console.log(response);
+		} catch (err) {}
 	};
 
 	const responseGoogle = (response) => {
-		console.log(response);
-		// sendGoogleToken(response.tokenId);
+		sendGoogleToken(response.tokenId);
 	};
 
 	return (

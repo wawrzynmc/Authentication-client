@@ -23,6 +23,7 @@ export const useAuth = () => {
 			'userData',
 			JSON.stringify({
 				userId: userId,
+				userRole: userRole,
 				token: token,
 				expiration: tokenExpirationDate.toISOString(),
 			})
@@ -50,6 +51,7 @@ export const useAuth = () => {
 		) {
 			login(
 				storedData.userId,
+				storedData.userRole,
 				storedData.token,
 				new Date(storedData.expiration)
 			);
