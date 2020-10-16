@@ -30,9 +30,9 @@ const Logo = (props) => {
 
 // * -- prop types
 Logo.propTypes = {
-	/**Defines special style if logo will be placed in navigation */
+	/** Defines special style if logo will be placed in navigation */
 	navigation: PropTypes.bool,
-	/**Defines heigth of element */
+	/** Defines heigth of element */
 	height: PropTypes.string,
 };
 
