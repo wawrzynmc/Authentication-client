@@ -13,6 +13,7 @@ import Layout from './hoc/Layout/Layout';
 import Main from './main/pages/Main';
 import Auth from './auth/pages/Auth';
 import Activate from './activate/pages/Activate';
+import ForgotPassword from './forgotPassword/pages/ForgotPassword';
 import LoadingSpinner from './shared/components/UIElements/LoadingSpinner/LoadingSpinner';
 
 // ---- functions / hooks
@@ -66,7 +67,7 @@ function App() {
 					Password reset
 				</Route>
 				<Route path="/account/forgot-password" exact>
-					Forgot password
+					<ForgotPassword />
 				</Route>
 				{/* <Route path="*" component={() => 'PAGE NOT FOUND'} /> */}
 				<Redirect to="/auth" />

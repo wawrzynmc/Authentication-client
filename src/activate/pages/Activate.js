@@ -29,51 +29,11 @@ const Activate = (props) => {
 		}
 	}, [incomingToken]);
 	return (
-		<React.Fragment>
-			<Card>
-				<h1 className={classes.Header}>Welcome {tokenData.name}</h1>
-				<ActivationForm token={incomingToken} />
-			</Card>
-		</React.Fragment>
+		<Card>
+			<h1 className={classes.Header}>Welcome {tokenData.name}</h1>
+			<ActivationForm token={incomingToken} />
+		</Card>
 	);
 };
 
 export default Activate;
-
-/* 
-<React.Fragment>
-			<SuccessModal
-				msg={msg}
-				show={requestSent}
-				onCancel={clearRequestSent}
-			/>
-			<ErrorModal
-				error={msg}
-				onClear={clearMsg}
-				show={!requestSent && !!msg}
-			/>
-			{isLoading && <LoadingSpinner />}
-			<Card>
-				<h1 className={classes.Header}>Welcome {tokenData.name}!</h1>
-				<form
-					className={classes.Form}
-					onSubmit={activateAccountHandler}
-				>
-					<div>
-						<Button type="submit">Activate your account</Button>
-					</div>
-					<TextBetweenLines>or</TextBetweenLines>
-					<div>
-						<Button
-							inverse
-							// type="button"
-							to={{ pathname: '/auth', search: '?action=signup' }}
-						>
-							Signup
-						</Button>
-					</div>
-				</form>
-			</Card>
-		</React.Fragment>
-
-*/
