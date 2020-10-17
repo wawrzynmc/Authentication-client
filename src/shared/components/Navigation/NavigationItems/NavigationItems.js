@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import NavigationItem from './NavigationItem/NavigationItem';
 
@@ -8,10 +9,10 @@ import classes from './NavigationItems.module.scss';
 
 const NavigationItems = (props) => {
 	const auth = useContext(AuthContext);
+	let history = useHistory();
 	const loggedIn = auth.isLoggedIn;
 	const loggedInUser = loggedIn && auth.userRole === 'user';
 	const loggedInAdmin = loggedIn && auth.userRole === 'admin';
-	console.log(auth.userRole);
 
 	let attachedClasses = [classes.NavigationItems];
 
@@ -24,6 +25,10 @@ const NavigationItems = (props) => {
 	const logoutHandler = (event) => {
 		auth.logout();
 		props.closeSideDrawer();
+		history.push({
+			pathname: '/auth',
+			search: '?action=signin',
+		});
 	};
 
 	return (

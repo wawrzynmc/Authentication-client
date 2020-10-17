@@ -1,11 +1,19 @@
-import React from 'react';
+// * -- libraries imports
+import React, { useContext } from 'react';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import GoogleLogin from 'react-google-login';
 import axios from 'axios';
 
+// * -- my own imports
+// ---- functions / hooks
+import { AuthContext } from '../../../context/auth-context';
+
+// ---- styles
 import classes from './Socials.module.scss';
 
 export const Facebook = (props) => {
+	const auth = useContext(AuthContext);
+
 	const sendFacebookToken = (userID, accessToken) => {
 		axios
 			.post(`${process.env.REACT_APP_API_URL}/login/facebook`, {
@@ -45,15 +53,21 @@ export const Facebook = (props) => {
 };
 
 export const Google = (props) => {
+	const auth = useContext(AuthContext);
+
 	const sendGoogleToken = async (tokenId) => {
 		try {
 			const response = await axios.post(
-				`${process.env.REACT_APP_API_URL}/account/signin/google`,
+				`${process.env.REACT_APP_SERVER_API_URL}/account/signin/google`,
 				{
 					idToken: tokenId,
 				}
 			);
-			console.log(response);
+			const {
+				user: { id, role },
+				token,
+			} = response.data;
+			auth.login(id, role, token);
 		} catch (err) {}
 	};
 
