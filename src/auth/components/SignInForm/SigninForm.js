@@ -1,5 +1,6 @@
 // * -- libraries imports
 import React, { useContext, useCallback, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 // * -- my own imports
 // ---- components
@@ -126,6 +127,12 @@ const SigninForm = (props) => {
 					reset={reset}
 				/>
 				<Password id="password" onInput={inputHandler} reset={reset} />
+				<Link
+					className={classes.ForgotPasswordLink}
+					to={'/account/forgot-password'}
+				>
+					Forgot password?
+				</Link>
 				<Button type="submit" disabled={!formState.isValid}>
 					singin
 				</Button>
