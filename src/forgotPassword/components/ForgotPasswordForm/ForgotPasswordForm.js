@@ -37,8 +37,21 @@ const ForgotPasswordForm = (props) => {
 		false
 	);
 
-	const activationSubmitHandler = async (event) => {
+	const forgotPasswordSubmitHandler = async (event) => {
 		event.preventDefault();
+
+		try {
+			await sendRequest(
+				`${process.env.REACT_APP_SERVER_API_URL}/account/forgot-password`,
+				'PUT',
+				JSON.stringify({
+					email: formState.inputs.email.value,
+				}),
+				{
+					'Content-Type': 'application/json',
+				}
+			);
+		} catch (err) {}
 	};
 
 	return (
@@ -53,8 +66,11 @@ const ForgotPasswordForm = (props) => {
 				onClear={clearMsg}
 				show={!requestSent && !!msg}
 			/>
-			{/* {isLoading && <LoadingSpinner asOverlay />} */}
-			<form className={classes.Form} onSubmit={activationSubmitHandler}>
+			{isLoading && <LoadingSpinner asOverlay />}
+			<form
+				className={classes.Form}
+				onSubmit={forgotPasswordSubmitHandler}
+			>
 				<Input
 					id="email"
 					element="input"
@@ -65,6 +81,7 @@ const ForgotPasswordForm = (props) => {
 					onInput={inputHandler}
 					withLabel
 					label={'Email'}
+					reset={requestSent}
 				/>
 
 				<Button

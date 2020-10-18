@@ -1,5 +1,5 @@
 // * -- libraries imports
-import React, { useState } from 'react';
+import React from 'react';
 
 // * -- my own imports
 // ---- components
@@ -31,7 +31,6 @@ import classes from './SignupForm.module.scss';
  *      ! name of fileds in formState has to match with ids of inputs
  */
 const SignupForm = (props) => {
-	const [reset, setReset] = useState(false);
 	const {
 		isLoading,
 		msg,
@@ -79,7 +78,7 @@ const SignupForm = (props) => {
 				}),
 				{ 'Content-Type': 'application/json' }
 			);
-			resetForm();
+			clearFormData();
 		} catch (err) {}
 	};
 
@@ -96,13 +95,8 @@ const SignupForm = (props) => {
 				}),
 				{ 'Content-Type': 'application/json' }
 			);
-			resetForm();
+			clearFormData();
 		} catch (err) {}
-	};
-
-	const resetForm = () => {
-		clearFormData();
-		setReset((prevState) => !prevState);
 	};
 
 	return (
@@ -138,7 +132,7 @@ const SignupForm = (props) => {
 					initialErrorMsg="Please enter a name."
 					onInput={inputHandler}
 					initialValue={formState.inputs.name.value}
-					reset={reset}
+					reset={requestSent}
 				/>
 				<Input
 					id="email"
@@ -148,13 +142,13 @@ const SignupForm = (props) => {
 					validators={[VALIDATOR_EMAIL()]}
 					initialErrorMsg="Please enter a valid email address."
 					onInput={inputHandler}
-					reset={reset}
+					reset={requestSent}
 				/>
 				<Passwords
 					password1Validate
 					validators={[VALIDATOR_MINLENGTH(6)]}
 					onInput={inputHandler}
-					reset={reset}
+					reset={requestSent}
 				/>
 				<Button type="submit" disabled={!formState.isValid}>
 					signup

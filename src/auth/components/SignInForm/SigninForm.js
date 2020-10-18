@@ -1,5 +1,5 @@
 // * -- libraries imports
-import React, { useContext, useCallback, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 // * -- my own imports
@@ -28,7 +28,6 @@ import classes from './SigninForm.module.scss';
  */
 const SigninForm = (props) => {
 	console.log('Render SignIn Form');
-	const [reset, setReset] = useState(false);
 	const auth = useContext(AuthContext);
 	const {
 		isLoading,
@@ -39,7 +38,7 @@ const SigninForm = (props) => {
 		clearRequestSent,
 		status,
 	} = useHttpClient();
-	const [formState, inputHandler, setFormData, clearFormData] = useForm(
+	const [formState, inputHandler, clearFormData] = useForm(
 		{
 			email: {
 				value: '',
@@ -87,13 +86,8 @@ const SigninForm = (props) => {
 				}),
 				{ 'Content-Type': 'application/json' }
 			);
-			resetForm();
+			clearFormData();
 		} catch (err) {}
-	};
-
-	const resetForm = () => {
-		clearFormData();
-		setReset((prevState) => !prevState);
 	};
 
 	return (
@@ -124,9 +118,13 @@ const SigninForm = (props) => {
 					validators={[VALIDATOR_EMAIL()]}
 					initialErrorMsg="Please enter a valid email address."
 					onInput={inputHandler}
-					reset={reset}
+					reset={requestSent}
 				/>
-				<Password id="password" onInput={inputHandler} reset={reset} />
+				<Password
+					id="password"
+					onInput={inputHandler}
+					reset={requestSent}
+				/>
 				<Link
 					className={classes.ForgotPasswordLink}
 					to={'/account/forgot-password'}
