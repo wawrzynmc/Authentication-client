@@ -125,12 +125,11 @@ const SigninForm = (props) => {
 					onInput={inputHandler}
 					reset={requestSent}
 				/>
-				<Link
-					className={classes.ForgotPasswordLink}
-					to={'/account/forgot-password'}
-				>
-					Forgot password?
-				</Link>
+				<div className={classes.ForgotPasswordWrapper}>
+					<Link to={'/account/forgot-password'}>
+						Forgot password?
+					</Link>
+				</div>
 				<Button type="submit" disabled={!formState.isValid}>
 					singin
 				</Button>

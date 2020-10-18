@@ -14,6 +14,7 @@ import Main from './main/pages/Main';
 import Auth from './auth/pages/Auth';
 import Activate from './activate/pages/Activate';
 import ForgotPassword from './forgotPassword/pages/ForgotPassword';
+import ResetPassword from './resetPassword/pages/ResetPassword';
 import LoadingSpinner from './shared/components/UIElements/LoadingSpinner/LoadingSpinner';
 
 // ---- functions / hooks
@@ -64,7 +65,7 @@ function App() {
 					<Activate />
 				</Route>
 				<Route path="/account/reset-password/:token" exact>
-					Password reset
+					<ResetPassword />
 				</Route>
 				<Route path="/account/forgot-password" exact>
 					<ForgotPassword />

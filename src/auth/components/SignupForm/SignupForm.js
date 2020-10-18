@@ -78,7 +78,8 @@ const SignupForm = (props) => {
 				}),
 				{ 'Content-Type': 'application/json' }
 			);
-			clearFormData();
+			// !  ---- temp solution
+			resetForm();
 		} catch (err) {}
 	};
 
@@ -97,6 +98,11 @@ const SignupForm = (props) => {
 			);
 			clearFormData();
 		} catch (err) {}
+	};
+
+	// !  ---- temp solution
+	const resetForm = () => {
+		clearFormData();
 	};
 
 	return (

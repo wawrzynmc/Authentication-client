@@ -37,7 +37,7 @@ const ActivationForm = (props) => {
 		clearRequestSent,
 	} = useHttpClient();
 	const [formState, inputHandler, setFormData] = useForm({}, true);
-	let history = useHistory();
+	const history = useHistory();
 
 	const changeModeHandler = () => {
 		setFormData(
@@ -71,8 +71,8 @@ const ActivationForm = (props) => {
 					pathname: '/auth',
 					search: '?action=signin',
 					state: {
-						activation: true,
-						user: { ...responseData.user },
+						success: true,
+						message: 'Account has been sucessfully activated.',
 					},
 				});
 			} catch (err) {

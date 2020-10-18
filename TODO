@@ -20,5 +20,7 @@ Todo:
   Hooks:
     ☐ @low http-hook - useReducer to manage states 
 
-  
+  Card components:
+    ☐ @low create possibility to specify header and short description of card that will be exlcuded from main content
+    (could also include as default horizontal line as a separator)
 

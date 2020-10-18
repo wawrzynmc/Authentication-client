@@ -68,7 +68,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Namespaces</h3><ul><li><a href="Input.html">Input</a></li><li><a href="Password.html">Password</a></li><li><a href="Passwords.html">Passwords</a></li><li><a href="validators.html">validators</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ActivationForm">ActivationForm</a></li><li><a href="global.html#SignupForm">SignupForm</a></li></ul></div><div class="category"><h2>Auth</h2><h3>Global</h3><ul><li><a href="global.html#SigninForm">SigninForm</a></li></ul></div><div class="category"><h2>FormElements</h2><h3>Components</h3><ul><li><a href="Button.html">Button</a></li><li><a href="Input.Input.html">Input</a></li><li><a href="Password.Password.html">Password</a></li><li><a href="PasswordMeter.html">PasswordMeter</a></li><li><a href="Passwords.Passwords.html">Passwords</a></li></ul></div><div class="category"><h2>Navigation</h2><h3>Components</h3><ul><li><a href="Logo.html">Logo</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Namespaces</h3><ul><li><a href="Input.html">Input</a></li><li><a href="Password.html">Password</a></li><li><a href="Passwords.html">Passwords</a></li><li><a href="validators.html">validators</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ActivationForm">ActivationForm</a></li><li><a href="global.html#SignupForm">SignupForm</a></li></ul></div><div class="category"><h2>Auth</h2><h3>Global</h3><ul><li><a href="global.html#SigninForm">SigninForm</a></li></ul></div><div class="category"><h2>FormElements</h2><h3>Components</h3><ul><li><a href="Button.html">Button</a></li><li><a href="Input.Input.html">Input</a></li><li><a href="Password.Password.html">Password</a></li><li><a href="PasswordMeter.html">PasswordMeter</a></li><li><a href="Passwords.Passwords.html">Passwords</a></li></ul></div><div class="category"><h2>Navigation</h2><h3>Components</h3><ul><li><a href="Logo.html">Logo</a></li><li><a href="MainHeader.html">MainHeader</a></li><li><a href="MainNavigation.html">MainNavigation</a></li></ul></div>
                 
             </nav>
         </div>
@@ -86,7 +86,7 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>// * -- libraries imports
-import React, { useState } from 'react';
+import React from 'react';
 
 // * -- my own imports
 // ---- components
@@ -118,7 +118,6 @@ import classes from './SignupForm.module.scss';
  *      ! name of fileds in formState has to match with ids of inputs
  */
 const SignupForm = (props) => {
-	const [reset, setReset] = useState(false);
 	const {
 		isLoading,
 		msg,
@@ -166,6 +165,7 @@ const SignupForm = (props) => {
 				}),
 				{ 'Content-Type': 'application/json' }
 			);
+			// !  ---- temp solution
 			resetForm();
 		} catch (err) {}
 	};
@@ -183,13 +183,13 @@ const SignupForm = (props) => {
 				}),
 				{ 'Content-Type': 'application/json' }
 			);
-			resetForm();
+			clearFormData();
 		} catch (err) {}
 	};
 
+	// !  ---- temp solution
 	const resetForm = () => {
 		clearFormData();
-		setReset((prevState) => !prevState);
 	};
 
 	return (
@@ -225,7 +225,7 @@ const SignupForm = (props) => {
 					initialErrorMsg="Please enter a name."
 					onInput={inputHandler}
 					initialValue={formState.inputs.name.value}
-					reset={reset}
+					reset={requestSent}
 				/>
 				&lt;Input
 					id="email"
@@ -235,13 +235,13 @@ const SignupForm = (props) => {
 					validators={[VALIDATOR_EMAIL()]}
 					initialErrorMsg="Please enter a valid email address."
 					onInput={inputHandler}
-					reset={reset}
+					reset={requestSent}
 				/>
 				&lt;Passwords
 					password1Validate
 					validators={[VALIDATOR_MINLENGTH(6)]}
 					onInput={inputHandler}
-					reset={reset}
+					reset={requestSent}
 				/>
 				&lt;Button type="submit" disabled={!formState.isValid}>
 					signup

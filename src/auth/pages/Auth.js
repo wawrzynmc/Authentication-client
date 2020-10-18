@@ -49,20 +49,23 @@ const Auth = (props) => {
 		});
 	};
 
-	const confirmActivationHandler = () => {
+	const confirmSuccessHandler = () => {
 		const locationState = { ...location.state };
 
-		delete locationState.activation;
+		delete locationState.success;
+		delete locationState.message;
 		history.replace({ state: locationState });
 	};
 
 	return (
 		<React.Fragment>
 			<SuccessModal
-				show={location.state && location.state.activation}
-				onClear={confirmActivationHandler}
+				show={location.state && location.state.success}
+				onClear={confirmSuccessHandler}
 			>
-				Account has been successfully activated
+				{location.state
+					? location.state.message
+					: 'Operation succedded'}
 			</SuccessModal>
 			<div
 				className={`

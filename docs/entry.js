@@ -31,11 +31,17 @@ reactComponents['Input'] = Component1;
 import Component2 from '../src/shared/components/Navigation/Logo/Logo.js';
 reactComponents['Logo'] = Component2;
 
-import Component3 from '../src/shared/components/FormElements/Input/Passwords/Password/Password.js';
-reactComponents['Password'] = Component3;
+import Component3 from '../src/shared/components/Navigation/MainHeader/MainHeader.js';
+reactComponents['MainHeader'] = Component3;
 
-import Component4 from '../src/shared/components/FormElements/Input/Passwords/PasswordMeter/PasswordMeter.js';
-reactComponents['PasswordMeter'] = Component4;
+import Component4 from '../src/shared/components/Navigation/MainNavigation/MainNavigation.js';
+reactComponents['MainNavigation'] = Component4;
 
-import Component5 from '../src/shared/components/FormElements/Input/Passwords/Passwords.js';
-reactComponents['Passwords'] = Component5;
+import Component5 from '../src/shared/components/FormElements/Input/Passwords/Password/Password.js';
+reactComponents['Password'] = Component5;
+
+import Component6 from '../src/shared/components/FormElements/Input/Passwords/PasswordMeter/PasswordMeter.js';
+reactComponents['PasswordMeter'] = Component6;
+
+import Component7 from '../src/shared/components/FormElements/Input/Passwords/Passwords.js';
+reactComponents['Passwords'] = Component7;
