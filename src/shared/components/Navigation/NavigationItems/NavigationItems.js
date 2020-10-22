@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import NavigationItem from './NavigationItem/NavigationItem';
+import LanguageSelect from '../LanguageSelect/LanguageSelect';
 
 import { AuthContext } from '../../../context/auth-context';
 
@@ -100,6 +101,8 @@ const NavigationItems = (props) => {
 						Logout
 					</NavigationItem>
 				)}
+
+				<LanguageSelect />
 			</ul>
 		</nav>
 	);

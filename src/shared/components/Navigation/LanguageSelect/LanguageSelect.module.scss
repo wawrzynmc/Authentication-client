@@ -1,0 +1,17 @@
+.LanguageSelect {
+	// flex-grow: 0.5;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	overflow: hidden;
+
+	&__Button {
+		width: 30%;
+		background-color: transparent;
+		border: none;
+	}
+
+	&__Image {
+		width: 100%;
+	}
+}
