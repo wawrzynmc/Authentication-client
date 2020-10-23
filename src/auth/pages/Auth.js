@@ -129,12 +129,12 @@ const Auth = (props) => {
 								{t(
 									'Authentication.SignInForm.inactivePanel.info'
 								)}
-								<TextBetweenLines>
-									{t(
-										'Authentication.SignInForm.inactivePanel.or'
-									)}
-								</TextBetweenLines>
 							</span>
+							<TextBetweenLines>
+								{t(
+									'Authentication.SignInForm.inactivePanel.or'
+								)}
+							</TextBetweenLines>
 							<Button ghost onClick={switchModeHandler}>
 								{t(
 									'Authentication.SignInForm.inactivePanel.button'
@@ -157,12 +157,12 @@ const Auth = (props) => {
 								{t(
 									'Authentication.SignUpForm.inactivePanel.info'
 								)}
-								<TextBetweenLines>
-									{t(
-										'Authentication.SignUpForm.inactivePanel.or'
-									)}
-								</TextBetweenLines>
 							</span>
+							<TextBetweenLines>
+								{t(
+									'Authentication.SignUpForm.inactivePanel.or'
+								)}
+							</TextBetweenLines>
 							<Button ghost onClick={switchModeHandler}>
 								{t(
 									'Authentication.SignUpForm.inactivePanel.button'

@@ -131,16 +131,21 @@ const SigninForm = (props) => {
 				/>
 				<Password
 					id="password"
+					placeholder={t(
+						'Authentication.SignInForm.activePanel.password'
+					)}
 					onInput={inputHandler}
 					reset={requestSent}
 				/>
 				<div className={classes.ForgotPasswordWrapper}>
 					<Link to={'/account/forgot-password'}>
-						Forgot password?
+						{t(
+							'Authentication.SignInForm.activePanel.forgotPassword'
+						)}
 					</Link>
 				</div>
 				<Button type="submit" disabled={!formState.isValid}>
-					singin
+					{t('Authentication.SignInForm.activePanel.button')}
 				</Button>
 			</form>
 		</React.Fragment>

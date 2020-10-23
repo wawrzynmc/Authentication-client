@@ -1,4 +1,5 @@
 .TextBetweenLines {
+	width: 100%;
 	font-size: 1.2rem;
 	position: relative;
 	text-align: center;
@@ -7,22 +8,22 @@
 	&:before {
 		content: '';
 		display: block;
-		width: 100px;
+		width: calc(50% - 50px);
 		height: 1px;
 		background-color: rgb(246, 246, 246);
 		position: absolute;
-		left: 0%;
+		left: 5%;
 		top: 50%;
 	}
 
 	&:after {
 		content: '';
 		display: block;
-		width: 100px;
+		width: calc(50% - 50px);
 		height: 1px;
 		background-color: rgb(246, 246, 246);
 		position: absolute;
-		right: 0%;
+		right: 5%;
 		top: 50%;
 	}
 }
