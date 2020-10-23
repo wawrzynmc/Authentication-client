@@ -10,7 +10,10 @@
     "Navigation": {
         "main": "main",
         "signin": "signin",
-        "signup": "signup"
+        "signup": "signup",
+        "admin": "admin",
+        "user": "user",
+        "logout": "logout"
     },
     "Authentication": {
         "SignInForm": {
@@ -46,6 +49,24 @@
                 "or": "or",
                 "button": "singin"
             }
+        }
+    },
+    "Form": {
+        "name": {
+            "placeholder": "User name",
+            "initialErrorMsg": "Please enter a name."
+        } ,
+        "email": {
+            "placeholder": "E-mail address",
+            "initialErrorMsg": "Please enter a valid e-mail address."
+        },
+        "password": {
+            "placeholder": "Password",
+            "initialErrorMsg": "Please enter valid password."
+        },
+        "passwordConfirmation": {
+            "placeholder": "Confirmation password",
+            "initialErrorMsg": "Please enter valid password."
         }
     }
 }

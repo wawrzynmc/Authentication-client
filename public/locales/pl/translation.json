@@ -10,15 +10,16 @@
     "Navigation": {
         "main": "główna",
         "signin": "logowanie",
-        "signup": "rejestracja"
+        "signup": "rejestracja",
+        "admin": "admin",
+        "user": "użytkownik",
+        "logout": "wyloguj"
     },
     "Authentication": {
         "SignInForm": {
             "activePanel": {
                 "title": "Zaloguj się",
                 "or": "lub wypełnij formularz logowania",
-                "email": "Adres e-mail",
-                "password": "Hasło",
                 "forgotPassword": "Zapomniałeś hasła?",
                 "button": "zaloguj się"
             },
@@ -34,10 +35,6 @@
                 "title": "Utwórz konto",
                 "or": "lub wypełnij formularz logowania",
                 "name": "Nazwa użytkownika",
-                "email": "Adres e-mail",
-                "password1": "Hasło",
-                "password2": "Hasło potwierdzające",
-                "forgotPassword": "Zapomniałeś hasła?",
                 "button": "zarejestruj się"
             },
             "inactivePanel": {
@@ -46,6 +43,24 @@
                 "or": "lub",
                 "button": "zaloguj się"
             }
+        }
+    },
+    "Form": {
+        "name": {
+            "placeholder": "Nazwa użytkownika",
+            "initialErrorMsg": "Wprowadź nazwę użytkownika."
+        } ,
+        "email": {
+            "placeholder": "Adres e-mail",
+            "initialErrorMsg": "Wprowadź poprawny adres e-mail."
+        },
+        "password": {
+            "placeholder": "Hasło",
+            "initialErrorMsg": "Wprowadź poprawe hasło."
+        },
+        "passwordConfirmation": {
+            "placeholder": "Hasło potwierdzające",
+            "initialErrorMsg": "Wprowadź poprawe hasło."
         }
     }
 }

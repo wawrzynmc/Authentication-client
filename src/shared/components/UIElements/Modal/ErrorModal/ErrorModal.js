@@ -1,9 +1,12 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Modal from '../Modal';
 import Button from '../../../FormElements/Button/Button';
 
 const ErrorModal = (props) => {
+	console.log(props.error);
+	const { t } = useTranslation(['translation', 'errors']);
 	return (
 		<Modal
 			onCancel={props.onClear}
@@ -14,7 +17,7 @@ const ErrorModal = (props) => {
 			footer={<Button onClick={props.onClear}>Confirm</Button>}
 			backdropStyle={{ zIndex: 300 }}
 		>
-			<p>{props.error}</p>
+			<p>{`${t(`errors:SIGNUP.${props.error}`)}`}</p>
 		</Modal>
 	);
 };

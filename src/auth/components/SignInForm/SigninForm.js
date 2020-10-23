@@ -28,7 +28,7 @@ import classes from './SigninForm.module.scss';
  * @category Auth
  */
 const SigninForm = (props) => {
-	const { t } = useTranslation();
+	const { t } = useTranslation(['translation', 'error']);
 	const auth = useContext(AuthContext);
 	const {
 		isLoading,
@@ -121,21 +121,18 @@ const SigninForm = (props) => {
 					id="email"
 					element="input"
 					type="email"
-					placeholder={t(
-						'Authentication.SignInForm.activePanel.email'
-					)}
+					placeholder={t('Form.email.placeholder')}
 					validators={[VALIDATOR_EMAIL()]}
-					initialErrorMsg="Please enter a valid email address."
+					initialErrorMsg={t('Form.email.initialErrorMsg')}
 					onInput={inputHandler}
 					reset={requestSent}
 				/>
 				<Password
 					id="password"
-					placeholder={t(
-						'Authentication.SignInForm.activePanel.password'
-					)}
+					placeholder={t('Form.password.placeholder')}
 					onInput={inputHandler}
 					reset={requestSent}
+					initialErrorMsg={t('Form.password.initialErrorMsg')}
 				/>
 				<div className={classes.ForgotPasswordWrapper}>
 					<Link to={'/account/forgot-password'}>

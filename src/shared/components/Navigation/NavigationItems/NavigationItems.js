@@ -10,20 +10,12 @@ import { AuthContext } from '../../../context/auth-context';
 import classes from './NavigationItems.module.scss';
 
 const NavigationItems = (props) => {
+	const { t } = useTranslation(['translation', 'error']);
 	const auth = useContext(AuthContext);
-	let history = useHistory();
-	const { t } = useTranslation();
+	const history = useHistory();
 	const loggedIn = auth.isLoggedIn;
 	const loggedInUser = loggedIn && auth.userRole === 'user';
 	const loggedInAdmin = loggedIn && auth.userRole === 'admin';
-
-	let attachedClasses = [classes.Navigation__Items];
-
-	if (props.desktopView) {
-		attachedClasses.push(classes.Navigation_desktop);
-	} else {
-		attachedClasses.push(classes.Navigation_mobile);
-	}
 
 	const logoutHandler = (event) => {
 		auth.logout();
@@ -46,16 +38,15 @@ const NavigationItems = (props) => {
 					}
 				`}
 			>
+				<NavigationItem
+					link="/"
+					exact
+					closeSideDrawer={props.closeSideDrawer}
+				>
+					{t('Navigation.main')}
+				</NavigationItem>
+
 				{/* NOT LOGGED IN */}
-				{!loggedIn && (
-					<NavigationItem
-						link="/"
-						exact
-						closeSideDrawer={props.closeSideDrawer}
-					>
-						{t('Navigation.main')}
-					</NavigationItem>
-				)}
 				{!loggedIn && (
 					<NavigationItem
 						link="/auth"
@@ -78,22 +69,13 @@ const NavigationItems = (props) => {
 				)}
 
 				{/* LOGGED IN */}
-				{loggedIn && (
-					<NavigationItem
-						link="/"
-						exact
-						closeSideDrawer={props.closeSideDrawer}
-					>
-						Main
-					</NavigationItem>
-				)}
 				{loggedInAdmin && (
 					<NavigationItem
 						link="/protected/admin"
 						exact
 						closeSideDrawer={props.closeSideDrawer}
 					>
-						Protected Admin
+						{t('Navigation.signup')}
 					</NavigationItem>
 				)}
 
@@ -103,13 +85,13 @@ const NavigationItems = (props) => {
 						exact
 						closeSideDrawer={props.closeSideDrawer}
 					>
-						Protected User
+						{t('Navigation.user')}
 					</NavigationItem>
 				)}
 
 				{loggedIn && (
 					<NavigationItem closeSideDrawer={logoutHandler}>
-						Logout
+						{t('Navigation.logout')}
 					</NavigationItem>
 				)}
 				<Suspense fallback="loading">

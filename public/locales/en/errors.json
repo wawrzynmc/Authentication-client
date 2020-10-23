@@ -1,0 +1,5 @@
+{
+    "SIGNUP": {
+        "SIGNUP_USER_EXISTS": "User with provided email already exists."
+    }
+}

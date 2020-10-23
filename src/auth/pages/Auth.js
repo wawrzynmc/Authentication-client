@@ -24,7 +24,7 @@ import classes from './Auth.module.scss';
 // * -- component
 const Auth = (props) => {
 	// -- variables
-	const { t } = useTranslation();
+	const { t } = useTranslation(['translation', 'error']);
 	const [isLoginMode, setIsLoginMode] = useState(null);
 	const auth = useContext(AuthContext);
 	const location = useLocation();

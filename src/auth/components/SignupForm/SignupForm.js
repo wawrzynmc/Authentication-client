@@ -1,5 +1,6 @@
 // * -- libraries imports
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 // * -- my own imports
 // ---- components
@@ -31,6 +32,7 @@ import classes from './SignupForm.module.scss';
  *      ! name of fileds in formState has to match with ids of inputs
  */
 const SignupForm = (props) => {
+	const { t } = useTranslation(['translation', 'error']);
 	const {
 		isLoading,
 		msg,
@@ -40,7 +42,7 @@ const SignupForm = (props) => {
 		clearRequestSent,
 		status,
 	} = useHttpClient();
-	const [formState, inputHandler, setFormData, clearFormData] = useForm(
+	const [formState, inputHandler, clearFormData] = useForm(
 		{
 			name: {
 				value: '',
@@ -129,13 +131,13 @@ const SignupForm = (props) => {
 					id="name"
 					element="input"
 					type="text"
-					placeholder="Name"
+					placeholder={t('Form.name.placeholder')}
 					validators={[
 						VALIDATOR_MINLENGTH(4),
 						VALIDATOR_MAXLENGTH(32),
 						VALIDATOR_ONLY_LETTERS(),
 					]}
-					initialErrorMsg="Please enter a name."
+					initialErrorMsg={t('Form.name.initialErrorMsg')}
 					onInput={inputHandler}
 					initialValue={formState.inputs.name.value}
 					reset={requestSent}
@@ -144,9 +146,9 @@ const SignupForm = (props) => {
 					id="email"
 					element="input"
 					type="email"
-					placeholder="E-mail"
+					placeholder={t('Form.email.placeholder')}
 					validators={[VALIDATOR_EMAIL()]}
-					initialErrorMsg="Please enter a valid email address."
+					initialErrorMsg={t('Form.email.initialErrorMsg')}
 					onInput={inputHandler}
 					reset={requestSent}
 				/>
@@ -155,9 +157,14 @@ const SignupForm = (props) => {
 					validators={[VALIDATOR_MINLENGTH(6)]}
 					onInput={inputHandler}
 					reset={requestSent}
+					password1Placeholder={t('Form.password.placeholder')}
+					password2Placeholder={t(
+						'Form.passwordConfirmation.placeholder'
+					)}
+					initialErrorMsg={t('Form.password.initialErrorMsg')}
 				/>
 				<Button type="submit" disabled={!formState.isValid}>
-					signup
+					{t('Authentication.SignUpForm.activePanel.button')}
 				</Button>
 			</form>
 		</React.Fragment>

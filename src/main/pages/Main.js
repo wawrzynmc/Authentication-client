@@ -10,7 +10,7 @@ import Lock from '../../shared/components/UIElements/Lock/Lock';
 import classes from './Main.module.scss';
 
 const Main = (props) => {
-	const { t } = useTranslation();
+	const { t } = useTranslation(['translation', 'error']);
 	const auth = useContext(AuthContext);
 	const [lockIsClosed, setLockIsClosed] = useState(auth.isLoggedIn);
 
