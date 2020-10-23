@@ -15,12 +15,12 @@ const NavigationItems = (props) => {
 	const loggedInUser = loggedIn && auth.userRole === 'user';
 	const loggedInAdmin = loggedIn && auth.userRole === 'admin';
 
-	let attachedClasses = [classes.NavigationItems];
+	let attachedClasses = [classes.Navigation__Items];
 
 	if (props.desktopView) {
-		attachedClasses.push(classes.Desktop);
+		attachedClasses.push(classes.Navigation_desktop);
 	} else {
-		attachedClasses.push(classes.Mobile);
+		attachedClasses.push(classes.Navigation_mobile);
 	}
 
 	const logoutHandler = (event) => {
@@ -34,7 +34,16 @@ const NavigationItems = (props) => {
 
 	return (
 		<nav className={classes.Navigation}>
-			<ul className={attachedClasses.join(' ')}>
+			<ul
+				className={`
+					${classes.Navigation__Items} 
+					${
+						props.desktopView
+							? classes.Navigation__Items_desktop
+							: classes.Navigation__Items_mobile
+					}
+				`}
+			>
 				{/* NOT LOGGED IN */}
 				{!loggedIn && (
 					<NavigationItem

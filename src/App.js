@@ -19,6 +19,7 @@ import LoadingSpinner from './shared/components/UIElements/LoadingSpinner/Loadin
 
 // ---- functions / hooks
 import { AuthContext } from './shared/context/auth-context';
+import LanguageContextProvider from './shared/context/language-context';
 import { useAuth } from './shared/hooks/auth-hook';
 
 function App() {
@@ -79,27 +80,29 @@ function App() {
 	// <Route path="*" component={() => 'PAGE NOT FOUND'} />
 
 	return (
-		<AuthContext.Provider
-			value={{
-				isLoggedIn: !!token,
-				token: token,
-				userId: userId,
-				userRole: userRole,
-				login: login,
-				logout: logout,
-			}}
-		>
-			<Router>
-				{duringAutologin && <LoadingSpinner asOverlay />}
-				{!duringAutologin && (
-					<Layout mainPageAddress={mainPageAddress}>
-						<Suspense fallback={<p>Loading...</p>}>
-							{routes}
-						</Suspense>
-					</Layout>
-				)}
-			</Router>
-		</AuthContext.Provider>
+		<LanguageContextProvider>
+			<AuthContext.Provider
+				value={{
+					isLoggedIn: !!token,
+					token: token,
+					userId: userId,
+					userRole: userRole,
+					login: login,
+					logout: logout,
+				}}
+			>
+				<Router>
+					{duringAutologin && <LoadingSpinner asOverlay />}
+					{!duringAutologin && (
+						<Layout mainPageAddress={mainPageAddress}>
+							<Suspense fallback={<p>Loading...</p>}>
+								{routes}
+							</Suspense>
+						</Layout>
+					)}
+				</Router>
+			</AuthContext.Provider>
+		</LanguageContextProvider>
 	);
 }
 
