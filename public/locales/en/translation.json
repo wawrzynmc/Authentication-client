@@ -1,0 +1,12 @@
+{
+    "Main": {
+        "Card": {
+            "TypeWriter": "> Hi! 👋<br>> Nice to see you here! 🙃 <br><br><br>> Click on the below 🔒 to create an account."
+        }
+    },
+    "Navigation": {
+        "main": "main",
+        "signin": "signin",
+        "signup": "signup"
+    }
+}

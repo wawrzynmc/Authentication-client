@@ -1,29 +1,15 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export const LanguageContext = createContext({
 	language: null,
-	changeLanguage: () => {},
 });
 
 const LanguageContextProvider = (props) => {
-	const [language, setLanguage] = useState('en');
-	const { t, i18n } = useTranslation();
-
-	const changeLanguageHandler = () => {
-		setLanguage((prevState) => {
-			return prevState === 'en' ? 'pl' : 'en';
-		});
-		i18n.changeLanguage(language);
-	};
+	const { i18n } = useTranslation();
 
 	return (
-		<LanguageContext.Provider
-			value={{
-				changeLanguage: changeLanguageHandler,
-				language: language,
-			}}
-		>
+		<LanguageContext.Provider value={{ language: i18n.language }}>
 			{props.children}
 		</LanguageContext.Provider>
 	);

@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
-
-import { LanguageContext } from '../../../context/language-context';
+import { useTranslation } from 'react-i18next';
 
 import ukFlag from '../../../../assets/images/uk.png';
 import polandFlag from '../../../../assets/images/poland.png';
@@ -8,10 +7,11 @@ import polandFlag from '../../../../assets/images/poland.png';
 import classes from './LanguageSelect.module.scss';
 
 const LanguageSelect = (props) => {
-	const lng = useContext(LanguageContext);
+	const { t, i18n } = useTranslation();
 
 	const changeLanguageHandler = () => {
-		lng.changeLanguage();
+		const newLng = i18n.language === 'en' ? 'pl' : 'en';
+		i18n.changeLanguage(newLng);
 	};
 
 	return (
@@ -21,7 +21,7 @@ const LanguageSelect = (props) => {
 				className={classes.LanguageSelect__Button}
 			>
 				<img
-					src={lng.language === 'en' ? ukFlag : polandFlag}
+					src={i18n.language === 'en' ? polandFlag : ukFlag}
 					alt="uk flag"
 					className={classes.LanguageSelect__Image}
 				/>

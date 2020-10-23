@@ -1,5 +1,6 @@
 import React, { useContext, Suspense } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import NavigationItem from './NavigationItem/NavigationItem';
 import LanguageSelect from '../LanguageSelect/LanguageSelect';
@@ -11,6 +12,7 @@ import classes from './NavigationItems.module.scss';
 const NavigationItems = (props) => {
 	const auth = useContext(AuthContext);
 	let history = useHistory();
+	const { t } = useTranslation();
 	const loggedIn = auth.isLoggedIn;
 	const loggedInUser = loggedIn && auth.userRole === 'user';
 	const loggedInAdmin = loggedIn && auth.userRole === 'admin';
@@ -51,7 +53,7 @@ const NavigationItems = (props) => {
 						exact
 						closeSideDrawer={props.closeSideDrawer}
 					>
-						Main
+						{t('Navigation.main')}
 					</NavigationItem>
 				)}
 				{!loggedIn && (
@@ -61,7 +63,7 @@ const NavigationItems = (props) => {
 						exact
 						closeSideDrawer={props.closeSideDrawer}
 					>
-						SIGNIN
+						{t('Navigation.signin')}
 					</NavigationItem>
 				)}
 				{!loggedIn && (
@@ -71,7 +73,7 @@ const NavigationItems = (props) => {
 						exact
 						closeSideDrawer={props.closeSideDrawer}
 					>
-						SIGNUP
+						{t('Navigation.signup')}
 					</NavigationItem>
 				)}
 

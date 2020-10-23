@@ -1,0 +1,12 @@
+{
+    "Main": {
+        "Card": {
+            "TypeWriter": "> Cześć! 👋<br>> Fajnie Cię tu widzieć! 🙃<br><br><br>> Naciśnij na poniższą 🔒 by założyć konto."
+        }
+    },
+    "Navigation": {
+        "main": "główna",
+        "signin": "logowanie",
+        "signup": "rejestracja"
+    }
+}
