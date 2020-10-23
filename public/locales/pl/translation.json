@@ -1,7 +1,10 @@
 {
     "Main": {
         "Card": {
-            "TypeWriter": "> Cześć! 👋<br>> Fajnie Cię tu widzieć! 🙃<br><br><br>> Naciśnij na poniższą 🔒 by założyć konto."
+            "TypeWriter": {
+                "loggedIn": "> Wspaniale!👉👈<br>> Jesteś zautoryzowanym użytkownikiem 💪 <br><br><br>> Kliknij na poniższą 🔒 by się wylogować.",
+                "!loggedIn": "> Cześć!👋<br>> Fajnie Cię tu widzieć 🙃<br><br><br>> Kliknij na poniższą 🔒 by założyć konto."
+            } 
         }
     },
     "Navigation": {

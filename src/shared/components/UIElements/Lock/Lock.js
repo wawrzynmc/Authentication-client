@@ -34,20 +34,6 @@ const Lock = (props) => {
             c-1.1,1.5-1.3,3-1.3,4.8c0.1,3,0.1,6.1,0,9.1c-0.1,2.8-1.6,4.4-4,4.5c-2.5,0.1-4.3-1.6-4.5-4.4c-0.1-1.9,0-3.9,0-5.8c0,0,0,0,0,0
             c0-1.4,0.1-2.8,0-4.2c-0.2-1.3-0.5-2.7-1.2-3.8c-1.5-2.7-1.1-6.3,1.1-8.3c2.4-2.2,6-2.3,8.6-0.2C57.3,55.5,58,59.2,56.2,61.9z"
 				/>
-				<path
-					className={classes.Lock__Spinner}
-					d="M73.3,65.7c0,12.2-9.9,22.1-22.1,22.1"
-				>
-					<animateTransform
-						attributeType="xml"
-						attributeName="transform"
-						type="rotate"
-						from="0 50.9 65.4"
-						to="360 50.9 65.4"
-						dur="0.8s"
-						repeatCount="indefinite"
-					/>
-				</path>
 			</svg>
 		</div>
 	);

@@ -1,5 +1,5 @@
 // * -- libraries imports
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 // * -- my own imports
@@ -27,7 +27,6 @@ import classes from './SigninForm.module.scss';
  * @category Auth
  */
 const SigninForm = (props) => {
-	console.log('Render SignIn Form');
 	const auth = useContext(AuthContext);
 	const {
 		isLoading,
@@ -50,6 +49,16 @@ const SigninForm = (props) => {
 			},
 		},
 		false
+	);
+
+	const showSendEmailModal = useMemo(() => !!msg && status === 401, [
+		msg,
+		status,
+	]);
+
+	const showErrorModal = useMemo(
+		() => !requestSent && status !== 401 && !!msg,
+		[msg, status, requestSent]
 	);
 
 	const authSubmitHandler = async (event) => {
@@ -93,21 +102,17 @@ const SigninForm = (props) => {
 	return (
 		<React.Fragment>
 			<SendEmail
-				show={!!msg && status === 401}
+				show={showSendEmailModal}
 				onClear={clearRequestSent}
 				onSend={sendActivationEmailHandler}
-				email={formState.inputs.email.value}
+				email={showSendEmailModal && formState.inputs.email.value}
 			/>
 			<EmailSent
 				show={requestSent}
 				msg={msg}
 				onClear={clearRequestSent}
 			/>
-			<ErrorModal
-				error={msg}
-				onClear={clearMsg}
-				show={!requestSent && status !== 401 && !!msg}
-			/>
+			<ErrorModal error={msg} onClear={clearMsg} show={showErrorModal} />
 			{isLoading && <LoadingSpinner asOverlay />}
 			<form className={classes.Form} onSubmit={authSubmitHandler}>
 				<Input

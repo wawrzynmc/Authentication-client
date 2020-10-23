@@ -12,22 +12,33 @@ import classes from './Main.module.scss';
 
 const Main = (props) => {
 	const { t, i18n } = useTranslation();
-	const [lockIsClosed, setLockIsClose] = useState(false);
 	const auth = useContext(AuthContext);
+	const [lockIsClosed, setLockIsClosed] = useState(auth.isLoggedIn);
 	const lng = useContext(LanguageContext);
 
 	const history = useHistory();
 
-	const toggleLockStateHandler = () => {
-		setLockIsClose((prevState) => {
+	const lockClickedHandler = () => {
+		const { isLoggedIn } = auth;
+		let pathname, search;
+
+		if (isLoggedIn) {
+			pathname = '/';
+			search = null;
+			auth.logout();
+		} else {
+			pathname = '/auth';
+			search = '?action=signup';
+		}
+
+		setLockIsClosed((prevState) => {
 			return !prevState;
 		});
-		setTimeout(() => {
-			history.push({ pathname: '/auth', search: '?action=signup' });
-		}, 500);
-	};
 
-	console.log(lng.language);
+		setTimeout(() => {
+			history.push({ pathname: pathname, search: search });
+		}, 500000);
+	};
 
 	return (
 		<React.Fragment>
@@ -35,18 +46,22 @@ const Main = (props) => {
 				<div className={classes.Typing}>
 					<Typewriter
 						options={{
-							strings: [t('Main.Card.TypeWriter')],
+							strings: [
+								auth.isLoggedIn
+									? t('Main.Card.TypeWriter.loggedIn')
+									: t('Main.Card.TypeWriter.!loggedIn'),
+							],
 							autoStart: true,
 							cursor: '_',
 							delay: '70',
-							deleteSpeed: 3600000, // temp solution
+							deleteSpeed: 3600000, // workaround
 						}}
 					/>
 				</div>
 				<div>
 					<Lock
 						logo
-						lockClick={toggleLockStateHandler}
+						lockClick={lockClickedHandler}
 						closed={lockIsClosed}
 					/>
 				</div>
