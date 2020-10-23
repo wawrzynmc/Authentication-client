@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, Suspense } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import NavigationItem from './NavigationItem/NavigationItem';
@@ -110,8 +110,9 @@ const NavigationItems = (props) => {
 						Logout
 					</NavigationItem>
 				)}
-
-				<LanguageSelect />
+				<Suspense fallback="loading">
+					<LanguageSelect />
+				</Suspense>
 			</ul>
 		</nav>
 	);

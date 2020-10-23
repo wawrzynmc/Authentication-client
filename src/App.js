@@ -80,29 +80,31 @@ function App() {
 	// <Route path="*" component={() => 'PAGE NOT FOUND'} />
 
 	return (
-		<LanguageContextProvider>
-			<AuthContext.Provider
-				value={{
-					isLoggedIn: !!token,
-					token: token,
-					userId: userId,
-					userRole: userRole,
-					login: login,
-					logout: logout,
-				}}
-			>
-				<Router>
-					{duringAutologin && <LoadingSpinner asOverlay />}
-					{!duringAutologin && (
-						<Layout mainPageAddress={mainPageAddress}>
-							<Suspense fallback={<p>Loading...</p>}>
-								{routes}
-							</Suspense>
-						</Layout>
-					)}
-				</Router>
-			</AuthContext.Provider>
-		</LanguageContextProvider>
+		<Suspense fallback={<p>Loading...</p>}>
+			<LanguageContextProvider>
+				<AuthContext.Provider
+					value={{
+						isLoggedIn: !!token,
+						token: token,
+						userId: userId,
+						userRole: userRole,
+						login: login,
+						logout: logout,
+					}}
+				>
+					<Router>
+						{duringAutologin && <LoadingSpinner asOverlay />}
+						{!duringAutologin && (
+							<Layout mainPageAddress={mainPageAddress}>
+								<Suspense fallback={<p>Loading...</p>}>
+									{routes}
+								</Suspense>
+							</Layout>
+						)}
+					</Router>
+				</AuthContext.Provider>
+			</LanguageContextProvider>
+		</Suspense>
 	);
 }
 
