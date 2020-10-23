@@ -1,6 +1,7 @@
 // * -- libraries imports
 import React, { useContext, useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 // * -- my own imports
 // ---- components
@@ -27,6 +28,7 @@ import classes from './SigninForm.module.scss';
  * @category Auth
  */
 const SigninForm = (props) => {
+	const { t } = useTranslation();
 	const auth = useContext(AuthContext);
 	const {
 		isLoading,
@@ -119,7 +121,9 @@ const SigninForm = (props) => {
 					id="email"
 					element="input"
 					type="email"
-					placeholder="E-mail"
+					placeholder={t(
+						'Authentication.SignInForm.activePanel.email'
+					)}
 					validators={[VALIDATOR_EMAIL()]}
 					initialErrorMsg="Please enter a valid email address."
 					onInput={inputHandler}

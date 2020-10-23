@@ -4,17 +4,15 @@ import Typewriter from 'typewriter-effect';
 import { useTranslation } from 'react-i18next';
 
 import { AuthContext } from '../../shared/context/auth-context';
-import { LanguageContext } from '../../shared/context/language-context';
 import Card from '../../shared/components/UIElements/Card/Card';
 import Lock from '../../shared/components/UIElements/Lock/Lock';
 
 import classes from './Main.module.scss';
 
 const Main = (props) => {
-	const { t, i18n } = useTranslation();
+	const { t } = useTranslation();
 	const auth = useContext(AuthContext);
 	const [lockIsClosed, setLockIsClosed] = useState(auth.isLoggedIn);
-	const lng = useContext(LanguageContext);
 
 	const history = useHistory();
 
@@ -37,7 +35,7 @@ const Main = (props) => {
 
 		setTimeout(() => {
 			history.push({ pathname: pathname, search: search });
-		}, 500000);
+		}, 500);
 	};
 
 	return (
@@ -53,7 +51,7 @@ const Main = (props) => {
 							],
 							autoStart: true,
 							cursor: '_',
-							delay: '70',
+							delay: '40',
 							deleteSpeed: 3600000, // workaround
 						}}
 					/>

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import MainNavigation from '../../shared/components/Navigation/MainNavigation/MainNavigation';
 import SideDrawer from '../../shared/components/Navigation/SideDrawer/SideDrawer';
 
-import classes from './Layout.module.css';
+import classes from './Layout.module.scss';
 
 const Layout = (props) => {
 	const [sideDrawerIsVisible, setSideDrawerIsVisible] = useState(false);

@@ -1,6 +1,7 @@
 // * -- libraries imports
 import React, { useContext, useState, useEffect } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 // * -- my own imports
 // ---- components
@@ -23,6 +24,7 @@ import classes from './Auth.module.scss';
 // * -- component
 const Auth = (props) => {
 	// -- variables
+	const { t } = useTranslation();
 	const [isLoginMode, setIsLoginMode] = useState(null);
 	const auth = useContext(AuthContext);
 	const location = useLocation();
@@ -80,14 +82,14 @@ const Auth = (props) => {
 				`}
 				>
 					<h1 className={classes.FormContainer__Title}>
-						Create Account
+						{t('Authentication.SignUpForm.activePanel.title')}
 					</h1>
 					<div className={classes.FormContainer__Socials}>
 						<FacebookLogin />
 						<GoogleLogin />
 					</div>
 					<span className={classes.FormContainer__paragraph}>
-						or fill the form
+						{t('Authentication.SignUpForm.activePanel.or')}
 					</span>
 					<SignupForm />
 				</div>
@@ -97,13 +99,15 @@ const Auth = (props) => {
 					${classes.FormContainer_signin}
 				`}
 				>
-					<h1 className={classes.FormContainer__Title}>Sign in</h1>
+					<h1 className={classes.FormContainer__Title}>
+						{t('Authentication.SignInForm.activePanel.title')}
+					</h1>
 					<div className={classes.FormContainer__Socials}>
 						<FacebookLogin />
 						<GoogleLogin />
 					</div>
 					<span className={classes.FormContainer__paragraph}>
-						or fill the form
+						{t('Authentication.SignInForm.activePanel.or')}
 					</span>
 					<SigninForm />
 				</div>
@@ -113,42 +117,56 @@ const Auth = (props) => {
 							className={`${classes.OverlayContainer__Panel} ${classes.OverlayContainer__Panel_first}`}
 						>
 							<h1 className={classes.OverlayContainer__Title}>
-								Welcome Back
+								{t(
+									'Authentication.SignInForm.inactivePanel.title'
+								)}
 							</h1>
 							<span
 								className={
 									classes.OverlayContainer__Information
 								}
 							>
-								<p>
-									Enter your personal details, <br />
-									log in and have fun!
-								</p>
-								<TextBetweenLines>or</TextBetweenLines>
+								{t(
+									'Authentication.SignInForm.inactivePanel.info'
+								)}
+								<TextBetweenLines>
+									{t(
+										'Authentication.SignInForm.inactivePanel.or'
+									)}
+								</TextBetweenLines>
 							</span>
 							<Button ghost onClick={switchModeHandler}>
-								SIGNUP
+								{t(
+									'Authentication.SignInForm.inactivePanel.button'
+								)}
 							</Button>
 						</div>
 						<div
 							className={`${classes.OverlayContainer__Panel} ${classes.OverlayContainer__Panel_second}`}
 						>
 							<h1 className={classes.OverlayContainer__Title}>
-								First Time Here?
+								{t(
+									'Authentication.SignUpForm.inactivePanel.title'
+								)}
 							</h1>
 							<span
 								className={
 									classes.OverlayContainer__Information
 								}
 							>
-								<p>
-									Enter your personal details, <br />
-									create an account and start the journey!
-								</p>
-								<TextBetweenLines>or</TextBetweenLines>
+								{t(
+									'Authentication.SignUpForm.inactivePanel.info'
+								)}
+								<TextBetweenLines>
+									{t(
+										'Authentication.SignUpForm.inactivePanel.or'
+									)}
+								</TextBetweenLines>
 							</span>
 							<Button ghost onClick={switchModeHandler}>
-								SIGNIN
+								{t(
+									'Authentication.SignUpForm.inactivePanel.button'
+								)}
 							</Button>
 						</div>
 					</div>

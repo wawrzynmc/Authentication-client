@@ -11,5 +11,41 @@
         "main": "main",
         "signin": "signin",
         "signup": "signup"
+    },
+    "Authentication": {
+        "SignInForm": {
+            "activePanel": {
+                "title": "Sign in",
+                "or": "or fill the form",
+                "email": "E-mail address",
+                "password": "Password",
+                "forgotPassword": "Forgot password?",
+                "button": "singin"
+            },
+            "inactivePanel": {
+                "title": "Welcome back",
+                "info": "Enter your personal datails, log in and have fun",
+                "or": "or",
+                "button": "singup"
+            }
+        }, 
+        "SignUpForm": {
+            "activePanel": {
+                "title": "Create an account",
+                "or": "or fill the form",
+                "name": "User name",
+                "email": "E-mail address",
+                "password1": "Password",
+                "password2": "Password confirmation",
+                "forgotPassword": "Forgot password?",
+                "button": "singup"
+            },
+            "inactivePanel": {
+                "title": "First time here?",
+                "info": "Enter your personal datails, create an account in and start the journey!",
+                "or": "or",
+                "button": "singin"
+            }
+        }
     }
 }

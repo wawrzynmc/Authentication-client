@@ -11,5 +11,41 @@
         "main": "główna",
         "signin": "logowanie",
         "signup": "rejestracja"
+    },
+    "Authentication": {
+        "SignInForm": {
+            "activePanel": {
+                "title": "Zaloguj się",
+                "or": "lub wypełnij formularz logowania",
+                "email": "Adres e-mail",
+                "password": "Hasło",
+                "forgotPassword": "Zapomniałeś hasła?",
+                "button": "zaloguj się"
+            },
+            "inactivePanel": {
+                "title": "Witaj ponownie",
+                "info": "Wprowadź odpowiednie dane, zaloguj się i ciesz się chwilą",
+                "or": "lub",
+                "button": "zarejestruj się"
+            }
+        }, 
+        "SignUpForm": {
+            "activePanel": {
+                "title": "Utwórz konto",
+                "or": "lub wypełnij formularz logowania",
+                "name": "Nazwa użytkownika",
+                "email": "Adres e-mail",
+                "password1": "Hasło",
+                "password2": "Hasło potwierdzające",
+                "forgotPassword": "Zapomniałeś hasła?",
+                "button": "zarejestruj się"
+            },
+            "inactivePanel": {
+                "title": "Pierwszy raz tutaj?",
+                "info": "Wprowadź swoje dane, stwórz konto i rozpocznij przygodę!",
+                "or": "lub",
+                "button": "zaloguj się"
+            }
+        }
     }
 }

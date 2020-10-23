@@ -1,3 +1,5 @@
+@import '../../assets/styles/variables.module.scss';
+
 .Container {
 	display: flex;
 	flex-direction: column;
@@ -16,8 +18,8 @@
 	width: 100%;
 	background: linear-gradient(
 		180deg,
-		rgba(115, 19, 240, 1) 0%,
-		rgba(148, 92, 180, 1) 50%,
-		rgba(208, 180, 220, 1) 100%
+		$main-color-1 0%,
+		$main-color-2 50%,
+		$main-color-3 100%
 	);
 }

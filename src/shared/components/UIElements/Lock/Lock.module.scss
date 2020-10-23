@@ -1,3 +1,7 @@
+@import '../../../../assets/styles/variables.module.scss';
+
+$transition-time: 400ms;
+
 .Lock {
 	width: 150px;
 	height: 150px;
@@ -9,20 +13,20 @@
 
 	&__Top {
 		fill: none;
-		stroke: rgba(115, 19, 240, 1);
+		stroke: $error-color;
 		stroke-width: 5;
 		stroke-linecap: round;
 		stroke-miterlimit: 10;
 		stroke-dasharray: 300;
 		stroke-dashoffset: -30;
-		transition: all 400ms ease-out;
+		transition: all $transition-time ease-out;
 
 		&_loaded {
 			stroke-dashoffset: 0;
-			stroke: rgba(208, 180, 220, 1);
+			stroke: $success-color;
 
 			& ~ .Lock__Body {
-				fill: rgba(115, 19, 240, 1);
+				fill: $success-color;
 			}
 		}
 	}
@@ -32,8 +36,8 @@
 	}
 
 	&__Body {
-		fill: rgba(208, 180, 220, 1);
+		fill: $error-color;
 		opacity: 1;
-		transition: all 400ms ease-out;
+		transition: all $transition-time ease-out;
 	}
 }
