@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import jwt from 'jsonwebtoken';
+import { useTranslation } from 'react-i18next';
 
 // * -- my own imports
 // ---- components
@@ -13,6 +14,7 @@ import classes from './Activate.module.scss';
 
 const Activate = (props) => {
 	// * -- variables
+	const { t } = useTranslation(['translation']);
 	const [tokenData, setTokenData] = useState({
 		name: null,
 	});
@@ -30,7 +32,9 @@ const Activate = (props) => {
 	}, [incomingToken]);
 	return (
 		<Card>
-			<h1 className={classes.Header}>Welcome {tokenData.name}</h1>
+			<h1 className={classes.Header}>
+				{t('Activation.title')} {tokenData.name}
+			</h1>
 			<ActivationForm token={incomingToken} />
 		</Card>
 	);

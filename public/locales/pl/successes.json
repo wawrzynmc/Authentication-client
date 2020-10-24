@@ -1,0 +1,8 @@
+{
+    "SEND_ACTIVATION_EMAIL_SUCCESS": "E-mail aktywacyjny został wysłany.",
+    "SIGNUP_SUCCESS": "Rejestracja przebiegła pomyślnie. Aktywacyjny email został wysłany na Twój adres.",
+    "SIGNIN_SUCCESS": "Logowanie przebiegło pomyślnie.",
+    "ACTIVATION_SUCCESS": "Twoje konto zostało aktywowane.",
+    "SEND_RESET_PWD_EMAIL_SUCCESS": "Email zawierający link do zresetowania hasła został wysłany na Twój adres.",
+    "PWD_CHANGED_SUCCESS": "Hasło zostało zmienione."
+}

@@ -1,25 +1,17 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import QuestionModal from '../QuestionModal';
 
-import classes from './SendEmail.module.scss';
-
 const SendEmail = (props) => {
+	const { t } = useTranslation(['translation']);
 	return (
 		<QuestionModal
-			header={'Send activation email'}
-			button1InlineText={'send'}
+			header={t('Modals.QuestionModal.SendEmail.title')}
+			button1InlineText={t('Modals.QuestionModal.SendEmail.button')}
 			{...props}
 		>
-			<p>
-				Your accont is{' '}
-				<span className={`${classes.text} ${classes.text_warning}`}>
-					inactive
-				</span>{' '}
-				<br />
-				Do you want to send you an activation email to your address (
-				{props.email})
-			</p>
+			<p>{t('Modals.QuestionModal.SendEmail.info')}</p>
 		</QuestionModal>
 	);
 };

@@ -45,6 +45,10 @@
             }
         }
     },
+    "Activation": {
+        "title": "Witaj",
+        "or": "lub"
+    },
     "Form": {
         "name": {
             "placeholder": "Nazwa użytkownika",
@@ -62,5 +66,28 @@
             "placeholder": "Hasło potwierdzające",
             "initialErrorMsg": "Wprowadź poprawe hasło."
         }
+    },
+    "Modals": {
+        "QuestionModal": {
+            "SendEmail": {
+                "title": "Wyślij e-mail aktywacyjny",
+                "button": "wyślij",
+                "info": "Twoje konto jest nieaktywne. Chcesz otrzymać e-mail aktywacyjny?"
+            }
+        },
+        "SuccessModal": {
+            "title": "Operacja powiodła się"
+        },
+        "ErrorModal": {
+            "title": "Wystąpił błąd"
+        }
+    },
+    "Buttons": {
+        "Confirmation": "potwierdź",
+        "Cancel": "anuluj",
+        "SendActivationEmail": "wyślij e-mail aktywacyjny",
+        "ActivateAccount": "aktywuj swoje konto",
+        "SignUp": "zarejestruj się",
+        "SignIn": "zaloguj się"
     }
 }

@@ -51,6 +51,10 @@
             }
         }
     },
+    "Activation": {
+        "title": "Welcome",
+        "or": "or"
+    },
     "Form": {
         "name": {
             "placeholder": "User name",
@@ -68,5 +72,28 @@
             "placeholder": "Confirmation password",
             "initialErrorMsg": "Please enter valid password."
         }
+    },
+    "Modals": {
+        "QuestionModal": {
+            "SendEmail": {
+                "title": "Send activation email",
+                "button": "send",
+                "info": "Your account is inactive. Do you want to send you an activation email?"
+            }
+        },
+        "SuccessModal": {
+            "title": "Operation succeeded"
+        },
+        "ErrorModal": {
+            "title": "An error occured"
+        }
+    },
+    "Buttons": {
+        "Confirmation": "confirm",
+        "Cancel": "cancel",
+        "SendActivationEmail": "send activation email",
+        "ActivateAccount": "activate your account",
+        "SignUp": "signup",
+        "SignIn": "signin"
     }
 }

@@ -1,0 +1,8 @@
+{ 
+    "SEND_ACTIVATION_EMAIL_SUCCESS": "An activation e-mail has been sent to your e-mail address",
+    "SIGNUP_SUCCESS": "Signup succeeded. Activation e-mail has been sent to your e-mail address.",
+    "SIGNIN_SUCCESS": "Signin succeeded.",
+    "ACTIVATION_SUCCESS": "Your account has been activated.",
+    "SEND_RESET_PWD_EMAIL_SUCCESS": "An email that contains link to reset your password has already been sent to your e-mail address.",
+    "PWD_CHANGED_SUCCESS": "Password has been successfully changed."
+}

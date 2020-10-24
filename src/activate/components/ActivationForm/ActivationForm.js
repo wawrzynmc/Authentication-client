@@ -1,6 +1,7 @@
 // * -- libraries imports
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 // * -- my own imports
 // ---- components
@@ -26,6 +27,7 @@ import classes from './ActivationForm.module.scss';
  *      ! name of fileds in formState has to match with ids of inputs
  */
 const ActivationForm = (props) => {
+	const { t } = useTranslation(['translation']);
 	const [isRedirectToSignup, setIsRedirectToSignup] = useState(true);
 	const [activationFailed, setActivationFailed] = useState(false);
 	const {
@@ -36,7 +38,10 @@ const ActivationForm = (props) => {
 		requestSent,
 		clearRequestSent,
 	} = useHttpClient();
-	const [formState, inputHandler, setFormData] = useForm({}, true);
+	const [formState, inputHandler, setFormData, clearFormData] = useForm(
+		{},
+		true
+	);
 	const history = useHistory();
 
 	const changeModeHandler = () => {
@@ -57,7 +62,7 @@ const ActivationForm = (props) => {
 
 		if (!activationFailed) {
 			try {
-				const responseData = await sendRequest(
+				await sendRequest(
 					`${process.env.REACT_APP_SERVER_API_URL}/account/activate`,
 					'POST',
 					JSON.stringify({
@@ -95,6 +100,7 @@ const ActivationForm = (props) => {
 						'Content-Type': 'application/json',
 					}
 				);
+				clearFormData();
 			} catch (err) {
 				if (err.status === 403) {
 					setFormData({ ...formState.inputs }, false);
@@ -123,9 +129,9 @@ const ActivationForm = (props) => {
 						id="email"
 						element="input"
 						type="email"
-						placeholder="E-mail"
+						placeholder={t('Form.email.placeholder')}
 						validators={[VALIDATOR_EMAIL()]}
-						initialErrorMsg="Please enter a valid email address."
+						initialErrorMsg={t('Form.email.initialErrorMsg')}
 						onInput={inputHandler}
 					/>
 				)}
@@ -135,11 +141,11 @@ const ActivationForm = (props) => {
 					style={{ padding: '1rem 2.5rem' }}
 				>
 					{activationFailed
-						? 'Send activation email'
-						: 'Activate your account'}
+						? t('Buttons.SendActivationEmail')
+						: t('Buttons.ActivateAccount')}
 				</Button>
 			</form>
-			<TextBetweenLines>or</TextBetweenLines>
+			<TextBetweenLines>{t('Activation.or')}</TextBetweenLines>
 			<Button
 				inverse
 				to={{
@@ -149,24 +155,10 @@ const ActivationForm = (props) => {
 					}`,
 				}}
 			>
-				{isRedirectToSignup ? 'signup' : 'signin'}
+				{isRedirectToSignup ? t('Buttons.SignUp') : t('Buttons.SignIn')}
 			</Button>
 		</React.Fragment>
 	);
 };
 
 export default ActivationForm;
-
-/* 
-
-try {
-			await sendRequest(
-				`${process.env.REACT_APP_SERVER_API_URL}/account/activate`,
-				'POST',
-				{
-					'Content-Type': 'application/json',
-					Authorization: `Bearer ${incomingToken}`,
-				}
-			);
-		} catch (err) {}
-*/

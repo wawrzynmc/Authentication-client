@@ -1,9 +1,11 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Modal from '../Modal';
 import Button from '../../../FormElements/Button/Button';
 
 const QuestionModal = (props) => {
+	const { t } = useTranslation(['translation']);
 	return (
 		<Modal
 			onCancel={props.onClear}
@@ -16,13 +18,14 @@ const QuestionModal = (props) => {
 						style={{ padding: '1rem 3.5rem', width: '40%' }}
 						onClick={props.onSend}
 					>
-						{props.button1InlineText || 'confirm'}
+						{props.button1InlineText ||
+							t('Buttons.Confirmation')}
 					</Button>
 					<Button
 						style={{ padding: '1rem 3.5rem', width: '40%' }}
 						onClick={props.onClear}
 					>
-						{props.button2InlineText || 'cancel'}
+						{props.button2InlineText || t('Buttons.Cancel')}
 					</Button>
 				</React.Fragment>
 			}

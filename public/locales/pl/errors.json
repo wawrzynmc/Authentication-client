@@ -1,5 +1,10 @@
 {
-    "SIGNUP": {
-        "SIGNUP_USER_EXISTS": "Użytkownik z podanym adresem już istnieje."
-    }
+    "EXPIRED_TOKEN": "Operacja nie powiodła się (link prawdopodobnie wygasł). Spróbuj ponownie później.",
+    "INVALID_INPUT_DATA": "Nieprawidłowe dane. Sprawdź wprowadzone wartości.",
+    "INVALID_CREDENTIALS": "Nie można zalogować - nieprawidłowy email lub hasło.",
+    "SERVER_ERROR": "Coś poszło nie tak. Spróbuj ponownie później.",
+    "USER_ALREADY_EXISTS": "Użytkownik z podanym adresem email już istnieje.",
+    "USER_ALREADY_ACTIVATED": "Twoje konto zostało już aktywowane.",
+    "USER_DOESNT_EXIST": "Użytkownik nie istnieje.",
+    "USER_INACTIVE": "Twoje konto jest nieaktywne."
 }

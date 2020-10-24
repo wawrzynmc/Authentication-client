@@ -5,19 +5,22 @@ import Modal from '../Modal';
 import Button from '../../../FormElements/Button/Button';
 
 const ErrorModal = (props) => {
-	console.log(props.error);
 	const { t } = useTranslation(['translation', 'errors']);
 	return (
 		<Modal
 			onCancel={props.onClear}
-			header="An Error Occurred"
+			header={t('Modals.ErrorModal.title')}
 			iconClass="fas fa-exclamation-triangle"
 			type="error"
 			show={props.show}
-			footer={<Button onClick={props.onClear}>Confirm</Button>}
+			footer={
+				<Button onClick={props.onClear}>
+					{t('Buttons.Confirmation')}
+				</Button>
+			}
 			backdropStyle={{ zIndex: 300 }}
 		>
-			<p>{`${t(`errors:SIGNUP.${props.error}`)}`}</p>
+			<p>{`${t(`errors:${props.error}`)}`}</p>
 		</Modal>
 	);
 };

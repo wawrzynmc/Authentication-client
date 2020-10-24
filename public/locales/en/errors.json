@@ -1,5 +1,10 @@
 {
-    "SIGNUP": {
-        "SIGNUP_USER_EXISTS": "User with provided email already exists."
-    }
+    "EXPIRED_TOKEN": "Operation failed (link probably expired). Please, try to perform the action once again.",
+    "INVALID_INPUT_DATA": "Invalid inputs passed. Please, check your data.",
+    "INVALID_CREDENTIALS": "Invalid credentials. Could not log in.",
+    "SERVER_ERROR": "Something went wrong during processing the request. Please, try again later.",
+    "USER_ALREADY_EXISTS": "User with provided email already exists.",
+    "USER_ALREADY_ACTIVATED": "Your account is active",
+    "USER_DOESNT_EXIST": "User with provided data doesn't exists",
+    "USER_INACTIVE": "Your account is inactive."
 }
