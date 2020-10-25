@@ -1,6 +1,7 @@
 // * -- libraries imports
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 // * -- my own imports
 // ---- components
@@ -18,13 +19,13 @@ import { VALIDATOR_MINLENGTH } from '../../../shared/utils/validators';
 import classes from './ResetPasswordForm.module.scss';
 
 const ForgotPasswordForm = (props) => {
+	const { t } = useTranslation(['translation', 'successes']);
 	const {
 		isLoading,
 		msg,
 		sendRequest,
 		clearMsg,
 		requestSent,
-		clearRequestSent,
 	} = useHttpClient();
 	const history = useHistory();
 
@@ -57,12 +58,13 @@ const ForgotPasswordForm = (props) => {
 					'Content-Type': 'application/json',
 				}
 			);
+			clearFormData();
 			history.push({
 				pathname: '/auth',
 				search: '?action=signin',
 				state: {
 					success: true,
-					message: 'Password has been sucessfully changed.',
+					message: t('successes:PWD_CHANGED_SUCCESS'),
 				},
 			});
 		} catch (err) {}
@@ -85,9 +87,18 @@ const ForgotPasswordForm = (props) => {
 					validators={[VALIDATOR_MINLENGTH(6)]}
 					onInput={inputHandler}
 					reset={requestSent}
+					password1Placeholder={t(
+						'translation:Form.password.placeholder'
+					)}
+					password2Placeholder={t(
+						'translation:Form.passwordConfirmation.placeholder'
+					)}
+					initialErrorMsg={t(
+						'translation:Form.password.initialErrorMsg'
+					)}
 				/>
 				<Button type="submit" disabled={!formState.isValid}>
-					reset password
+					{t('Buttons.Confirmation')}
 				</Button>
 			</form>
 		</React.Fragment>

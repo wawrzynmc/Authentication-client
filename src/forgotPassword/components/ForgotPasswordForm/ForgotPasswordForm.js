@@ -1,5 +1,6 @@
 // * -- libraries imports
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 // * -- my own imports
 // ---- components
@@ -18,6 +19,7 @@ import { VALIDATOR_EMAIL } from '../../../shared/utils/validators';
 import classes from './ForgotPasswordForm.module.scss';
 
 const ForgotPasswordForm = (props) => {
+	const { t } = useTranslation(['translation']);
 	const {
 		isLoading,
 		msg,
@@ -27,7 +29,7 @@ const ForgotPasswordForm = (props) => {
 		clearRequestSent,
 	} = useHttpClient();
 
-	const [formState, inputHandler, setFormData] = useForm(
+	const [formState, inputHandler] = useForm(
 		{
 			email: {
 				value: '',
@@ -75,12 +77,12 @@ const ForgotPasswordForm = (props) => {
 					id="email"
 					element="input"
 					type="email"
-					placeholder="E-mail"
+					placeholder={t('Form.email.placeholder')}
 					validators={[VALIDATOR_EMAIL()]}
-					initialErrorMsg="Please enter a valid email address."
+					initialErrorMsg={t('Form.email.initialErrorMsg')}
 					onInput={inputHandler}
 					withLabel
-					label={'Email'}
+					label={t('Form.email.placeholder')}
 					reset={requestSent}
 				/>
 
@@ -89,7 +91,7 @@ const ForgotPasswordForm = (props) => {
 					disabled={!formState.isValid}
 					style={{ padding: '1rem 2.5rem' }}
 				>
-					Send password reset email
+					{t('Buttons.SendEmail')}
 				</Button>
 			</form>
 		</React.Fragment>

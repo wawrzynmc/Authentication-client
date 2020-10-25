@@ -1,8 +1,7 @@
 // * -- libraries imports
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import GoogleLogin from 'react-google-login';
-import axios from 'axios';
 
 // * -- my own imports
 // ---- components
@@ -24,7 +23,6 @@ export const Facebook = (props) => {
 		sendRequest,
 		clearMsg,
 		requestSent,
-		status,
 	} = useHttpClient();
 
 	const sendFacebookToken = async (userID, accessToken) => {
@@ -84,8 +82,6 @@ export const Google = (props) => {
 		sendRequest,
 		clearMsg,
 		requestSent,
-		clearRequestSent,
-		status,
 	} = useHttpClient();
 
 	const sendGoogleToken = async (tokenId) => {

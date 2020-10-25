@@ -27,7 +27,7 @@ import classes from './ActivationForm.module.scss';
  *      ! name of fileds in formState has to match with ids of inputs
  */
 const ActivationForm = (props) => {
-	const { t } = useTranslation(['translation']);
+	const { t } = useTranslation(['translation', 'successes']);
 	const [isRedirectToSignup, setIsRedirectToSignup] = useState(true);
 	const [activationFailed, setActivationFailed] = useState(false);
 	const {
@@ -77,7 +77,7 @@ const ActivationForm = (props) => {
 					search: '?action=signin',
 					state: {
 						success: true,
-						message: 'Account has been sucessfully activated.',
+						message: t('successes:ACTIVATION_SUCCESS'),
 					},
 				});
 			} catch (err) {
@@ -129,9 +129,12 @@ const ActivationForm = (props) => {
 						id="email"
 						element="input"
 						type="email"
-						placeholder={t('Form.email.placeholder')}
+						placeholder={t('translation:Form.email.placeholder')}
 						validators={[VALIDATOR_EMAIL()]}
-						initialErrorMsg={t('Form.email.initialErrorMsg')}
+						initialErrorMsg={t(
+							'translation:Form.email.initialErrorMsg'
+						)}
+						reset={requestSent}
 						onInput={inputHandler}
 					/>
 				)}
@@ -141,11 +144,13 @@ const ActivationForm = (props) => {
 					style={{ padding: '1rem 2.5rem' }}
 				>
 					{activationFailed
-						? t('Buttons.SendActivationEmail')
-						: t('Buttons.ActivateAccount')}
+						? t('translation:Buttons.SendEmail')
+						: t('translation:Buttons.ActivateAccount')}
 				</Button>
 			</form>
-			<TextBetweenLines>{t('Activation.or')}</TextBetweenLines>
+			<TextBetweenLines>
+				{t('translation:Activation.or')}
+			</TextBetweenLines>
 			<Button
 				inverse
 				to={{
@@ -155,7 +160,9 @@ const ActivationForm = (props) => {
 					}`,
 				}}
 			>
-				{isRedirectToSignup ? t('Buttons.SignUp') : t('Buttons.SignIn')}
+				{isRedirectToSignup
+					? t('translation:Buttons.SignUp')
+					: t('translation:Buttons.SignIn')}
 			</Button>
 		</React.Fragment>
 	);

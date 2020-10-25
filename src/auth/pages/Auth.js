@@ -1,5 +1,5 @@
 // * -- libraries imports
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -15,9 +15,6 @@ import SignupForm from '../components/SignupForm/SignupForm';
 import SigninForm from '../components/SigninForm/SigninForm';
 import TextBetweenLines from '../../shared/components/UIElements/Text/TextBetweenLines/TextBetweenLines';
 
-// ---- functions
-import { AuthContext } from '../../shared/context/auth-context';
-
 // ---- styles
 import classes from './Auth.module.scss';
 
@@ -26,7 +23,6 @@ const Auth = (props) => {
 	// -- variables
 	const { t } = useTranslation(['translation', 'error']);
 	const [isLoginMode, setIsLoginMode] = useState(null);
-	const auth = useContext(AuthContext);
 	const location = useLocation();
 	const searchParams = location.search;
 	const history = useHistory();

@@ -49,6 +49,14 @@
         "title": "Witaj",
         "or": "lub"
     },
+    "ForgotPassword": {
+        "title": "Zresetuj swoje hasło",
+        "info": "Podaj swój adres e-mail, a my wyślemy Ci na niego e-maila z linkiem do ustawienia nowego hasła."
+    },
+    "ResetPassword": {
+        "title": "Zmień swoje hasło",
+        "info": "Zmień swoje hasło korzystając z poniższego formularza."
+    },
     "Form": {
         "name": {
             "placeholder": "Nazwa użytkownika",
@@ -85,7 +93,7 @@
     "Buttons": {
         "Confirmation": "potwierdź",
         "Cancel": "anuluj",
-        "SendActivationEmail": "wyślij e-mail aktywacyjny",
+        "SendEmail": "wyślij e-mail",
         "ActivateAccount": "aktywuj swoje konto",
         "SignUp": "zarejestruj się",
         "SignIn": "zaloguj się"

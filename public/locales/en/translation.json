@@ -55,6 +55,14 @@
         "title": "Welcome",
         "or": "or"
     },
+    "ForgotPassword": {
+        "title": "Reset your password",
+        "info": "Enter your user account's verified email address and we will send you a password reset link."
+    },
+    "ResetPassword": {
+        "title": "Change your password",
+        "info": "Change your password using below form."
+    },
     "Form": {
         "name": {
             "placeholder": "User name",
@@ -91,7 +99,7 @@
     "Buttons": {
         "Confirmation": "confirm",
         "Cancel": "cancel",
-        "SendActivationEmail": "send activation email",
+        "SendEmail": "send email",
         "ActivateAccount": "activate your account",
         "SignUp": "signup",
         "SignIn": "signin"
