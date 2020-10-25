@@ -2,8 +2,8 @@
     "Main": {
         "Card": {
             "TypeWriter": {
-                "loggedIn": "> Well done! 👉👈<br>> You are authenticated 💪 <br><br><br>> Click on the below 🔒 to logout.",
-                "!loggedIn": "> Hi! 👋<br>> Nice to see you here 🙃 <br><br><br>> Click on the below 🔒 to create an account."
+                "loggedIn": "> Well done! 👉👈<br>> You are authenticated 💪 <br><br><br>> Click on the 🔒 to logout.",
+                "!loggedIn": "> Hi! 👋<br>> Nice to see you here 🙃 <br><br><br>> Click on the 🔒 to create an account."
             } 
         }
     },

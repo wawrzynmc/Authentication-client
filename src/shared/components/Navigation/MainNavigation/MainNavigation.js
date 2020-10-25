@@ -21,7 +21,10 @@ const MainNavigation = (props) => {
 	return (
 		<MainHeader>
 			<Logo navigation />
-			<Link to={props.mainPageAddress} className={classes.Title}>
+			<Link
+				to={props.mainPageAddress}
+				className={classes.MainHeader__Title}
+			>
 				full authentication
 			</Link>
 			<NavigationItems desktopView={props.navigationItemsDesktopView} />

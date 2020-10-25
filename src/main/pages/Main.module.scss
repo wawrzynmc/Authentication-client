@@ -6,7 +6,19 @@
 	width: 100%;
 	padding: 20px;
 
-	font-size: 2.2rem;
 	font-weight: 600;
-	border-bottom: 2px solid $header-bgc-color;
+
+	@media screen and (orientation: portrait) {
+		font-size: 2.2rem;
+		border-bottom: 2px solid $header-bgc-color;
+
+		@media (min-width: 375px) {
+			font-size: 2.4rem;
+		}
+	}
+
+	@media screen and (orientation: landscape) {
+		font-size: 1.8rem;
+		border-right: 2px solid $header-bgc-color;
+	}
 }

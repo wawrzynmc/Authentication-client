@@ -1,27 +1,29 @@
 $titleColor: rgb(246, 246, 246);
 
-.Title {
-	flex-grow: 1;
-
-	margin: 10px 5px;
-
-	font-size: 1.6em;
-	text-transform: uppercase;
-	letter-spacing: 2px;
-	color: $titleColor;
-	text-align: center;
-	text-decoration: none;
-	font-weight: bold;
-
-	@media (min-width: 375px) {
-		font-size: 1.8em;
-	}
-
-	@media screen and (min-width: 576px) {
-		font-size: 2.4em;
-	}
-
-	@media screen and (min-width: 768px) {
+.MainHeader {
+	&__Title {
 		flex-grow: 1;
+
+		margin: 10px 5px;
+
+		font-size: 1.6em;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		color: $titleColor;
+		text-align: center;
+		text-decoration: none;
+		font-weight: bold;
+
+		@media (min-width: 375px) {
+			font-size: 1.7em;
+		}
+
+		@media screen and (min-width: 480px) {
+			font-size: 2.4em;
+		}
+
+		@media screen and (min-width: 768px) {
+			flex-grow: 1;
+		}
 	}
 }

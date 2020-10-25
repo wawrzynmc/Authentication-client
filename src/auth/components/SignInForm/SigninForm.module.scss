@@ -5,4 +5,8 @@
 .ForgotPasswordWrapper {
 	width: 100%;
 	text-align: center;
+
+	@media (min-width: 375px) {
+		font-size: 1.1rem;
+	}
 }

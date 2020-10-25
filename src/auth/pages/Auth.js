@@ -84,7 +84,7 @@ const Auth = (props) => {
 						<FacebookLogin />
 						<GoogleLogin />
 					</div>
-					<span className={classes.FormContainer__paragraph}>
+					<span className={classes.FormContainer__Paragraph}>
 						{t('Authentication.SignUpForm.activePanel.or')}
 					</span>
 					<SignupForm />
@@ -102,7 +102,7 @@ const Auth = (props) => {
 						<FacebookLogin />
 						<GoogleLogin />
 					</div>
-					<span className={classes.FormContainer__paragraph}>
+					<span className={classes.FormContainer__Paragraph}>
 						{t('Authentication.SignInForm.activePanel.or')}
 					</span>
 					<SigninForm />
