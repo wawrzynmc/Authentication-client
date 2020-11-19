@@ -6,11 +6,6 @@ import PropTypes from 'prop-types';
 // ---- styles
 import classes from './MainHeader.module.scss';
 
-/**
- * Render MainHeader component
- * @category Navigation
- * @component
- */
 const MainHeader = (props) => {
 	return <header className={classes.MainHeader}>{props.children}</header>;
 };

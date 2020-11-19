@@ -75,9 +75,6 @@ function App() {
 			</Switch>
 		);
 	}
-
-	// <Route path="*" component={() => 'PAGE NOT FOUND'} />
-
 	return (
 		<AuthContext.Provider
 			value={{

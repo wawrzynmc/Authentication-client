@@ -1,6 +1,7 @@
 // * -- libraries imports
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 // * -- my own imports
 // ---- components
@@ -12,11 +13,6 @@ import NavigationItems from '../NavigationItems/NavigationItems';
 // ---- styles
 import classes from './MainNavigation.module.scss';
 
-/**
- * Render MainNavigation component
- * @category Navigation
- * @component
- */
 const MainNavigation = (props) => {
 	return (
 		<MainHeader>
@@ -34,5 +30,13 @@ const MainNavigation = (props) => {
 			/>
 		</MainHeader>
 	);
+};
+
+// * -- prop types
+MainNavigation.propTypes = {
+	/** Inline components */
+	to: PropTypes.string,
+	onClick: PropTypes.func,
+	transform: PropTypes.bool,
 };
 export default MainNavigation;

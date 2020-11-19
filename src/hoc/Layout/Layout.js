@@ -14,12 +14,9 @@ const Layout = (props) => {
 
 	const sideDrawerToggleHandler = () => {
 		setSideDrawerIsVisible((prevState) => {
-			console.log('Inside drawer toggle', !prevState);
 			return !prevState;
 		});
 	};
-
-	console.log('Rendering layout');
 
 	return (
 		<React.Fragment>

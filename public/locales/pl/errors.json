@@ -6,5 +6,6 @@
     "USER_ALREADY_EXISTS": "Użytkownik z podanym adresem email już istnieje.",
     "USER_ALREADY_ACTIVATED": "Twoje konto zostało już aktywowane.",
     "USER_DOESNT_EXIST": "Użytkownik nie istnieje.",
-    "USER_INACTIVE": "Twoje konto jest nieaktywne."
+    "USER_INACTIVE": "Twoje konto jest nieaktywne.",
+    "INVALID_PASSWORDS": "Hasła muszą być takie same."
 }

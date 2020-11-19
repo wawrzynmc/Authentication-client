@@ -180,7 +180,8 @@ export const validate = (id, value, validators) => {
 			passwordStrength: 0,
 		},
 		errorMsg = '',
-		caseBoolean;
+		caseBoolean,
+		errorData = {};
 
 	for (const validator of validators) {
 		if (validator.type === VALIDATOR_TYPE_PASSWORDS_COHERESION) {
@@ -258,5 +259,6 @@ export const validate = (id, value, validators) => {
 		isValid,
 		metaData,
 		errorMsg,
+		errorData,
 	};
 };

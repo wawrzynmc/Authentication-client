@@ -50,6 +50,12 @@ const inputReducer = (state, action) => {
 				errorMsg: action.initialErrorMsg,
 			};
 		}
+		case 'CHANGE_ERROR_MSG': {
+			return {
+				...state,
+				errorMsg: action.initialErrorMsg,
+			};
+		}
 		default:
 			return state;
 	}
@@ -84,6 +90,13 @@ const Input = (props) => {
 		});
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [reset]);
+
+	useEffect(() => {
+		dispatch({
+			type: 'CHANGE_ERROR_MSG',
+			initialErrorMsg: props.initialErrorMsg,
+		});
+	}, [props.initialErrorMsg]);
 
 	/**
 	 * @public
@@ -146,7 +159,6 @@ const Input = (props) => {
 		</div>
 	);
 };
-
 
 // * -- prop types
 Input.propTypes = {
