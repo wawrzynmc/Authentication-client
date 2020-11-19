@@ -1,6 +1,10 @@
+// * -- libraries imports
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
+// * -- my own imports
+// ---- styles
 import classes from './NavigationItem.module.scss';
 
 const NavigationItem = (props) => {
@@ -58,6 +62,20 @@ const NavigationItem = (props) => {
 			</NavLink>
 		</li>
 	);
+};
+
+// * -- prop types
+NavigationItem.propTypes = {
+	/** redirect url */
+	link: PropTypes.string,
+	/** search params */
+	search: PropTypes.string,
+	/** exact route */
+	exact: PropTypes.bool,
+	/** close side drawer function */
+	closeSideDrawer: PropTypes.func,
+	/** Inline components/values */
+	children: PropTypes.any,
 };
 
 export default NavigationItem;

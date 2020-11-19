@@ -18,8 +18,7 @@ const QuestionModal = (props) => {
 						style={{ padding: '1rem 3.5rem', width: '40%' }}
 						onClick={props.onSend}
 					>
-						{props.button1InlineText ||
-							t('Buttons.Confirmation')}
+						{props.button1InlineText || t('Buttons.Confirmation')}
 					</Button>
 					<Button
 						style={{ padding: '1rem 3.5rem', width: '40%' }}

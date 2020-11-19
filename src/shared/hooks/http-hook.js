@@ -10,7 +10,6 @@ export const useHttpClient = () => {
 
 	const sendRequest = useCallback(
 		async (url, method = 'GET', body = null, headers = {}) => {
-			console.log('useHttpClient - sendRequest');
 			setIsLoading(true);
 			const httpAbortCtrl = new AbortController(); // prevent error if you send request and change the page
 			activeHttpRequests.current.push(httpAbortCtrl);

@@ -33,7 +33,6 @@ function App() {
 	let routes;
 	let mainPageAddress;
 
-	// console.log('token', token);
 	if (token) {
 		mainPageAddress = '/';
 		routes = (

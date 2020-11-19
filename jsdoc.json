@@ -17,7 +17,7 @@
         "readme": "./readme.md",
         "destination": "docs/",
         "recurse": true,
-        "verbose": true,
+        "verbose": false,
         "template": "node_modules/better-docs"
     }
 }

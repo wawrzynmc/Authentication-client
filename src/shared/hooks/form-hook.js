@@ -37,7 +37,6 @@ const formReducer = (state, action) => {
 				(input) =>
 					(clearedInputs[input] = { value: '', isValid: false })
 			);
-			console.log(clearedInputs);
 			return {
 				inputs: clearedInputs,
 				isValid: false,

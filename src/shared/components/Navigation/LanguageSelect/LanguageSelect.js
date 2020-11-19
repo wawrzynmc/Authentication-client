@@ -6,7 +6,7 @@ import polandFlag from '../../../../assets/images/poland.png';
 
 import classes from './LanguageSelect.module.scss';
 
-const LanguageSelect = (props) => {
+const LanguageSelect = () => {
 	const { i18n } = useTranslation();
 
 	const changeLanguageHandler = () => {

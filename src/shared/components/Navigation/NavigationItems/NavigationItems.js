@@ -1,12 +1,18 @@
+// * -- libraries imports
 import React, { useContext, Suspense } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import PropTypes from 'prop-types';
 
+// * -- my own imports
+// ---- components
 import NavigationItem from './NavigationItem/NavigationItem';
 import LanguageSelect from '../LanguageSelect/LanguageSelect';
 
+// ---- context
 import { AuthContext } from '../../../context/auth-context';
 
+// ---- styles
 import classes from './NavigationItems.module.scss';
 
 const NavigationItems = (props) => {
@@ -100,6 +106,14 @@ const NavigationItems = (props) => {
 			</ul>
 		</nav>
 	);
+};
+
+// * -- prop types
+NavigationItems.propTypes = {
+	/** close side drawer function */
+	closeSideDrawer: PropTypes.func,
+	/** toggle desktop view */
+	desktopView: PropTypes.bool,
 };
 
 export default NavigationItems;

@@ -211,10 +211,7 @@ Password.defaultProps = {
 	initialValid: false,
 	initialErrorMsg: 'Must be valid password.',
 	validators: [],
-	onInput: (id, value, isValid) => {
-		// eslint-disable-next-line no-console
-		console.log(id, value, isValid);
-	},
+	onInput: (id, value, isValid) => {},
 };
 
 export default Password;

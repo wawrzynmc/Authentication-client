@@ -207,10 +207,7 @@ Input.defaultProps = {
 	initialValid: false,
 	initialErrorMsg: 'Must be valid.',
 	validators: [],
-	onInput: (id, value, isValid) => {
-		// eslint-disable-next-line no-console
-		console.log(id, value, isValid);
-	},
+	onInput: (id, value, isValid) => {},
 };
 
 export default Input;

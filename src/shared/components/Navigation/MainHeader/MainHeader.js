@@ -12,7 +12,7 @@ const MainHeader = (props) => {
 
 // * -- prop types
 MainHeader.propTypes = {
-	/** Inline components */
+	/** Inline components/values */
 	children: PropTypes.any,
 };
 

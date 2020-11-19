@@ -1,15 +1,18 @@
+// * -- libraries imports
 import React, { useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
+import PropTypes from 'prop-types';
 
+// * -- my own imports
+// ---- components
 import Backdrop from '../../UIElements/Backdrop/Backdrop';
 import NavigationItems from '../NavigationItems/NavigationItems';
 
+// ---- styles
 import classes from './SideDrawer.module.scss';
 
 const SideDrawer = (props) => {
 	const nodeRef = useRef(null);
-
-	console.log('Rednering Side Drawer');
 
 	return (
 		<React.Fragment>
@@ -40,6 +43,13 @@ const SideDrawer = (props) => {
 			</CSSTransition>
 		</React.Fragment>
 	);
+};
+// * -- prop types
+SideDrawer.propTypes = {
+	/** function that close side drower */
+	closeSideDrawer: PropTypes.func,
+	/** toggle side drawer visibility */
+	sideDrawerIsVisible: PropTypes.bool,
 };
 
 export default SideDrawer;

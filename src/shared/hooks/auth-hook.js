@@ -10,7 +10,6 @@ export const useAuth = () => {
 	const [duringAutologin, setDuringAutologin] = useState(true);
 
 	const login = useCallback((userId, userRole, token, expirationDate) => {
-		console.log('login');
 		setToken(token);
 		setUserId(userId);
 		setUserRole(userRole);
@@ -31,7 +30,6 @@ export const useAuth = () => {
 	}, []);
 
 	const logout = useCallback(() => {
-		console.log('dasdasd');
 		setToken(null);
 		setUserId(null);
 		setTokenExpirationDate(null);
@@ -40,7 +38,6 @@ export const useAuth = () => {
 
 	// autologin
 	useEffect(() => {
-		console.log('Autologin');
 		setDuringAutologin(true);
 		const storedData = JSON.parse(localStorage.getItem('userData'));
 
