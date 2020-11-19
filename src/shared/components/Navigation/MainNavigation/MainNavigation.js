@@ -34,9 +34,13 @@ const MainNavigation = (props) => {
 
 // * -- prop types
 MainNavigation.propTypes = {
-	/** Inline components */
+	/** url redirection address */
 	to: PropTypes.string,
+	/** onClick handler */
 	onClick: PropTypes.func,
+	/** toggle side drawer */
 	transform: PropTypes.bool,
+	/** toggle desktop view */
+	desktopView: PropTypes.bool,
 };
 export default MainNavigation;

@@ -1,5 +1,9 @@
+// * -- libraries imports
 import React from 'react';
+import PropTypes from 'prop-types';
 
+// * -- my own imports
+// ---- styles
 import classes from './DrawerToggle.module.scss';
 
 const DrawerToggle = (props) => {
@@ -16,6 +20,14 @@ const DrawerToggle = (props) => {
 			<div className={classes.DrawerToggleLine}></div>
 		</div>
 	);
+};
+
+// * -- prop types
+DrawerToggle.propTypes = {
+	/** Toggle drawer */
+	transform: PropTypes.bool,
+	/** onClick handler */
+	onClick: PropTypes.func,
 };
 
 export default DrawerToggle;
