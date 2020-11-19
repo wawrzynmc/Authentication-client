@@ -20,8 +20,6 @@
             "activePanel": {
                 "title": "Sign in",
                 "or": "or fill the form",
-                "email": "E-mail address",
-                "password": "Password",
                 "forgotPassword": "Forgot password?",
                 "button": "singin"
             },

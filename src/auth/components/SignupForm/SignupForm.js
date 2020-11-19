@@ -32,7 +32,10 @@ import classes from './SignupForm.module.scss';
  *      ! name of fileds in formState has to match with ids of inputs
  */
 const SignupForm = (props) => {
+	// -- translation
 	const { t } = useTranslation(['translation', 'error']);
+
+	// -- http state data
 	const {
 		isLoading,
 		msg,
@@ -42,6 +45,8 @@ const SignupForm = (props) => {
 		clearRequestSent,
 		status,
 	} = useHttpClient();
+
+	// -- form state data
 	const [formState, inputHandler, clearFormData] = useForm(
 		{
 			name: {
@@ -64,6 +69,7 @@ const SignupForm = (props) => {
 		false
 	);
 
+	// -- handlers
 	const authSubmitHandler = async (event) => {
 		event.preventDefault();
 		const { name, email, password1, password2 } = formState.inputs;
@@ -131,13 +137,13 @@ const SignupForm = (props) => {
 					id="name"
 					element="input"
 					type="text"
-					placeholder={t('Form.name.placeholder')}
+					placeholder={t('translation:Form.name.placeholder')}
 					validators={[
 						VALIDATOR_MINLENGTH(4),
 						VALIDATOR_MAXLENGTH(32),
 						VALIDATOR_ONLY_LETTERS(),
 					]}
-					initialErrorMsg={t('Form.name.initialErrorMsg')}
+					initialErrorMsg={t('translation:Form.name.initialErrorMsg')}
 					onInput={inputHandler}
 					initialValue={formState.inputs.name.value}
 					reset={requestSent}
@@ -146,9 +152,11 @@ const SignupForm = (props) => {
 					id="email"
 					element="input"
 					type="email"
-					placeholder={t('Form.email.placeholder')}
+					placeholder={t('translation:Form.email.placeholder')}
 					validators={[VALIDATOR_EMAIL()]}
-					initialErrorMsg={t('Form.email.initialErrorMsg')}
+					initialErrorMsg={t(
+						'translation:Form.email.initialErrorMsg'
+					)}
 					onInput={inputHandler}
 					reset={requestSent}
 				/>
@@ -157,14 +165,20 @@ const SignupForm = (props) => {
 					validators={[VALIDATOR_MINLENGTH(6)]}
 					onInput={inputHandler}
 					reset={requestSent}
-					password1Placeholder={t('Form.password.placeholder')}
-					password2Placeholder={t(
-						'Form.passwordConfirmation.placeholder'
+					password1Placeholder={t(
+						'translation:Form.password.placeholder'
 					)}
-					initialErrorMsg={t('Form.password.initialErrorMsg')}
+					password2Placeholder={t(
+						'translation:Form.passwordConfirmation.placeholder'
+					)}
+					initialErrorMsg={t(
+						'translation:Form.password.initialErrorMsg'
+					)}
 				/>
 				<Button type="submit" disabled={!formState.isValid}>
-					{t('Authentication.SignUpForm.activePanel.button')}
+					{t(
+						'translation:Authentication.SignUpForm.activePanel.button'
+					)}
 				</Button>
 			</form>
 		</React.Fragment>

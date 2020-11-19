@@ -106,6 +106,26 @@ const inputReducer = (state, action) => {
 					passwordStrength: 0,
 				},
 			};
+		// runs when value of 'placeholders' has changed due to language change
+		case 'CHANGE_PLACEHOLDER':
+			const { id: id1, placeholder: placeholder1 } = action.password1;
+			const { id: id2, placeholder: placeholder2 } = action.password2;
+			return {
+				[id1]: {
+					...state[id1],
+					metaData: {
+						...state[id1].metaData,
+						placeholder: placeholder1,
+					},
+				},
+				[id2]: {
+					...state[id2],
+					metaData: {
+						...state[id2].metaData,
+						placeholder: placeholder2,
+					},
+				},
+			};
 		default:
 			return state;
 	}
@@ -205,7 +225,21 @@ const Passwords = (props) => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [props.reset]);
 
-	// passwords onInput
+	// change placeholders
+	useEffect(() => {
+		dispatch({
+			type: 'CHANGE_PLACEHOLDER',
+			password1: {
+				id: props.password1Id,
+				placeholder: props.password1Placeholder,
+			},
+			password2: {
+				id: props.password2Id,
+				placeholder: props.password2Placeholder,
+			},
+		});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [props.password1Placeholder, props.password2Placeholder]);
 
 	// -- functions
 	const changeHandler = (event) => {

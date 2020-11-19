@@ -67,15 +67,15 @@ const Auth = (props) => {
 			</SuccessModal>
 			<div
 				className={`
-				${classes.Container} 
-				${!isLoginMode && classes.Container_secondPanelActive}
-			`}
+					${classes.Container} 
+					${!isLoginMode && classes.Container_secondPanelActive}
+				`}
 			>
 				<div
 					className={`
-					${classes.FormContainer} 
-					${classes.FormContainer_signup}
-				`}
+						${classes.FormContainer} 
+						${classes.FormContainer_signup}
+					`}
 				>
 					<h1 className={classes.FormContainer__Title}>
 						{t('Authentication.SignUpForm.activePanel.title')}

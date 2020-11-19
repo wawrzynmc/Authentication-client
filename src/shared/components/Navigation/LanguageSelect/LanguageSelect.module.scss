@@ -6,7 +6,7 @@
 	overflow: hidden;
 
 	&__Button {
-		width: 30%;
+		width: 100%;
 		background-color: transparent;
 		border: none;
 		outline: none;
@@ -17,6 +17,7 @@
 	}
 
 	&__Image {
-		width: 100%;
+		width: 40%;
+		object-fit: cover;
 	}
 }

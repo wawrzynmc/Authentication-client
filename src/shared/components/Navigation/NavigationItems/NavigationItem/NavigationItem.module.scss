@@ -14,7 +14,6 @@ $slidingLineColor: #f01390;
 	text-transform: uppercase;
 	letter-spacing: 3px;
 	font-weight: bold;
-	font-size: 1.6em;
 	transition: color 0.3s;
 }
 
@@ -37,14 +36,4 @@ $slidingLineColor: #f01390;
 .NavigationItem a.active::after,
 .NavigationItem a:hover::after {
 	width: 100%;
-}
-
-/* .NavigationItem a:hover:not(.active) {
-    color: black
-} */
-
-@media screen and (min-width: 768px) {
-	// .NavigationItem a {
-	// 	margin: 0 5px;
-	// }
 }
