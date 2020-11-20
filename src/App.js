@@ -10,16 +10,22 @@ import {
 // * -- my own imports
 // ---- components
 import Layout from './hoc/Layout/Layout';
-import Main from './main/pages/Main';
-import Auth from './auth/pages/Auth';
-import Activate from './activate/pages/Activate';
-import ForgotPassword from './forgotPassword/pages/ForgotPassword';
-import ResetPassword from './resetPassword/pages/ResetPassword';
 import LoadingSpinner from './shared/components/UIElements/LoadingSpinner/LoadingSpinner';
 
 // ---- functions / hooks
 import { AuthContext } from './shared/context/auth-context';
 import { useAuth } from './shared/hooks/auth-hook';
+
+// ---- lazy loading
+const Main = React.lazy(() => import('./main/pages/Main'));
+const Auth = React.lazy(() => import('./auth/pages/Auth'));
+const Activate = React.lazy(() => import('./activate/pages/Activate'));
+const ForgotPassword = React.lazy(() =>
+	import('./forgotPassword/pages/ForgotPassword')
+);
+const ResetPassword = React.lazy(() =>
+	import('./resetPassword/pages/ResetPassword')
+);
 
 function App() {
 	const {

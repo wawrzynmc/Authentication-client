@@ -107,7 +107,6 @@ const SigninForm = (props) => {
 				show={showSendEmailModal}
 				onClear={clearRequestSent}
 				onSend={sendActivationEmailHandler}
-				email={showSendEmailModal && formState.inputs.email.value}
 			/>
 			<EmailSent
 				show={requestSent}

@@ -26,6 +26,7 @@ const Layout = (props) => {
 					drawerToggleClick={sideDrawerToggleHandler}
 					sideDrawerIsVisible={sideDrawerIsVisible}
 					navigationItemsDesktopView={true}
+					closeSideDrawer={closeSideDrawerHandler}
 				/>
 				<SideDrawer
 					closeSideDrawer={closeSideDrawerHandler}

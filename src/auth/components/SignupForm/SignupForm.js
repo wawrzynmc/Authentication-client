@@ -87,7 +87,7 @@ const SignupForm = (props) => {
 				{ 'Content-Type': 'application/json' }
 			);
 			// !  ---- temp solution
-			resetForm();
+			// resetForm();
 		} catch (err) {}
 	};
 
@@ -104,7 +104,7 @@ const SignupForm = (props) => {
 				}),
 				{ 'Content-Type': 'application/json' }
 			);
-			clearFormData();
+			// clearFormData();
 		} catch (err) {}
 	};
 
@@ -119,7 +119,6 @@ const SignupForm = (props) => {
 				show={!!msg && status === 401}
 				onClear={clearRequestSent}
 				onSend={sendActivationEmailHandler}
-				email={formState.inputs.email.value}
 			/>
 			<EmailSent
 				show={requestSent}

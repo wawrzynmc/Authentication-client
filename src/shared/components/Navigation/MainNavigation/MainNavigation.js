@@ -23,7 +23,10 @@ const MainNavigation = (props) => {
 			>
 				full authentication
 			</Link>
-			<NavigationItems desktopView={props.navigationItemsDesktopView} />
+			<NavigationItems
+				desktopView={props.navigationItemsDesktopView}
+				closeSideDrawer={props.closeSideDrawer}
+			/>
 			<DrawerToggle
 				onClick={props.drawerToggleClick}
 				transform={props.sideDrawerIsVisible}
