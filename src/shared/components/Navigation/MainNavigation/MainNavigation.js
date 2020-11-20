@@ -16,11 +16,8 @@ import classes from './MainNavigation.module.scss';
 const MainNavigation = (props) => {
 	return (
 		<MainHeader>
-			<Logo navigation />
-			<Link
-				to={props.mainPageAddress}
-				className={classes.MainHeader__Title}
-			>
+			<Logo className={classes.HeaderLogo} />
+			<Link to={props.mainPageAddress} className={classes.HeaderTitle}>
 				full authentication
 			</Link>
 			<NavigationItems

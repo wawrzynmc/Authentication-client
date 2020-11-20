@@ -9,6 +9,11 @@
 	padding: 25px 0px 25px 5px;
 
 	cursor: pointer;
+
+	@media (min-width: 768px) {
+		width: 60px;
+		justify-content: space-between;
+	}
 }
 
 .DrawerToggleLine {
@@ -16,10 +21,18 @@
 	height: 3px;
 	background-color: black;
 	transition: all 0.3s ease;
+
+	@media (min-width: 768px) {
+		height: 4px;
+	}
 }
 
 .Toggle .DrawerToggleLine:nth-child(1) {
 	transform: rotate(-45deg) translate(-10px, 5px);
+
+	@media (min-width: 768px) {
+		transform: rotate(-45deg) translate(-10px, 9px);
+	}
 }
 
 .Toggle .DrawerToggleLine:nth-child(2) {
@@ -28,9 +41,13 @@
 
 .Toggle .DrawerToggleLine:nth-child(3) {
 	transform: rotate(45deg) translate(-10px, -5px);
+
+	@media (min-width: 768px) {
+		transform: rotate(45deg) translate(-10px, -9px);
+	}
 }
 
-@media screen and (min-width: 960px) {
+@media screen and (min-width: 959px) {
 	.DrawerToggle {
 		display: none;
 	}

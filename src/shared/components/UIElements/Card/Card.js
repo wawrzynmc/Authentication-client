@@ -7,14 +7,9 @@ import PropTypes from 'prop-types';
 import classes from './Card.module.scss';
 
 const Card = (props) => {
-	let attachedClasses = [];
-	if (props.information) {
-		attachedClasses.push(classes.Card_information);
-	}
-
 	return (
 		<div
-			className={`${classes.Card} ${attachedClasses.join(' ')}`}
+			className={`${classes.Card} ${props.className}`}
 			style={props.style}
 		>
 			{props.children}
@@ -24,8 +19,6 @@ const Card = (props) => {
 
 // * -- prop types
 PropTypes.propTypes = {
-	/** styling toggle */
-	information: PropTypes.bool,
 	/** external styles */
 	style: PropTypes.object,
 };

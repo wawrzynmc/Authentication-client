@@ -2,15 +2,9 @@ import React from 'react';
 import classes from './Lock.module.scss';
 
 const Lock = (props) => {
-	let attachedClasses = [];
-
-	if (props.logo) {
-		attachedClasses.push(classes.Lock_logo);
-	}
-
 	return (
 		<div
-			className={`${classes.Lock} ${attachedClasses.join(' ')}`}
+			className={`${classes.Lock} ${props.className}`}
 			onClick={props.lockClick}
 			style={props.style}
 		>

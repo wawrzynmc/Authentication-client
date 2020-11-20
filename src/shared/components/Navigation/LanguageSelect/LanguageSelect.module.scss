@@ -1,23 +1,21 @@
 .LanguageSelect {
-	// flex-grow: 0.5;
 	display: flex;
-	justify-content: space-evenly;
 	align-items: center;
-	overflow: hidden;
+	width: 30%;
+	
 
-	&__Button {
+	// -- desktop
+	@media screen and  (min-width: 959px){
+		width: 12%;
+		height: 100%;
+	}
+
+	&Image {
 		width: 100%;
-		background-color: transparent;
-		border: none;
-		outline: none;
+		object-fit: cover;
 
 		&:hover {
 			cursor: pointer;
 		}
-	}
-
-	&__Image {
-		width: 40%;
-		object-fit: cover;
 	}
 }

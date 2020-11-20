@@ -18,4 +18,12 @@
 	border-bottom: 2px solid $white-border-color;
 	background-color: $header-bgc-color;
 
+	// -- desktop
+	@media screen and  (min-width: 1024px) {
+		height: 104px;
+	}
+
+	@media screen and  (min-width: 1440px){
+		height: 124px;
+	}
 }

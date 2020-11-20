@@ -1,28 +1,139 @@
 @import '../../assets/styles/variables.module.scss';
 
-.Typing {
-	flex-grow: 1;
+.Main {
+	&Card {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-between;
 
-	width: 100%;
-	padding: 15px;
-	font-size: 2.5rem;
+		width: 80%;
+		height: 80vh;
 
-	font-weight: 600;
+		overflow-y: scroll;
 
-	@media screen and (orientation: portrait) {
-		font-size: 2.1rem;
-		border-bottom: 2px solid $header-bgc-color;
+		@media (min-width: 320px) and (min-height: 530px) {
+			height: 70vh;
+		}
 
-		@media (min-width: 480px) and (min-height: 720px) {
-			font-size: 2.2rem;
+		@media (min-width: 360px) and (min-height: 640px) {
+			height: 55vh;
+		}
+
+		@media (min-width: 360px) and (min-height: 768px) {
+			height: 50vh;
+			width: 60%;
+		}
+
+		@media screen and  (min-width: 1440px){
+			width: 40%;
+		}
+	}
+
+	&Typewriter {
+		width: 100%;
+		padding: 15px;
+		font-size: 1.6rem;
+		letter-spacing: 1px;
+	
+		font-weight: 600;
+
+		@media (min-width: 375px) and (min-height: 732px) {
+			font-size: 1.8rem;
+			line-height: 150%;
+		}
+
+		@media (min-width: 411px) and (min-height: 731px) {
+			font-size: 2rem;
+		}
+
+		@media (min-width: 600px) and (min-height: 900px) {
+			font-size: 2.4rem;
 		}
 
 		@media (min-width: 768px) {
-			font-size: 2.8rem;
+			font-size: 3rem;
+		}
+
+		@media (min-width: 1024px) {
+			font-size: 3.2rem;
+		}
+
+		@media screen and  (min-width: 1440px){
+			font-size: 3.6rem;
 		}
 	}
+
+	&Lock {
+		width: 130px;
+		height: 130px;
+
+		@media (min-width: 360px){
+			width: 150px;
+			height: 150px;
+		}
+
+		@media (min-width: 480px){
+			width: 170px;
+			height: 170px;
+		}
+
+		@media (min-width: 600px){
+			width: 190px;
+			height: 190px;
+		}
+
+		@media (min-width: 1024px) {
+			width: 220px;
+			height: 220px;
+		}
+	}
+
 }
 
-.Card {
-	background-color: black;
-}
+
+
+
+// &_information {
+// 	display: flex;
+
+// 	@media screen and (orientation: portrait) {
+// 		flex-direction: column;
+// 		align-items: center;
+// 		justify-content: space-around;
+
+// 		height: 75vh;
+// 		width: 100%;
+
+// 		@media (min-width: 360px) and (min-height: 720px) {
+// 			width: 80%;
+// 			height: 60vh;
+// 		}
+		
+// 		@media (min-width: 480px) and (min-height: 360px) {
+// 			width: 80%;
+// 			height: 50vh;
+// 		}
+
+// 		@media (min-width: 480px) and (min-height: 720px){
+// 			width: 70%;
+// 			height: 60vh;
+// 		}
+
+// 		@media (min-width: 720px) and (min-height: 1080px){
+// 			width: 70%;
+// 			height: 40vh;
+// 		}
+// 	}
+
+// 	@media screen and (orientation: landscape) {
+// 		flex-direction: row;
+// 		align-items: center;
+// 		justify-content: space-around;
+// 		width: 80%;
+
+// 		@media screen and (min-width: 768px) {
+// 			width: 60%;
+// 		}
+// 	}
+// }
