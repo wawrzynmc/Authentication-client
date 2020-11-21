@@ -23,6 +23,7 @@
 			justify-content: space-between;
 
 			width: 90%;
+			height: 90%;
 			
 			overflow-y: scroll;
 
@@ -53,13 +54,62 @@
 			@media (min-width: 920px) {
 				width: 45%;
 			}
+
+			@media (min-height: 500px) {
+				height: 85%;
+			}
+
+			@media (min-height: 550px) {
+				height: 75%;
+			}
+
+			@media (min-height: 600px) {
+				height: 70%;
+			}
+
+			@media (min-height: 650px) {
+				height: 65%;
+			}
+
+			@media (min-height: 700px) {
+				height: 60%;
+			}
+
+			@media (min-height: 750px) {
+				height: 55%;
+			}
+
+			@media (min-height: 800px) {
+				height: 47%;
+			}
+
+			@media (min-height: 900px) {
+				height: 40%;
+			}
 		}
 
 		// -- Desktop
-		@media (min-width: 1024px) {
+		@media screen and (min-width: 1024px) {
+			width: 70%;
+			height: 25vh;
+
 			flex-direction: row;
 			align-items: center;
 			justify-content: space-between;
+
+		}
+
+		@media (min-width: 1200px) {
+			width: 60%;
+			height: 30vh;
+		}
+
+		@media (min-width: 1400px) {
+			width: 55%;
+		}
+
+		@media (min-width: 1600px) {
+			width: 50%;
 		}
 	}
 
@@ -81,12 +131,12 @@
 		}
 
 		// -- Desktop
-		@media (min-width: 1024px) {
-			font-size: 3.2rem;
+		@media screen and (min-width: 1024px) {
+			font-size: 2.2rem;
 		}
 
-		@media screen and  (min-width: 1440px){
-			font-size: 3.6rem;
+		@media screen and (min-width: 1400px){
+			font-size: 2.4rem;
 		}
 	}
 
@@ -98,8 +148,14 @@
 
 		// -- Desktop
 		@media (min-width: 1024px) {
+			margin-top: 50px;
 			width: 220px;
 			height: 220px;
+		}
+
+		@media (min-width: 1400px) {
+			width: 240px;
+			height: 240px;
 		}
 	}
 

@@ -15,24 +15,29 @@ $titleColor: rgb(246, 246, 246);
 		font-weight: bold;
 
 		@media screen and (min-width: 440px) {
-			font-size: 2.2em;
+			font-size: 2.2rem;
 		}
 
 		@media screen and (min-width: 700px) {
-			font-size: 2.4em;
+			font-size: 2.4rem;
 		}
 
 		// -- desktop
 		@media screen and  (min-width: 1024px) {
+			display: none;
+		}
+
+		@media screen and  (min-width: 1200px) {
+			display: block;
 			font-size: 2.4rem;
 		}
 
-		@media screen and  (min-width: 1440px){
-			font-size: 3.2rem;
+		@media screen and  (min-width: 1400px){
+			font-size: 2.6rem;
 		}
 
 		@media screen and  (min-width: 1680px){
-			font-size: 3.6rem;
+			font-size: 2.8rem;
 		}
 	}
 
@@ -40,7 +45,16 @@ $titleColor: rgb(246, 246, 246);
 		height: 60%;
 
 		@media screen and (min-width: 700px) {
-			height: 80%;
+			height: 70%;
+		}
+
+		// -- Desktop
+		@media screen and (min-width: 1024px) {
+			height: 60%;
+		}
+
+		@media screen and  (min-width: 1400px){
+			height: 70%;
 		}
 	}
 }
