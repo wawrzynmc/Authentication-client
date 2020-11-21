@@ -14,6 +14,7 @@ import NavigationItems from '../NavigationItems/NavigationItems';
 import classes from './MainNavigation.module.scss';
 
 const MainNavigation = (props) => {
+	console.log('dasdas', props.sideDrawerIsVisible);
 	return (
 		<MainHeader>
 			<Logo className={classes.HeaderLogo} />
@@ -21,11 +22,11 @@ const MainNavigation = (props) => {
 				full authentication
 			</Link>
 			<NavigationItems
-				desktopView={props.navigationItemsDesktopView}
+				desktopView={true}
 				closeSideDrawer={props.closeSideDrawer}
 			/>
 			<DrawerToggle
-				onClick={props.drawerToggleClick}
+				drawerToggleClick={props.drawerToggleClick}
 				transform={props.sideDrawerIsVisible}
 			/>
 		</MainHeader>
