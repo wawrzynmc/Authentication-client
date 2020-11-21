@@ -6,10 +6,9 @@
 		flex-grow: 1;
 	}
 
-	&__Items {
+	&Items {
 		display: flex;
 		list-style: none;
-		font-size: 1.4rem;
 
 		&_desktop {
 			/* Mobile */
@@ -25,9 +24,7 @@
 
 				height: 100%;
 				width: 100%;
-			}
 
-			@media screen and  (min-width: 1024px){
 				font-size: 2rem;
 			}
 
@@ -51,10 +48,8 @@
 				height: 90%;
 
 				padding-bottom: 20px;
+				font-size: 1.4rem;
 
-				@media screen and (min-width: 360px){
-					font-size: 1.8rem;
-				}
 
 				@media screen and (min-width: 411px) {
 					font-size: 2rem;

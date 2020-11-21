@@ -36,11 +36,11 @@ const NavigationItems = (props) => {
 		<nav className={classes.Navigation}>
 			<ul
 				className={`
-					${classes.Navigation__Items} 
+					${classes.NavigationItems} 
 					${
 						props.desktopView
-							? classes.Navigation__Items_desktop
-							: classes.Navigation__Items_mobile
+							? classes.NavigationItems_desktop
+							: classes.NavigationItems_mobile
 					}
 				`}
 			>

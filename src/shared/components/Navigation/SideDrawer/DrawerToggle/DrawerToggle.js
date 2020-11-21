@@ -28,8 +28,8 @@ const DrawerToggle = (props) => {
 DrawerToggle.propTypes = {
 	/** Toggle drawer */
 	transform: PropTypes.bool,
-	/** onClick handler */
-	onClick: PropTypes.func,
+	/** onClick on drawer handler */
+	drawerToggleClick: PropTypes.func,
 };
 
 export default DrawerToggle;
