@@ -15,20 +15,18 @@ $invalid-input-bgc: #ffd1d1;
 	input,
 	textarea {
 		display: block;
+
 		width: 100%;
-		font: inherit;
-		border: 1px solid #ccc;
-		background: $normal-input-bgc;
 		padding: 0.4rem 3rem 0.4rem 0.3rem;
+		border: 1px solid #ccc;
+
+		font-size: 1rem;
+		background: $normal-input-bgc;
 
 		&:focus {
 			outline: none;
 			background: $focus-input-bgc;
 			border-color: #510077;
-		}
-
-		@media (min-width: 375px) {
-			font-size: 1.1rem;
 		}
 	}
 }
@@ -38,10 +36,6 @@ $invalid-input-bgc: #ffd1d1;
 	p {
 		font-size: 1rem;
 		color: red;
-
-		@media (min-width: 375px) {
-			font-size: 1.1rem;
-		}
 	}
 
 	input,
