@@ -82,7 +82,10 @@ const Auth = (props) => {
 				</div>
 				<div className={classes.OverlayContainer2}>
 					<div
-						className={`${classes.OverlayContainer2Panel} ${classes.OverlayContainer2Panel_signup}`}
+						className={`
+							${classes.OverlayContainer2Panel} 
+							${classes.OverlayContainer2Panel_signup} 
+							${!isLoginMode ? classes.OverlayContainer2Panel_hide : null}`}
 					>
 						<span className={`${classes.OverlayContainer2Info}`}>
 							{t('Authentication.SignInForm.inactivePanel.info')}

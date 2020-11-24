@@ -1,15 +1,52 @@
 @import '../../assets/styles/variables.module.scss';
 
 $transition-time: 0.6s;
-$overlay-container-height: 20%;
+$overlay-container-height: 40%;
 $overlay-container-color1: #d34163;
 $overlay-container-color2: #f73978;
+
+@mixin overlay-height() {
+	// -- Mobile
+	@media screen and (max-width: 1023.98px) {
+		height: 50%;
+
+		@media screen and (min-height: 350px) {
+        	height: 60%;
+		}
+		
+		@media screen and (min-height: 400px) {
+        	height: 65%;
+		}
+		
+		@media screen and (min-height: 450px) {
+        	height: 70%;
+		}
+		
+		@media screen and (min-height: 480px) {
+        	height: 73%;
+    	}
+	}
+	// @media (max-width: 1023.98px) {
+
+	// }
+	// @media only screen and (max-height: 500px) {
+    //     height: 74%;
+    // }
+	// @media only screen and (max-height: 450px) {
+    //     height: 50%;
+	// }
+	// @media only screen and (max-height: 360px) {
+    //     height: 40%;
+    // }
+    
+}
+
 
 .Container2 {
 	position: relative;
 
 	min-width: 320px;
-	min-height: 350px;
+	// min-height: 350px;
 
 	background-color: white;
 	border-radius: 10px;
@@ -32,17 +69,15 @@ $overlay-container-color2: #f73978;
 	// justify-content: center;
 	flex-shrink: 0;
 
-	height: 100% - $overlay-container-height;
+	// height: 100vh - $overlay-container-height;
+	@include overlay-height;
 	width: 100%;
-	min-height: 300px;
 
 	overflow-y: scroll;
 	z-index: 10;
 
 	&::-webkit-scrollbar {
-		width: 0.2rem;
-		border-radius: 0.1rem;
-		margin-right: 10px;
+		width: 0.5rem;
 	}
 
 	&::-webkit-scrollbar-thumb {
@@ -87,7 +122,7 @@ $overlay-container-color2: #f73978;
 .OverlayContainer2 {
 	height: 100%;
 	width: 100%;
-
+	
 	position: relative;
 
 	background: linear-gradient(to right, $overlay-container-color1, $overlay-container-color2);
@@ -98,6 +133,7 @@ $overlay-container-color2: #f73978;
 		
 		width: 100%;
 
+		text-align: center;
 		color: rgb(255, 240, 240);
 
 		&_signup {
@@ -110,10 +146,14 @@ $overlay-container-color2: #f73978;
 
 			padding: 0px 10px;
 		}
+
+		&_hide {
+			display: none;
+		}
 	}
 
 	&Info {
-		display: none;
+		// display: none;
 
 		// display: inline-block;
 		// width: 100%;
@@ -122,7 +162,6 @@ $overlay-container-color2: #f73978;
 		font-weight: 100;
 		line-height: 2rem;
 		letter-spacing: 0.1rem;
-		text-align: center;
 	}
 }
 
@@ -132,7 +171,7 @@ $overlay-container-color2: #f73978;
 	position: relative;
 
 	min-width: 320px;
-	min-height: 350px;
+	// min-height: 350px;
 
 	background-color: white;
 	border-radius: 10px;

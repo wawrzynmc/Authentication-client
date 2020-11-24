@@ -43,7 +43,7 @@
             },
             "inactivePanel": {
                 "title": "First time here?",
-                "info": "Enter your personal datails, create an account in and start the journey!",
+                "info": "Create an account in and start the journey!",
                 "or": "or",
                 "button": "singin"
             }
