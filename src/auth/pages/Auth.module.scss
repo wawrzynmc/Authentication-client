@@ -1,7 +1,9 @@
 @import '../../assets/styles/variables.module.scss';
 
 $transition-time: 0.6s;
-$overlay-container-height: 70%;
+$overlay-container-height: 20%;
+$overlay-container-color1: #d34163;
+$overlay-container-color2: #f73978;
 
 .Container2 {
 	position: relative;
@@ -32,9 +34,24 @@ $overlay-container-height: 70%;
 
 	height: 100% - $overlay-container-height;
 	width: 100%;
+	min-height: 300px;
 
 	overflow-y: scroll;
 	z-index: 10;
+
+	&::-webkit-scrollbar {
+		width: 0.2rem;
+		border-radius: 0.1rem;
+		margin-right: 10px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: #ff7676;
+	}
+
+	&::-webkit-scrollbar-track {
+		background-color: white;
+	}
 
 	&_signup {
 		top: 0;
@@ -73,7 +90,7 @@ $overlay-container-height: 70%;
 
 	position: relative;
 
-	background: linear-gradient(to right, #d34163, #f73978);
+	background: linear-gradient(to right, $overlay-container-color1, $overlay-container-color2);
 
 
 	&Panel {
