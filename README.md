@@ -1,6 +1,5 @@
 <div style="display:flex; justify-content:space-evenly;">
-    <h1>Authentication application </h1>
-    <img src="src/assets/images/logo.png" height="40px">
+    <h1>Authentication application <img src="src/assets/images/logo.png" height="40px"></h1>
 </div>
 
 
