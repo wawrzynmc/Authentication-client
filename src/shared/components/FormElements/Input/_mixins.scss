@@ -20,8 +20,20 @@ $invalid-input-bgc: #ffd1d1;
 		padding: 0.4rem 3rem 0.4rem 0.3rem;
 		border: 1px solid #ccc;
 
-		font-size: 1rem;
 		background: $normal-input-bgc;
+
+		// -- Mobile
+		@media (max-width: 1023.98px) {
+			font-size: 1rem;
+
+			@media screen and (min-height: 680px) {
+				font-size: 1.2rem;
+			}
+
+			@media screen and (min-height: 850px) {
+				font-size: 1.4rem;
+			}
+		}
 
 		&:focus {
 			outline: none;
@@ -36,6 +48,14 @@ $invalid-input-bgc: #ffd1d1;
 	p {
 		font-size: 1rem;
 		color: red;
+
+		@media screen and (min-height: 680px) {
+			font-size: 1.1rem;
+		}
+
+		@media screen and (min-height: 850px) {
+			font-size: 1.2rem;
+		}
 	}
 
 	input,

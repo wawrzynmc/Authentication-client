@@ -6,26 +6,31 @@ $overlay-container-color1: #d34163;
 $overlay-container-color2: #f73978;
 
 @mixin overlay-height() {
-	// -- Mobile
-	@media screen and (max-width: 1023.98px) {
-		height: 50%;
+	height: 50%;
 
-		@media screen and (min-height: 350px) {
-        	height: 60%;
-		}
-		
-		@media screen and (min-height: 400px) {
-        	height: 65%;
-		}
-		
-		@media screen and (min-height: 450px) {
-        	height: 70%;
-		}
-		
-		@media screen and (min-height: 480px) {
-        	height: 73%;
-    	}
+	@media screen and (min-height: 350px) {
+		height: 60%;
 	}
+	
+	@media screen and (min-height: 400px) {
+		height: 65%;
+	}
+	
+	@media screen and (min-height: 450px) {
+		height: 70%;
+	}
+	
+	@media screen and (min-height: 480px) {
+		height: 73%;
+	}
+	
+	@media screen and (min-height: 680px) {
+		height: 77%;
+	}
+
+		
+
+	
 	// @media (max-width: 1023.98px) {
 
 	// }
@@ -45,18 +50,45 @@ $overlay-container-color2: #f73978;
 .Container2 {
 	position: relative;
 
-	min-width: 320px;
-	// min-height: 350px;
 
 	background-color: white;
 	border-radius: 10px;
 	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 	overflow: hidden;
 
-	// -- Mobile
-	@media (max-width: 1023.98px) {
-		width: 100%;
-		height: 100%;
+	width: 100%;
+	height: 100%;
+
+	@media (min-width: 380px) {
+		width: 90%;
+	}
+
+	@media (min-width: 440px) {
+		width: 80%;
+	}
+
+	@media (min-width: 580px) {
+		width: 70%;
+	}
+
+	@media (min-width: 650px) {
+		width: 60%;
+	}
+
+	@media (min-width: 720px) {
+		width: 50%;
+	}
+
+	@media (min-width: 920px) {
+		width: 40%;
+	}
+
+	@media (min-height: 530px) {
+		height: 90%;
+	}
+
+	@media (min-height: 750px) {
+		height: 80%;
 	}
 }
 
@@ -66,7 +98,7 @@ $overlay-container-color2: #f73978;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
+	// justify-content: center;
 
 	@include overlay-height;
 	width: 100%;
@@ -87,15 +119,17 @@ $overlay-container-color2: #f73978;
 		background-color: white;
 	}
 
-	// -- Keyboard on
-	@media screen and (max-height: 479.98px) {
-		justify-content: flex-start;
-	}
-
 	&_signup {
+		justify-content: flex-start;
+
 		top: 0%;
 		left: 0;
 		background-color: white;
+
+		@media (min-height: 600px) {
+			justify-content: center;
+		}
+
 
 		&_deactive {
 			top: -100%;
@@ -103,11 +137,16 @@ $overlay-container-color2: #f73978;
 	}
 
 	&_signin {
+		justify-content: flex-start;
+
 		bottom: 0%;
 		left: 0;
 		background-color: white;
-		
 
+		@media (min-height: 420px) {
+			justify-content: center;
+		}
+		
 		&_deactive {
 			bottom: -100%;
 		}
@@ -116,6 +155,24 @@ $overlay-container-color2: #f73978;
 	h1 {
 		font-size: 1.6rem;
 		margin-top: 10px;
+
+		@media (min-width: 440px) {
+			font-size: 1.8rem;
+		}
+
+		@media screen and (min-height: 680px) {
+			font-size: 2rem;
+		}
+
+		@media screen and (min-height: 850px) {
+			font-size: 2.2rem;
+		}
+	}
+
+	span {
+		@media screen and (min-height: 680px) {
+			font-size: 1.2rem;
+		}
 	}
 
 	&Socials {
@@ -124,15 +181,19 @@ $overlay-container-color2: #f73978;
 		justify-content: center;
 
 		width: 100%;
+
+		@media screen and (min-height: 850px) {
+			font-size: 2.2rem;
+		}
 	}
 }
 
 .OverlayContainer2 {
+	position: relative;
+	
 	height: 100%;
 	width: 100%;
 	
-	position: relative;
-
 	background: linear-gradient(to right, $overlay-container-color1, $overlay-container-color2);
 
 	&Panel {
@@ -148,34 +209,50 @@ $overlay-container-color2: #f73978;
 		&_signup {
 			top: 0;
 
-			padding: 0px 10px;
+			padding: 5px 10px;
+			@media screen and (min-height: 680px) {
+				padding: 10px;
+			}
 		}
 		&_signin {
 			bottom: 0;
 
-			padding: 0px 10px;
+			padding: 5px 10px;
+
+			@media screen and (min-height: 680px) {
+				padding: 10px;
+			}
 		}
 
 		&_hide {
 			opacity: 0;
 		}
+
+		span {
+			@media screen and (min-height: 680px) {
+				font-size: 1.2rem;
+			}
+		}
 	}
 
-	&Info {
-		// display: none;
+	
 
-		// display: inline-block;
-		// width: 100%;
-		
-		font-size: 1rem;
+	&Info {
 		font-weight: 100;
 		line-height: 2rem;
-		letter-spacing: 0.1rem;
 
 		// -- Keyboard on
 		@media screen and (max-height: 479.98px) {
         	display:none;
-    	}
+		}
+
+		// -- Mobile
+		@media (max-width: 1023.98px) {
+			font-size: 1rem;
+			letter-spacing: 0.1rem;
+
+		}
+		
 	}
 }
 
