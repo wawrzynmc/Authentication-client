@@ -67,10 +67,26 @@ const Auth = (props) => {
 			</SuccessModal>
 			<div className={classes.Container2}>
 				<div
-					className={`${classes.FormContainer2} ${classes.FormContainer2_signin}`}
-				></div>
+					className={`
+						${classes.FormContainer2} 
+						${classes.FormContainer2_signin}
+						${!isLoginMode ? classes.FormContainer2_signin_deactive : null}
+					`}
+				>
+					<h1>{t('Authentication.SignInForm.activePanel.title')}</h1>
+					<div className={classes.FormContainer2Socials}>
+						<FacebookLogin />
+						<GoogleLogin />
+					</div>
+					<span>{t('Authentication.SignInForm.activePanel.or')}</span>
+					<SigninForm />
+				</div>
 				<div
-					className={`${classes.FormContainer2} ${classes.FormContainer2_signup}`}
+					className={`
+						${classes.FormContainer2} 
+						${classes.FormContainer2_signup}
+						${isLoginMode ? classes.FormContainer2_signup_deactive : null}
+					`}
 				>
 					<h1>{t('Authentication.SignUpForm.activePanel.title')}</h1>
 					<div className={classes.FormContainer2Socials}>
@@ -100,7 +116,11 @@ const Auth = (props) => {
 						</TextBetweenLines>
 					</div>
 					<div
-						className={`${classes.OverlayContainer2Panel} ${classes.OverlayContainer2Panel_signin}`}
+						className={`
+							${classes.OverlayContainer2Panel} 
+							${classes.OverlayContainer2Panel_signin}
+							${isLoginMode ? classes.OverlayContainer2Panel_hide : null}
+						`}
 					>
 						<span className={`${classes.OverlayContainer2Info}`}>
 							{t('Authentication.SignUpForm.inactivePanel.info')}

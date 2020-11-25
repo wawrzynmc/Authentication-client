@@ -66,15 +66,14 @@ $overlay-container-color2: #f73978;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	// justify-content: center;
-	flex-shrink: 0;
+	justify-content: center;
 
-	// height: 100vh - $overlay-container-height;
 	@include overlay-height;
 	width: 100%;
 
 	overflow-y: scroll;
 	z-index: 10;
+	transition: all 1s ease-in;
 
 	&::-webkit-scrollbar {
 		width: 0.5rem;
@@ -88,26 +87,35 @@ $overlay-container-color2: #f73978;
 		background-color: white;
 	}
 
+	// -- Keyboard on
+	@media screen and (max-height: 479.98px) {
+		justify-content: flex-start;
+	}
+
 	&_signup {
-		top: 0;
+		top: 0%;
 		left: 0;
-		// background-color: rosybrown;
 		background-color: white;
+
+		&_deactive {
+			top: -100%;
+		}
 	}
 
 	&_signin {
-		top: 100%;
+		bottom: 0%;
 		left: 0;
-		background-color: cadetblue;
+		background-color: white;
+		
+
+		&_deactive {
+			bottom: -100%;
+		}
 	}
 
 	h1 {
 		font-size: 1.6rem;
 		margin-top: 10px;
-	}
-
-	span {
-
 	}
 
 	&Socials {
@@ -127,7 +135,6 @@ $overlay-container-color2: #f73978;
 
 	background: linear-gradient(to right, $overlay-container-color1, $overlay-container-color2);
 
-
 	&Panel {
 		position: absolute;
 		
@@ -135,6 +142,8 @@ $overlay-container-color2: #f73978;
 
 		text-align: center;
 		color: rgb(255, 240, 240);
+		opacity: 1;
+		transition: all 0.4s ease-in;
 
 		&_signup {
 			top: 0;
@@ -148,7 +157,7 @@ $overlay-container-color2: #f73978;
 		}
 
 		&_hide {
-			display: none;
+			opacity: 0;
 		}
 	}
 
@@ -162,6 +171,11 @@ $overlay-container-color2: #f73978;
 		font-weight: 100;
 		line-height: 2rem;
 		letter-spacing: 0.1rem;
+
+		// -- Keyboard on
+		@media screen and (max-height: 479.98px) {
+        	display:none;
+    	}
 	}
 }
 
