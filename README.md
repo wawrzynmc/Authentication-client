@@ -1,9 +1,4 @@
-<div style="display:flex; justify-content:space-evenly;">
-    <h1>Authentication application <img src="src/assets/images/logo.png" height="40px"></h1>
-</div>
-
-
--------
+<h1>Authentication application <img src="src/assets/images/logo.png" height="40px"></h1>
 
 <p align="center">
     <img src="src/assets/shots/mobile_main.png" height="350px" style="margin: 0 30px;">
