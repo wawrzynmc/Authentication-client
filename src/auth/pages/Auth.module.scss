@@ -83,6 +83,10 @@ $overlay-container-color2: #f73978;
 		width: 40%;
 	}
 
+	@media (min-width: 1200px) {
+		width: 30%;
+	}
+
 	@media (min-height: 530px) {
 		height: 90%;
 	}

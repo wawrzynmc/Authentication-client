@@ -19,6 +19,7 @@ export const Facebook = (props) => {
 	const auth = useContext(AuthContext);
 	const {
 		isLoading,
+		setIsLoading,
 		msg,
 		sendRequest,
 		clearMsg,
@@ -45,8 +46,12 @@ export const Facebook = (props) => {
 	};
 
 	const responseFacebook = (response) => {
-		const { userID, accessToken } = response;
-		sendFacebookToken(userID, accessToken);
+		if (response.status === 'unknown') {
+			setIsLoading(false);
+		} else {
+			const { userID, accessToken } = response;
+			sendFacebookToken(userID, accessToken);
+		}
 	};
 
 	return (
@@ -78,6 +83,7 @@ export const Google = (props) => {
 	const auth = useContext(AuthContext);
 	const {
 		isLoading,
+		setIsLoading,
 		msg,
 		sendRequest,
 		clearMsg,
@@ -104,8 +110,12 @@ export const Google = (props) => {
 	};
 
 	const responseGoogle = (response) => {
-		const { tokenId } = response;
-		sendGoogleToken(tokenId);
+		if (response.error) {
+			setIsLoading(false);
+		} else {
+			const { tokenId } = response;
+			sendGoogleToken(tokenId);
+		}
 	};
 
 	return (

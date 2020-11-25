@@ -14,7 +14,6 @@ import NavigationItems from '../NavigationItems/NavigationItems';
 import classes from './MainNavigation.module.scss';
 
 const MainNavigation = (props) => {
-	console.log('dasdas', props.sideDrawerIsVisible);
 	return (
 		<MainHeader>
 			<Logo className={classes.HeaderLogo} />
