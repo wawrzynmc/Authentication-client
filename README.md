@@ -8,4 +8,4 @@
     <img src="src/assets/shots/mobile_main_auth.png" height="350px">
 </p>
 
-<p align="center"><i>Above screenshots comes from mobile view of app<i></p>
+<p align="center"><i>Above screenshots comes from <sup><strong>mobile</strong></sup> view of app<i></p>
