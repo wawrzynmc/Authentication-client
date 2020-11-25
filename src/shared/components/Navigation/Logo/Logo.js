@@ -17,21 +17,16 @@ import classes from './Logo.module.scss';
 const Logo = (props) => {
 	return (
 		<div
-			className={`
-				${classes.Logo}
-				${props.navigation ? classes.NavigationLogo : null}
-			`}
+			className={`${classes.Logo} ${props.className}`}
 			style={{ height: props.height }}
 		>
-			<img src={logo} alt="logo" />
+			<img src={logo} alt={props.alt || 'logo'} />
 		</div>
 	);
 };
 
 // * -- prop types
 Logo.propTypes = {
-	/** Defines special style if logo will be placed in navigation */
-	navigation: PropTypes.bool,
 	/** Defines heigth of element */
 	height: PropTypes.string,
 };

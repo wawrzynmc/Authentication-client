@@ -40,8 +40,8 @@ const Main = (props) => {
 
 	return (
 		<React.Fragment>
-			<Card information>
-				<div className={classes.Typing}>
+			<Card className={classes.MainCard}>
+				<div className={classes.MainTypewriter}>
 					<Typewriter
 						options={{
 							strings: [
@@ -56,13 +56,11 @@ const Main = (props) => {
 						}}
 					/>
 				</div>
-				<div>
-					<Lock
-						logo
-						lockClick={lockClickedHandler}
-						closed={lockIsClosed}
-					/>
-				</div>
+				<Lock
+					className={classes.MainLock}
+					lockClick={lockClickedHandler}
+					closed={lockIsClosed}
+				/>
 			</Card>
 		</React.Fragment>
 	);

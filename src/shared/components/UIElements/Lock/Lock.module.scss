@@ -7,15 +7,6 @@ $transition-time: 400ms;
 	height: 150px;
 	cursor: pointer;
 
-	@media (min-width: 375px) {
-		width: 200px;
-		height: 200px;
-	}
-
-	&_logo {
-		margin-top: 20px;
-	}
-
 	&__Top {
 		fill: none;
 		stroke: $error-color;

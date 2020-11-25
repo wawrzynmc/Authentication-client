@@ -7,17 +7,19 @@ import PropTypes from 'prop-types';
 import classes from './DrawerToggle.module.scss';
 
 const DrawerToggle = (props) => {
-	let attachedClasses = [classes.DrawerToggle];
-
-	if (props.transform) {
-		attachedClasses.push(classes.Toggle);
-	}
+	const lineClassName = `
+		${classes.DrawerToggleLine} 
+		${props.transform ? classes.DrawerToggleLine_toggled : null}
+	`;
 
 	return (
-		<div className={attachedClasses.join(' ')} onClick={props.onClick}>
-			<div className={classes.DrawerToggleLine}></div>
-			<div className={classes.DrawerToggleLine}></div>
-			<div className={classes.DrawerToggleLine}></div>
+		<div
+			className={`${classes.DrawerToggle} `}
+			onClick={props.drawerToggleClick}
+		>
+			<div className={lineClassName}></div>
+			<div className={lineClassName}></div>
+			<div className={lineClassName}></div>
 		</div>
 	);
 };
@@ -26,8 +28,8 @@ const DrawerToggle = (props) => {
 DrawerToggle.propTypes = {
 	/** Toggle drawer */
 	transform: PropTypes.bool,
-	/** onClick handler */
-	onClick: PropTypes.func,
+	/** onClick on drawer handler */
+	drawerToggleClick: PropTypes.func,
 };
 
 export default DrawerToggle;

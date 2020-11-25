@@ -4,34 +4,38 @@ $slidingLineColor: #f01390;
 
 .NavigationItem {
 	text-align: center;
+	font-size: 1em;
+
+	& a {
+		display: inline-block;
+	
+		color: $inactiveLinkColor;
+		text-decoration: none;
+		text-transform: uppercase;
+		letter-spacing: 3px;
+		font-weight: bold;
+		transition: color 0.3s;
+
+		&::after {
+			display: block;
+			width: 0;
+			height: 2px;
+		
+			content: '';
+			background-color: $slidingLineColor;
+			transition: width 0.3s linear;
+		}
+
+		&:hover,
+		:active,
+		.active {
+			color: $activeLinkColor;
+		}
+	}
 }
 
-.NavigationItem a {
-	display: inline-block;
 
-	color: $inactiveLinkColor;
-	text-decoration: none;
-	text-transform: uppercase;
-	letter-spacing: 3px;
-	font-weight: bold;
-	transition: color 0.3s;
-}
 
-.NavigationItem a::after {
-	display: block;
-	width: 0;
-	height: 2px;
-
-	content: '';
-	background-color: $slidingLineColor;
-	transition: width 0.3s linear;
-}
-
-.NavigationItem a:hover,
-.NavigationItem a:active,
-.NavigationItem a.active {
-	color: $activeLinkColor;
-}
 
 .NavigationItem a.active::after,
 .NavigationItem a:hover::after {

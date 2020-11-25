@@ -15,20 +15,30 @@ $invalid-input-bgc: #ffd1d1;
 	input,
 	textarea {
 		display: block;
+
 		width: 100%;
-		font: inherit;
-		border: 1px solid #ccc;
-		background: $normal-input-bgc;
 		padding: 0.4rem 3rem 0.4rem 0.3rem;
+		border: 1px solid #ccc;
+
+		background: $normal-input-bgc;
+
+		// -- Mobile
+		@media (max-width: 1023.98px) {
+			font-size: 1rem;
+
+			@media screen and (min-height: 680px) {
+				font-size: 1.2rem;
+			}
+
+			@media screen and (min-height: 850px) {
+				font-size: 1.4rem;
+			}
+		}
 
 		&:focus {
 			outline: none;
 			background: $focus-input-bgc;
 			border-color: #510077;
-		}
-
-		@media (min-width: 375px) {
-			font-size: 1.1rem;
 		}
 	}
 }
@@ -39,8 +49,12 @@ $invalid-input-bgc: #ffd1d1;
 		font-size: 1rem;
 		color: red;
 
-		@media (min-width: 375px) {
+		@media screen and (min-height: 680px) {
 			font-size: 1.1rem;
+		}
+
+		@media screen and (min-height: 850px) {
+			font-size: 1.2rem;
 		}
 	}
 

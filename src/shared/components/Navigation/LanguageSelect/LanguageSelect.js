@@ -16,16 +16,12 @@ const LanguageSelect = () => {
 
 	return (
 		<li className={classes.LanguageSelect}>
-			<button
+			<img
 				onClick={changeLanguageHandler}
-				className={classes.LanguageSelect__Button}
-			>
-				<img
-					src={i18n.language === 'en' ? polandFlag : ukFlag}
-					alt="uk flag"
-					className={classes.LanguageSelect__Image}
-				/>
-			</button>
+				src={i18n.language === 'en' ? polandFlag : ukFlag}
+				alt="uk flag"
+				className={classes.LanguageSelectImage}
+			/>
 		</li>
 	);
 };

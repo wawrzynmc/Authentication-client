@@ -25,7 +25,7 @@
             },
             "inactivePanel": {
                 "title": "Witaj ponownie",
-                "info": "Wprowadź odpowiednie dane, zaloguj się i ciesz się chwilą",
+                "info": "Zaloguj się i ciesz się chwilą!",
                 "or": "lub",
                 "button": "zarejestruj się"
             }
@@ -39,7 +39,7 @@
             },
             "inactivePanel": {
                 "title": "Pierwszy raz tutaj?",
-                "info": "Wprowadź swoje dane, stwórz konto i rozpocznij przygodę!",
+                "info": "Stwórz konto i rozpocznij przygodę!",
                 "or": "lub",
                 "button": "zaloguj się"
             }

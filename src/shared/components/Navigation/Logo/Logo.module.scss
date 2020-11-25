@@ -1,14 +1,7 @@
 .Logo {
 	height: 100%;
-	box-sizing: border-box;
-}
 
-.NavigationLogo {
-	height: 60%;
-	@media (min-width: 375px) {
+	img {
+		height: 100%;
 	}
-}
-
-.Logo img {
-	height: 100%;
 }

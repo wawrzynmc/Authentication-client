@@ -25,13 +25,11 @@ const Layout = (props) => {
 					mainPageAddress={props.mainPageAddress}
 					drawerToggleClick={sideDrawerToggleHandler}
 					sideDrawerIsVisible={sideDrawerIsVisible}
-					navigationItemsDesktopView={true}
 					closeSideDrawer={closeSideDrawerHandler}
 				/>
 				<SideDrawer
 					closeSideDrawer={closeSideDrawerHandler}
 					sideDrawerIsVisible={sideDrawerIsVisible}
-					navigationItemsDesktopView={false}
 				/>
 				<main className={classes.main}>{props.children}</main>
 			</div>

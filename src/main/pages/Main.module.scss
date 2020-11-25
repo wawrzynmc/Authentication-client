@@ -1,28 +1,209 @@
 @import '../../assets/styles/variables.module.scss';
 
-.Typing {
-	flex-grow: 1;
+.Main {
+	&Card {
+		display: flex;
+		
+		&::-webkit-scrollbar {
+			width: 0.5rem;
+		}
 
-	width: 100%;
-	padding: 15px;
-	font-size: 2.5rem;
+		&::-webkit-scrollbar-thumb {
+			background-color: #ff7676;
+		}
 
-	font-weight: 600;
+		&::-webkit-scrollbar-track {
+			background-color: white;
+		}
 
-	@media screen and (orientation: portrait) {
-		font-size: 2.1rem;
-		border-bottom: 2px solid $header-bgc-color;
+		// -- Mobile
+		@media (max-width: 1023.98px) {
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-between;
 
-		@media (min-width: 480px) and (min-height: 720px) {
+			width: 90%;
+			height: 90%;
+			
+			// overflow-y: scroll;
+
+			@media (min-width: 400px) {
+				width: 80%;
+			}
+
+			@media (min-width: 550px) {
+				width: 75%;
+			}
+
+			@media (min-width: 580px) {
+				width: 70%;
+			}
+
+			@media (min-width: 620px) {
+				width: 65%;
+			}
+
+			@media (min-width: 720px) {
+				width: 60%;
+			}
+
+			@media (min-width: 800px) {
+				width: 50%;
+			}
+
+			@media (min-width: 920px) {
+				width: 45%;
+			}
+
+			@media (min-height: 500px) {
+				height: 85%;
+			}
+
+			@media (min-height: 550px) {
+				height: 75%;
+			}
+
+			@media (min-height: 600px) {
+				height: 70%;
+			}
+
+			@media (min-height: 650px) {
+				height: 65%;
+			}
+
+			@media (min-height: 700px) {
+				height: 60%;
+			}
+
+			@media (min-height: 750px) {
+				height: 55%;
+			}
+
+			@media (min-height: 800px) {
+				height: 47%;
+			}
+
+			@media (min-height: 900px) {
+				height: 40%;
+			}
+		}
+
+		// -- Desktop
+		@media screen and (min-width: 1024px) {
+			width: 70%;
+			height: 25vh;
+
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+
+		}
+
+		@media (min-width: 1200px) {
+			width: 60%;
+			height: 30vh;
+		}
+
+		@media (min-width: 1400px) {
+			width: 55%;
+		}
+
+		@media (min-width: 1600px) {
+			width: 50%;
+		}
+	}
+
+	&Typewriter {
+		width: 100%;
+		padding: 15px;
+		font-size: 1.6rem;
+		letter-spacing: 1px;
+	
+		font-weight: 600;
+
+		@media (min-width: 400px) {
+			font-size: 1.8rem;
+			line-height: 150%;
+		}
+
+		@media (min-width: 700px) {
+			font-size: 2rem;
+		}
+
+		// -- Desktop
+		@media screen and (min-width: 1024px) {
 			font-size: 2.2rem;
 		}
 
-		@media (min-width: 768px) {
-			font-size: 2.8rem;
+		@media screen and (min-width: 1400px){
+			font-size: 2.4rem;
 		}
 	}
+
+	&Lock {
+		margin-top: 20px;
+
+		width: 130px;
+		height: 130px;
+
+		// -- Desktop
+		@media (min-width: 1024px) {
+			margin-top: 50px;
+			width: 220px;
+			height: 220px;
+		}
+
+		@media (min-width: 1400px) {
+			width: 240px;
+			height: 240px;
+		}
+	}
+
 }
 
-.Card {
-	background-color: black;
-}
+
+
+
+// &_information {
+// 	display: flex;
+
+// 	@media screen and (orientation: portrait) {
+// 		flex-direction: column;
+// 		align-items: center;
+// 		justify-content: space-around;
+
+// 		height: 75vh;
+// 		width: 100%;
+
+// 		@media (min-width: 360px) and (min-height: 720px) {
+// 			width: 80%;
+// 			height: 60vh;
+// 		}
+		
+// 		@media (min-width: 480px) and (min-height: 360px) {
+// 			width: 80%;
+// 			height: 50vh;
+// 		}
+
+// 		@media (min-width: 480px) and (min-height: 720px){
+// 			width: 70%;
+// 			height: 60vh;
+// 		}
+
+// 		@media (min-width: 720px) and (min-height: 1080px){
+// 			width: 70%;
+// 			height: 40vh;
+// 		}
+// 	}
+
+// 	@media screen and (orientation: landscape) {
+// 		flex-direction: row;
+// 		align-items: center;
+// 		justify-content: space-around;
+// 		width: 80%;
+
+// 		@media screen and (min-width: 768px) {
+// 			width: 60%;
+// 		}
+// 	}
+// }

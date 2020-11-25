@@ -1,29 +1,292 @@
 @import '../../assets/styles/variables.module.scss';
 
 $transition-time: 0.6s;
+$overlay-container-height: 40%;
+$overlay-container-color1: #d34163;
+$overlay-container-color2: #f73978;
 
-.Container {
+@mixin overlay-height() {
+	height: 50%;
+
+	@media screen and (min-height: 350px) {
+		height: 60%;
+	}
+	
+	@media screen and (min-height: 400px) {
+		height: 65%;
+	}
+	
+	@media screen and (min-height: 450px) {
+		height: 70%;
+	}
+	
+	@media screen and (min-height: 480px) {
+		height: 73%;
+	}
+	
+	@media screen and (min-height: 680px) {
+		height: 77%;
+	}
+
+		
+
+	
+	// @media (max-width: 1023.98px) {
+
+	// }
+	// @media only screen and (max-height: 500px) {
+    //     height: 74%;
+    // }
+	// @media only screen and (max-height: 450px) {
+    //     height: 50%;
+	// }
+	// @media only screen and (max-height: 360px) {
+    //     height: 40%;
+    // }
+    
+}
+
+
+.Container2 {
 	position: relative;
 
-	width: 100%;
-	height: 100%;
 
 	background-color: white;
 	border-radius: 10px;
 	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 	overflow: hidden;
 
-	@media screen and (min-width: 768px) {
+	width: 100%;
+	height: 100%;
+
+	@media (min-width: 380px) {
+		width: 90%;
+	}
+
+	@media (min-width: 440px) {
+		width: 80%;
+	}
+
+	@media (min-width: 580px) {
+		width: 70%;
+	}
+
+	@media (min-width: 650px) {
+		width: 60%;
+	}
+
+	@media (min-width: 720px) {
+		width: 50%;
+	}
+
+	@media (min-width: 920px) {
+		width: 40%;
+	}
+
+	@media (min-height: 530px) {
+		height: 90%;
+	}
+
+	@media (min-height: 750px) {
+		height: 80%;
+	}
+}
+
+.FormContainer2 {
+	position: absolute;
+	
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	// justify-content: center;
+
+	@include overlay-height;
+	width: 100%;
+
+	overflow-y: scroll;
+	z-index: 10;
+	transition: all 1s ease-in;
+
+	&::-webkit-scrollbar {
+		width: 0.5rem;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: #ff7676;
+	}
+
+	&::-webkit-scrollbar-track {
+		background-color: white;
+	}
+
+	&_signup {
+		justify-content: flex-start;
+
+		top: 0%;
+		left: 0;
+		background-color: white;
+
+		@media (min-height: 600px) {
+			justify-content: center;
+		}
+
+
+		&_deactive {
+			top: -100%;
+		}
+	}
+
+	&_signin {
+		justify-content: flex-start;
+
+		bottom: 0%;
+		left: 0;
+		background-color: white;
+
+		@media (min-height: 420px) {
+			justify-content: center;
+		}
+		
+		&_deactive {
+			bottom: -100%;
+		}
+	}
+
+	h1 {
+		font-size: 1.6rem;
+		margin-top: 10px;
+
+		@media (min-width: 440px) {
+			font-size: 1.8rem;
+		}
+
+		@media screen and (min-height: 680px) {
+			font-size: 2rem;
+		}
+
+		@media screen and (min-height: 850px) {
+			font-size: 2.2rem;
+		}
+	}
+
+	span {
+		@media screen and (min-height: 680px) {
+			font-size: 1.2rem;
+		}
+	}
+
+	&Socials {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		width: 100%;
+
+		@media screen and (min-height: 850px) {
+			font-size: 2.2rem;
+		}
+	}
+}
+
+.OverlayContainer2 {
+	position: relative;
+	
+	height: 100%;
+	width: 100%;
+	
+	background: linear-gradient(to right, $overlay-container-color1, $overlay-container-color2);
+
+	&Panel {
+		position: absolute;
+		
+		width: 100%;
+
+		text-align: center;
+		color: rgb(255, 240, 240);
+		opacity: 1;
+		transition: all 0.4s ease-in;
+
+		&_signup {
+			top: 0;
+
+			padding: 5px 10px;
+			@media screen and (min-height: 680px) {
+				padding: 10px;
+			}
+		}
+		&_signin {
+			bottom: 0;
+
+			padding: 5px 10px;
+
+			@media screen and (min-height: 680px) {
+				padding: 10px;
+			}
+		}
+
+		&_hide {
+			opacity: 0;
+		}
+
+		span {
+			@media screen and (min-height: 680px) {
+				font-size: 1.2rem;
+			}
+		}
+	}
+
+	
+
+	&Info {
+		font-weight: 100;
+		line-height: 2rem;
+
+		// -- Keyboard on
+		@media screen and (max-height: 479.98px) {
+        	display:none;
+		}
+
+		// -- Mobile
+		@media (max-width: 1023.98px) {
+			font-size: 1rem;
+			letter-spacing: 0.1rem;
+
+		}
+		
+	}
+}
+
+// --- before
+
+.Container {
+	position: relative;
+
+	min-width: 320px;
+	// min-height: 350px;
+
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+	overflow: hidden;
+
+	// -- Mobile
+	@media (max-width: 1023.98px) {
+		width: 100%;
+		height: 100%;
+	}
+
+	// -- Desktop
+	@media screen and (min-width: 1024px) {
 		width: 768px;
 		height: 480px;
 	}
 
-	&_secondPanelActive {
+	&_signupActive {
 		& .FormContainer_signin {
 			transform: translate(0, 35%);
 			opacity: 0;
 			z-index: 0;
-			@media screen and (min-width: 768px) {
+			@media screen and (min-width: 1024px) {
 				transform: translate(100%, 0);
 			}
 		}
@@ -34,35 +297,35 @@ $transition-time: 0.6s;
 			transform: translate(0, 50%);
 			animation: show 1s;
 
-			@media screen and (min-width: 768px) {
+			@media screen and (min-width: 1024px) {
 				transform: translate(100%, 0);
 			}
 		}
 
 		& .OverlayContainer {
 			transform: translate(0, -234%);
-			@media screen and (min-width: 768px) {
+			@media screen and (min-width: 1024px) {
 				transform: translate(-100%, 0);
 			}
 		}
 
 		& .OverlayContainer__Overlay {
 			transform: translate(0, 70%);
-			@media screen and (min-width: 768px) {
+			@media screen and (min-width: 1024px) {
 				transform: translate(50%, 0);
 			}
 		}
 
 		& .OverlayContainer__Panel_first {
 			transform: translate(0, 0%);
-			@media screen and (min-width: 768px) {
+			@media screen and (min-width: 1024px) {
 				transform: translate(100%, 0);
 			}
 		}
 
 		& .OverlayContainer__Panel_second {
 			transform: translate(0, -233%);
-			@media screen and (min-width: 768px) {
+			@media screen and (min-width: 1024px) {
 				transform: translate(-100%, 0);
 			}
 		}
@@ -84,7 +347,7 @@ $transition-time: 0.6s;
 
 	transition: all 0.4s ease-in;
 
-	@media screen and (min-width: 768px) {
+	@media screen and (min-width: 1024px) {
 		top: 0;
 		left: 0;
 
@@ -101,7 +364,7 @@ $transition-time: 0.6s;
 		z-index: 10;
 	}
 
-	&__Socials {
+	&Socials {
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -109,7 +372,7 @@ $transition-time: 0.6s;
 		width: 100%;
 	}
 
-	&__Title {
+	&Title {
 		font-weight: bold;
 		font-size: 1.8rem;
 
@@ -118,7 +381,7 @@ $transition-time: 0.6s;
 		}
 	}
 
-	&__Paragraph {
+	&Paragraph {
 		@media (min-width: 375px) {
 			font-size: 1.1rem;
 		}
@@ -137,7 +400,7 @@ $transition-time: 0.6s;
 	z-index: 10;
 	transition: transform $transition-time ease-in-out;
 
-	@media screen and (min-width: 768px) {
+	@media screen and (min-width: 1024px) {
 		top: 0;
 		left: 50%;
 
@@ -155,7 +418,7 @@ $transition-time: 0.6s;
 		transform: translateX(0);
 		transition: transform $transition-time ease-in-out;
 
-		@media screen and (min-width: 768px) {
+		@media screen and (min-width: 1024px) {
 			left: -100%;
 			top: 0;
 			height: 100%;
@@ -180,7 +443,7 @@ $transition-time: 0.6s;
 		transform: translateX(0);
 		transition: transform $transition-time ease-in-out;
 
-		@media screen and (min-width: 768px) {
+		@media screen and (min-width: 1024px) {
 			top: 0;
 
 			height: 100%;
@@ -192,7 +455,7 @@ $transition-time: 0.6s;
 		&_first {
 			transform: translate(0, 0);
 
-			@media screen and (min-width: 768px) {
+			@media screen and (min-width: 1024px) {
 				transform: translate(100%, 0);
 			}
 		}
@@ -200,7 +463,7 @@ $transition-time: 0.6s;
 		&_second {
 			transform: translate(0, 200%);
 
-			@media screen and (min-width: 768px) {
+			@media screen and (min-width: 1024px) {
 				right: 0;
 				transform: translate(-100%, 0);
 			}
@@ -218,32 +481,32 @@ $transition-time: 0.6s;
 		letter-spacing: 0.1rem;
 		width: 60%;
 
-		h1 {
-			font-size: 1.2rem;
-			position: relative;
-		}
+		// h1 {
+		// 	font-size: 1.2rem;
+		// 	position: relative;
+		// }
 
-		h1:before {
-			content: '';
-			display: block;
-			width: 100px;
-			height: 1px;
-			background-color: rgb(246, 246, 246);
-			position: absolute;
-			left: 5%;
-			top: 50%;
-		}
+		// h1:before {
+		// 	content: '';
+		// 	display: block;
+		// 	width: 100px;
+		// 	height: 1px;
+		// 	background-color: rgb(246, 246, 246);
+		// 	position: absolute;
+		// 	left: 5%;
+		// 	top: 50%;
+		// }
 
-		h1:after {
-			content: '';
-			display: block;
-			width: 100px;
-			height: 1px;
-			background-color: rgb(246, 246, 246);
-			position: absolute;
-			right: 5%;
-			top: 50%;
-		}
+		// h1:after {
+		// 	content: '';
+		// 	display: block;
+		// 	width: 100px;
+		// 	height: 1px;
+		// 	background-color: rgb(246, 246, 246);
+		// 	position: absolute;
+		// 	right: 5%;
+		// 	top: 50%;
+		// }
 	}
 }
 

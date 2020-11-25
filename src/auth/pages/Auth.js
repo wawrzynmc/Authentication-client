@@ -65,10 +65,88 @@ const Auth = (props) => {
 					? location.state.message
 					: 'Operation succedded'}
 			</SuccessModal>
-			<div
+			<div className={classes.Container2}>
+				<div
+					className={`
+						${classes.FormContainer2} 
+						${classes.FormContainer2_signin}
+						${!isLoginMode ? classes.FormContainer2_signin_deactive : null}
+					`}
+				>
+					<h1>{t('Authentication.SignInForm.activePanel.title')}</h1>
+					<div className={classes.FormContainer2Socials}>
+						<FacebookLogin />
+						<GoogleLogin />
+					</div>
+					<span>{t('Authentication.SignInForm.activePanel.or')}</span>
+					<SigninForm />
+				</div>
+				<div
+					className={`
+						${classes.FormContainer2} 
+						${classes.FormContainer2_signup}
+						${isLoginMode ? classes.FormContainer2_signup_deactive : null}
+					`}
+				>
+					<h1>{t('Authentication.SignUpForm.activePanel.title')}</h1>
+					<div className={classes.FormContainer2Socials}>
+						<FacebookLogin />
+						<GoogleLogin />
+					</div>
+					<span>{t('Authentication.SignUpForm.activePanel.or')}</span>
+					<SignupForm />
+				</div>
+				<div className={classes.OverlayContainer2}>
+					<div
+						className={`
+							${classes.OverlayContainer2Panel} 
+							${classes.OverlayContainer2Panel_signup} 
+							${!isLoginMode ? classes.OverlayContainer2Panel_hide : null}`}
+					>
+						<span className={`${classes.OverlayContainer2Info}`}>
+							{t('Authentication.SignInForm.inactivePanel.info')}
+						</span>
+						<Button ghost onClick={switchModeHandler}>
+							{t(
+								'Authentication.SignInForm.inactivePanel.button'
+							)}
+						</Button>
+						<TextBetweenLines>
+							{t('Authentication.SignInForm.inactivePanel.or')}
+						</TextBetweenLines>
+					</div>
+					<div
+						className={`
+							${classes.OverlayContainer2Panel} 
+							${classes.OverlayContainer2Panel_signin}
+							${isLoginMode ? classes.OverlayContainer2Panel_hide : null}
+						`}
+					>
+						<span className={`${classes.OverlayContainer2Info}`}>
+							{t('Authentication.SignUpForm.inactivePanel.info')}
+						</span>
+						<TextBetweenLines>
+							{t('Authentication.SignUpForm.inactivePanel.or')}
+						</TextBetweenLines>
+						<Button ghost onClick={switchModeHandler}>
+							{t(
+								'Authentication.SignUpForm.inactivePanel.button'
+							)}
+						</Button>
+					</div>
+				</div>
+			</div>
+		</React.Fragment>
+	);
+};
+
+export default Auth;
+
+{
+	/* <div
 				className={`
 					${classes.Container} 
-					${!isLoginMode && classes.Container_secondPanelActive}
+					${!isLoginMode && classes.Container_signupActive}
 				`}
 			>
 				<div
@@ -77,14 +155,14 @@ const Auth = (props) => {
 						${classes.FormContainer_signup}
 					`}
 				>
-					<h1 className={classes.FormContainer__Title}>
+					<h1 className={classes.FormContainerTitle}>
 						{t('Authentication.SignUpForm.activePanel.title')}
 					</h1>
-					<div className={classes.FormContainer__Socials}>
+					<div className={classes.FormContainerSocials}>
 						<FacebookLogin />
 						<GoogleLogin />
 					</div>
-					<span className={classes.FormContainer__Paragraph}>
+					<span className={classes.FormContainerParagraph}>
 						{t('Authentication.SignUpForm.activePanel.or')}
 					</span>
 					<SignupForm />
@@ -95,14 +173,14 @@ const Auth = (props) => {
 					${classes.FormContainer_signin}
 				`}
 				>
-					<h1 className={classes.FormContainer__Title}>
+					<h1 className={classes.FormContainerTitle}>
 						{t('Authentication.SignInForm.activePanel.title')}
 					</h1>
-					<div className={classes.FormContainer__Socials}>
+					<div className={classes.FormContainerSocials}>
 						<FacebookLogin />
 						<GoogleLogin />
 					</div>
-					<span className={classes.FormContainer__Paragraph}>
+					<span className={classes.FormContainerParagraph}>
 						{t('Authentication.SignInForm.activePanel.or')}
 					</span>
 					<SigninForm />
@@ -167,9 +245,5 @@ const Auth = (props) => {
 						</div>
 					</div>
 				</div>
-			</div>
-		</React.Fragment>
-	);
-};
-
-export default Auth;
+			</div> */
+}

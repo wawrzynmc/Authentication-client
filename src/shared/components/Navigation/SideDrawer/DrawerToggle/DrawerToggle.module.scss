@@ -9,29 +9,47 @@
 	padding: 25px 0px 25px 5px;
 
 	cursor: pointer;
-}
 
-.DrawerToggleLine {
-	width: 90%;
-	height: 3px;
-	background-color: black;
-	transition: all 0.3s ease;
-}
+	@media (min-width: 700px) {
+		width: 60px;
+		justify-content: space-between;
+	}
 
-.Toggle .DrawerToggleLine:nth-child(1) {
-	transform: rotate(-45deg) translate(-10px, 5px);
-}
-
-.Toggle .DrawerToggleLine:nth-child(2) {
-	opacity: 0;
-}
-
-.Toggle .DrawerToggleLine:nth-child(3) {
-	transform: rotate(45deg) translate(-10px, -5px);
-}
-
-@media screen and (min-width: 960px) {
-	.DrawerToggle {
+	// -- Desktop
+	@media screen and (min-width: 1024px) {
 		display: none;
+	}
+	
+	&Line {
+		width: 90%;
+		height: 3px;
+		background-color: black;
+		transition: all 0.3s ease;
+
+		&_toggled {
+			&:nth-child(1) {
+				transform: rotate(-45deg) translate(-10px, 5px);
+			
+				@media (min-width: 768px) {
+					transform: rotate(-45deg) translate(-10px, 9px);
+				}
+			}
+
+			&:nth-child(2) {
+				opacity: 0;
+			}
+
+			&:nth-child(3) {
+				transform: rotate(45deg) translate(-10px, -5px);
+			
+				@media (min-width: 768px) {
+					transform: rotate(45deg) translate(-10px, -9px);
+				}
+			}
+		}
+
+		@media (min-width: 768px) {
+			height: 4px;
+		}
 	}
 }
