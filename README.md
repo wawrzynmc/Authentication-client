@@ -11,15 +11,15 @@
 <p align="center"><i>Above screenshots comes from <sup><strong>mobile</strong></sup> view of app<i></p>
 
 <h2>🧻 Descriptions 🧻</h2>
-<p>
-    Applications allows to perform some basic actions associated with authentication and partly with authorization.
 
-    The main aim of the project creation was to posses/develop skills connceted with web development. 
+Applications allows to perform some basic actions associated with authentication and partly with authorization.
 
-    **[API](https://github.com/wawrzynmc/Authentication-server)** used in project is also designed by myself
-    
-    The project is not inspired by any existing project and has been fully done by myself 😇.
-</p>
+The main aim of the project creation was to posses/develop skills connceted with web development. 
+
+**[API](https://github.com/wawrzynmc/Authentication-server)** used in project is also designed by myself
+
+The project is not inspired by any existing project and has been fully done by myself 😇.
+
 
 > <h3>🦾 Functionalities 🦾</h3>
 > 
@@ -66,4 +66,4 @@
 - ~~<code>npm run test</code>~~ - runs tests
 
 <h2>💩 Check it 💩</h2>
-[https://wawrzynmc-authentication-app.web.app/](https://wawrzynmc-authentication-app.web.app/)
+https://wawrzynmc-authentication-app.web.app/
