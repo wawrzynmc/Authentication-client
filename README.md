@@ -9,3 +9,61 @@
 </p>
 
 <p align="center"><i>Above screenshots comes from <sup><strong>mobile</strong></sup> view of app<i></p>
+
+<h2>🧻 Descriptions 🧻</h2>
+<p>
+    Applications allows to perform some basic actions associated with authentication and partly with authorization.
+
+    The main aim of the project creation was to posses/develop skills connceted with web development. 
+
+    **[API](https://github.com/wawrzynmc/Authentication-server)** used in project is also designed by myself
+    
+    The project is not inspired by any existing project and has been fully done by myself 😇.
+</p>
+
+> <h3>🦾 Functionalities 🦾</h3>
+> 
+> - **account creation/registration**
+> 
+>   - standard way or using OAuth2 with itegration with Google and Facebook
+> 
+> - **account activation**
+>
+>   - with email verification
+>   - inactive accounts are deleted by one of the CRON action with certain frequency
+> 
+> - **logging in**
+> 
+>   - standard way or using OAuth2 with itegration with Google and Facebook
+> 
+> - **authorization**
+> 
+>   - distinguish between admin/user role and show specific views/navlinks base on it
+> 
+> - **password reset**
+> 
+>   - with email verification
+> 
+> - **multilang application** (🇬🇧/🇵🇱)
+> 
+> - **responsive design** (mobile first)
+> 
+> - **additionals**
+> 
+>   - own form validation logic
+
+<h2>🧰 Tools 🧰</h2>
+
+- **library**: React (functional components, hooks)
+- **styling**: CSS Modules with Sass
+- **multilang support**: i18next
+- **hosting**: Heroku
+
+<h2>🏃‍♂️ How to deal with 🏃‍♂️</h2>
+
+- <code>npm install</code> - installs all deps
+- <code>npm start</code> - runs app in dev mode
+- ~~<code>npm run test</code>~~ - runs tests
+
+<h2>💩 Check it 💩</h2>
+[https://wawrzynmc-authentication-app.web.app/](https://wawrzynmc-authentication-app.web.app/)
