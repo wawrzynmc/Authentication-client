@@ -42,18 +42,16 @@ const ForgotPasswordForm = (props) => {
 	const forgotPasswordSubmitHandler = async (event) => {
 		event.preventDefault();
 
-		try {
-			await sendRequest(
-				`${process.env.REACT_APP_SERVER_API_URL}/account/forgot-password`,
-				'PUT',
-				JSON.stringify({
-					email: formState.inputs.email.value,
-				}),
-				{
-					'Content-Type': 'application/json',
-				}
-			);
-		} catch (err) {}
+		await sendRequest(
+			`${process.env.REACT_APP_SERVER_API_URL}/account/forgot-password`,
+			'PUT',
+			JSON.stringify({
+				email: formState.inputs.email.value,
+			}),
+			{
+				'Content-Type': 'application/json',
+			}
+		);
 	};
 
 	return (

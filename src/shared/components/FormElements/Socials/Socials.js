@@ -27,22 +27,20 @@ export const Facebook = (props) => {
 	} = useHttpClient();
 
 	const sendFacebookToken = async (userID, accessToken) => {
-		try {
-			const responseData = await sendRequest(
-				`${process.env.REACT_APP_SERVER_API_URL}/account/signin/facebook`,
-				'POST',
-				JSON.stringify({
-					userID,
-					accessToken,
-				}),
-				{ 'Content-Type': 'application/json' }
-			);
-			const {
-				user: { id, role },
-				token,
-			} = responseData;
-			auth.login(id, role, token);
-		} catch (err) {}
+		const responseData = await sendRequest(
+			`${process.env.REACT_APP_SERVER_API_URL}/account/signin/facebook`,
+			'POST',
+			JSON.stringify({
+				userID,
+				accessToken,
+			}),
+			{ 'Content-Type': 'application/json' }
+		);
+		const {
+			user: { id, role },
+			token,
+		} = responseData;
+		auth.login(id, role, token);
 	};
 
 	const responseFacebook = (response) => {

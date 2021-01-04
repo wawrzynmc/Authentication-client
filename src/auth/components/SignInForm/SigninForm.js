@@ -88,17 +88,15 @@ const SigninForm = (props) => {
 		clearRequestSent(); // close modal
 
 		const { email } = formState.inputs;
-		try {
-			await sendRequest(
-				`${process.env.REACT_APP_SERVER_API_URL}/account/send-activation-email`,
-				'POST',
-				JSON.stringify({
-					email: email.value,
-				}),
-				{ 'Content-Type': 'application/json' }
-			);
-			clearFormData();
-		} catch (err) {}
+		await sendRequest(
+			`${process.env.REACT_APP_SERVER_API_URL}/account/send-activation-email`,
+			'POST',
+			JSON.stringify({
+				email: email.value,
+			}),
+			{ 'Content-Type': 'application/json' }
+		);
+		clearFormData();
 	};
 
 	return (

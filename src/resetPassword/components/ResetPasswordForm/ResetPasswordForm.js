@@ -46,28 +46,26 @@ const ForgotPasswordForm = (props) => {
 	const resetPasswordSubmitHandler = async (event) => {
 		event.preventDefault();
 
-		try {
-			await sendRequest(
-				`${process.env.REACT_APP_SERVER_API_URL}/account/reset-password`,
-				'PUT',
-				JSON.stringify({
-					password: formState.inputs.password1.value,
-					token: props.token,
-				}),
-				{
-					'Content-Type': 'application/json',
-				}
-			);
-			clearFormData();
-			history.push({
-				pathname: '/auth',
-				search: '?action=signin',
-				state: {
-					success: true,
-					message: t('successes:PWD_CHANGED_SUCCESS'),
-				},
-			});
-		} catch (err) {}
+		await sendRequest(
+			`${process.env.REACT_APP_SERVER_API_URL}/account/reset-password`,
+			'PUT',
+			JSON.stringify({
+				password: formState.inputs.password1.value,
+				token: props.token,
+			}),
+			{
+				'Content-Type': 'application/json',
+			}
+		);
+		clearFormData();
+		history.push({
+			pathname: '/auth',
+			search: '?action=signin',
+			state: {
+				success: true,
+				message: t('successes:PWD_CHANGED_SUCCESS'),
+			},
+		});
 	};
 
 	return (

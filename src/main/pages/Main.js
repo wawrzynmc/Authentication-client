@@ -67,22 +67,3 @@ const Main = (props) => {
 };
 
 export default Main;
-
-// options={{
-// autoStart: true,
-// loop: false,
-// }}
-
-// onInit={(typewriter) => {
-// 	typewriter
-// 		.typeString(`> ${t('Main.Card.1')} 👋`)
-// 		.pauseFor(1500)
-// 		.typeString('<br>> Fajnie Cię tu widzieć! 🙃')
-// 		.pauseFor(1500)
-// 		.typeString(
-// 			'<br><br><br>> Naciśnij na poniższą 🔒 by założyć konto.'
-// 		)
-// 		.pauseFor(1500)
-// 		.deleteAll()
-// 		.start();
-// }}

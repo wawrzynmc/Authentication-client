@@ -74,43 +74,32 @@ const SignupForm = (props) => {
 		event.preventDefault();
 		const { name, email, password1, password2 } = formState.inputs;
 
-		try {
-			await sendRequest(
-				`${process.env.REACT_APP_SERVER_API_URL}/account/signup`,
-				'POST',
-				JSON.stringify({
-					name: name.value,
-					email: email.value,
-					password1: password1.value,
-					password2: password2.value,
-				}),
-				{ 'Content-Type': 'application/json' }
-			);
-			// !  ---- temp solution
-			// resetForm();
-		} catch (err) {}
+		await sendRequest(
+			`${process.env.REACT_APP_SERVER_API_URL}/account/signup`,
+			'POST',
+			JSON.stringify({
+				name: name.value,
+				email: email.value,
+				password1: password1.value,
+				password2: password2.value,
+			}),
+			{ 'Content-Type': 'application/json' }
+		);
 	};
 
 	const sendActivationEmailHandler = async (event) => {
 		clearRequestSent(); // close modal
 
 		const { email } = formState.inputs;
-		try {
-			await sendRequest(
-				`${process.env.REACT_APP_SERVER_API_URL}/account/send-activation-email`,
-				'POST',
-				JSON.stringify({
-					email: email.value,
-				}),
-				{ 'Content-Type': 'application/json' }
-			);
-			// clearFormData();
-		} catch (err) {}
-	};
 
-	// !  ---- temp solution
-	const resetForm = () => {
-		clearFormData();
+		await sendRequest(
+			`${process.env.REACT_APP_SERVER_API_URL}/account/send-activation-email`,
+			'POST',
+			JSON.stringify({
+				email: email.value,
+			}),
+			{ 'Content-Type': 'application/json' }
+		);
 	};
 
 	return (
