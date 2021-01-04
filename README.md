@@ -16,7 +16,7 @@ Applications allows to perform some basic actions associated with authentication
 
 The main aim of the project creation was to posses/develop skills connceted with web development. 
 
-**[API](https://github.com/wawrzynmc/Authentication-server)** used in project is also designed by myself
+**[API](https://github.com/wawrzynmc/Authentication-server)** used in project is also designed on my own.
 
 The project is not inspired by any existing project and has been fully done by myself 😇.
 
@@ -30,7 +30,7 @@ The project is not inspired by any existing project and has been fully done by m
 > - **account activation**
 >
 >   - with email verification
->   - inactive accounts are deleted by one of the CRON action with certain frequency
+>   - inactive accounts are deleted by one of the CRON actions with certain frequency
 > 
 > - **logging in**
 > 
@@ -38,7 +38,7 @@ The project is not inspired by any existing project and has been fully done by m
 > 
 > - **authorization**
 > 
->   - distinguish between admin/user role and show specific views/navlinks base on it
+>   - distinguish between admin/user role and show specific views/navlinks based on it
 > 
 > - **password reset**
 > 
@@ -54,7 +54,7 @@ The project is not inspired by any existing project and has been fully done by m
 
 <h2>🧰 Tools 🧰</h2>
 
-- **library**: React (functional components, hooks)
+- **library**: React (functional components, hooks. ContextAPI)
 - **styling**: CSS Modules with Sass
 - **multilang support**: i18next
 - **hosting**: Heroku
