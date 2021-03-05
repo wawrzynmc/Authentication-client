@@ -12,7 +12,7 @@
 
 <h2>🧻 Descriptions 🧻</h2>
 
-Applications allows to perform some basic actions associated with authentication and partly with authorization.
+Application allows to perform some basic actions associated with authentication and partly with authorization.
 
 The main aim of the project creation was to posses/develop skills connceted with web development. 
 
