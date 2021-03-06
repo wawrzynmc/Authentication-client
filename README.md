@@ -66,4 +66,4 @@ The project is not inspired by any existing project and has been fully done by m
 - ~~<code>npm run test</code>~~ - runs tests
 
 <h2>💩 Check it 💩</h2>
-https://wawrzynmc-authentication-app.web.app/
+https://wawrzynmc-authentication-app.netlify.app/
